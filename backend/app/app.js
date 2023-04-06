@@ -20,3 +20,13 @@ app.use("/", home); // 루트 경로로 들어오면 홈을 보내줌
 
 module.exports = app;
 
+// db 연동 실패
+// const mysql = require("mysql");
+// const connection = mysql.createConnection({ 
+// 	 host : "localhost",
+//      port: '127.0.0.1:3306',
+// 	 user : "user",
+// 	 password : "1128", 
+// 	 database : "aico" 
+// 	 }); 
+// connection.connect();
