@@ -1,8 +1,8 @@
 코드 컨벤션
 ```
 - spaces : 2
-- 상수명 : SNAKE_CASE
-- 변수명, id : camelcase
+- 상수명 : SNAKE_CASE, 대문자
+- 변수명, 함수명, id : camelCase
 - class : snake_case
 ```
 
@@ -22,6 +22,10 @@
 - [] write
 - [] post_click
 - [] 마이페이지
+
+## 기능 구현
+- [x] 회원가입 유효성 검사
+- [] 로그인 유효성 검사
 
 ## 디렉토리 구조
 ```
