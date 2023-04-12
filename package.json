@@ -1,0 +1,17 @@
+{
+  "name": "aico-project",
+  "version": "1.0.0",
+  "description": "- main : 최종적으로 확인된 부분만 합칠 브랜치\r - develop : main으로 가기 전 백엔드와 프론트엔드의 협업 test를 위한 브랜치",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.2.0"
+  }
+}
