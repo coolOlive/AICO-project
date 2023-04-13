@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AICO_generate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/login.css">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+  <script src="../../../backend/app/src/public/js/home/login.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script>
+    $(document).ready(function(){
+      $("#header").load("/html/header.html");
+    });
+  </script>
+</head>
+
+<body>
+  <div id="header"></div>
+  <div class="title">AICO</div>
+  <div class="sub_title">AI create objet</div>
+  <form action="" class="login_form">
+    <div class="login_id_input_box">
+      <div class="guide_text">Username or email address</div>
+      <input name="id_input" type="text" class="input_box">
+    </div>
+    <div class="login_password_input_box">
+      <div class="login_password_guide_box">
+        <div class="guide_text">Password</div>
+        <div><a class="guide_forgot" href="">Forget password?</a></div>
+      </div>
+      <input name="password_input" type="password" class="input_box">
+    </div>
+    <div class="login_btn">
+      <input type="submit" name="" value="sign in" class="btn">
+    </div>
+  </form>
+  <div class="signup_btn_box">
+    <a href="" class="signup_btn">
+      <div class="signup_btn_txt1">New to AICO?</div>
+      <div class="signup_btn_txt2">Create an account.</div>
+    </a>
+  </div>
+
+</body>
