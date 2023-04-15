@@ -9,6 +9,11 @@ body {
   line-height: 16px;
 }
 
+.generate_all {
+  display: flex;
+  flex-direction: column;
+}
+
 .generate_form {
   margin-top: 40px;
   background: rgba(89, 89, 89, 0.6);
@@ -147,19 +152,63 @@ body {
   width: 100%;
 }
 
+.generate_picture_box {
+  /* background-color: yellow; */
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.generate_picture_double {
+  /* background-color: palevioletred; */
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+  /* padding: 10px; */
+}
+
+.picture {
+  /* background-color: tomato;
+  border: 1px solid rebeccapurple; */
+  width: 50%;
+  margin: auto;
+}
+
+.picture:first-child {
+  margin-right: 2%;
+}
+
 /* pc용 css */
 @media all and (min-width:1032px) {
 body {
   height: 1500px;
 }
 
-.generate_form {
-  width: 496px;
-  margin: 45px auto;
+.generate_all {
+  flex-direction: row;
+  margin: auto;
+  width: 80%;
+  /* background-color: tan; */
+  /* align-items: center; */
 }
 
-/* .signup_btn_box {
-  width: 520px;
-  margin: -20px auto;
-} */
+.generate_form {
+  background: none;
+  width: 400px;
+  /* height: 430px; */
+  margin: 45px auto;
+  border: none;
+}
+
+.btn {
+  width: 30%;
+  float: right;
+}
+
+.generate_picture_box {
+  width: 400px;
+  margin: 45px auto;
+  /* margin-left: 50px; */
+}
 }

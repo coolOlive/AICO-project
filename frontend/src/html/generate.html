@@ -22,26 +22,40 @@
 
 <body>
   <div id="header"></div>
-  
-  <form action="" class="generate_form">
-    <div class="generate_txt_input">
-      <div class="guide_text">Describe your image</div>
-      <textarea name="generate_txt" id="" rows="5" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이"></textarea>
-    </div>
-    <!-- 파일 업로드 -->
-    <div class="generate_img_input_box">
-      <input class="text_box img_file_show" id="file_show" placeholder="파일이름">
-      <div class="img_input_btn_box">
-        <label for="img_file" class="imp_input_btn">+ Upload image</label>
+  <div class="generate_all">
+    <!-- 요구사항 입력 박스 -->
+    <form action="" class="generate_form">
+      <div class="generate_txt_input">
+        <div class="guide_text">Describe your image</div>
+        <textarea name="generate_txt" id="" rows="5" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이"></textarea>
       </div>
-      <input type="file" class="img_input" id="img_file">
+      <div class="generate_img_input_box">
+        <input class="text_box img_file_show" id="file_show" placeholder="파일이름">
+        <div class="img_input_btn_box">
+          <label for="img_file" class="imp_input_btn">+ Upload image</label>
+        </div>
+        <input type="file" class="img_input" id="img_file">
+      </div>
+      <div class="generate_styletag_box">
+        <div class="guide_text">Choose your style tag</div>
+        <input placeholder="" id="tag" name="tags">
+      </div>
+      <div class="generate_btn">
+        <input type="submit" value="generate" class="btn">
+      </div>
+    </form>
+    <!-- 이미지 표시 박스 -->
+    <div class="generate_picture_box">
+      <div class="generate_picture_double">
+        <img src="pic1.jpg" alt="" id="picture1" class="picture">
+        <img src="pic2.jpg" alt="" id="picture1" class="picture">
+      </div>
+      <div class="generate_picture_double">
+        <img src="pic3.jpg" alt="" id="picture3" class="picture">
+        <img src="pic1.jpg" alt="" id="picture4" class="picture">
+      </div>
+
     </div>
-    <div class="generate_styletag_box">
-      <div class="guide_text">Choose your style tag</div>
-      <input placeholder="" id="tag" name="tags">
-    </div>
-    <div class="generate_btn">
-      <input type="submit" value="generate" class="btn">
-    </div>
-  </form>
+  </div>
+  
 </body>

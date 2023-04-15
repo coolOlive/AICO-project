@@ -28,7 +28,7 @@ window.onload=function() {
     }
     
     // 추출한 파일명 삽입
-    show.style.display = 'block';
+    $(show).css('display', 'block')
     $(this).siblings(show).val(filename);
   });
 }
