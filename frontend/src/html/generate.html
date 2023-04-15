@@ -7,9 +7,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/generate.css">
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
-  <!-- <script src="../../../backend/app/src/public/js/home/login.js"></script>/ -->
-  <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script src="../js/generate.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://unpkg.com/@yaireo/tagify"></script>
+  <!--<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>-->
+  <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+  
   <script>
     $(document).ready(function(){
       $("#header").load("/html/header.html");
@@ -19,29 +22,26 @@
 
 <body>
   <div id="header"></div>
-  <div class="title">AICO</div>
-  <div class="sub_title">AI create objet</div>
-  <form action="" class="login_form">
-    <div class="login_id_input_box">
-      <div class="guide_text">Username or email address</div>
-      <input name="id_input" type="text" class="input_box">
+  
+  <form action="" class="generate_form">
+    <div class="generate_txt_input">
+      <div class="guide_text">Describe your image</div>
+      <textarea name="generate_txt" id="" rows="5" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이"></textarea>
     </div>
-    <div class="login_password_input_box">
-      <div class="login_password_guide_box">
-        <div class="guide_text">Password</div>
-        <div><a class="guide_forgot" href="">Forget password?</a></div>
+    <!-- 파일 업로드 -->
+    <div class="generate_img_input_box">
+      <input class="text_box img_file_show" id="file_show" placeholder="파일이름">
+      <div class="img_input_btn_box">
+        <label for="img_file" class="imp_input_btn">+ Upload image</label>
       </div>
-      <input name="password_input" type="password" class="input_box">
+      <input type="file" class="img_input" id="img_file">
     </div>
-    <div class="login_btn">
-      <input type="submit" name="" value="sign in" class="btn">
+    <div class="generate_styletag_box">
+      <div class="guide_text">Choose your style tag</div>
+      <input placeholder="" id="tag" name="tags">
+    </div>
+    <div class="generate_btn">
+      <input type="submit" value="generate" class="btn">
     </div>
   </form>
-  <div class="signup_btn_box">
-    <a href="" class="signup_btn">
-      <div class="signup_btn_txt1">New to AICO?</div>
-      <div class="signup_btn_txt2">Create an account.</div>
-    </a>
-  </div>
-
 </body>

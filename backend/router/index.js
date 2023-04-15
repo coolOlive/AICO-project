@@ -11,4 +11,6 @@ router.get("/login",path.login);
 
 router.get("/signup",path.signup);
 
+router.get("/generate",path.generate);
+
 module.exports = router;
