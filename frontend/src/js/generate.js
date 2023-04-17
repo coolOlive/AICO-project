@@ -44,3 +44,15 @@ function deleteFile() {
   $(deleteBtn).css('display', 'none');
 };
 
+function checkGenerate() {
+  let show = document.querySelector("#file_show").value;
+  let txt = document.querySelector("#generate_txt").value;
+  let style = document.querySelector("#tag").value;
+
+  if (show === '' && txt === ''&& style === '') {
+    alert(`요구사항을 입력하세요`);
+    return false;
+  }
+
+  return true;
+}
