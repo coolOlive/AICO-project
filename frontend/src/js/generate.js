@@ -41,10 +41,12 @@ function textareaSize() {
   let generateTxt = textarea.value;
   
   textarea.style.height = 'auto';
+  textarea.style.minHeight = `36px`;
   let height = textarea.scrollHeight; // 높이
 
   if (generateTxt.split('\n').length > 1) {
     textarea.style.height = `${height + 5}px`;
+    textarea.style.minHeight = `${height + 5}px`;
   } else {
     textarea.style.height = 'auto';
   }
