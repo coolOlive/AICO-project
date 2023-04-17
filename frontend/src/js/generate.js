@@ -18,7 +18,8 @@ window.onload=function() {
   // 파일 표시 기능
   let file = document.querySelector("#img_file");
   let show = document.querySelector("#file_show");
-
+  let deleteBtn = document.querySelector("#file_delete_btn");
+  
   file.addEventListener('change',function(){
     if(window.FileReader){  // modern browser
       var filename = $(this)[0].files[0].name;
@@ -27,8 +28,19 @@ window.onload=function() {
       var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
     }
     
-    // 추출한 파일명 삽입
-    $(show).css('display', 'block')
+    // 화면 보이기, 추출한 파일명 삽입
+    $(show).css('display', 'block');
+    $(deleteBtn).css('display', 'block');
     $(this).siblings(show).val(filename);
   });
-}
+};
+
+function deleteFile() {
+  let show = document.querySelector("#file_show");
+  let deleteBtn = document.querySelector("#file_delete_btn");
+  show.value = '';
+  
+  $(show).css('display', 'none');
+  $(deleteBtn).css('display', 'none');
+};
+

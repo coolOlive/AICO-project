@@ -12,7 +12,6 @@
   <script src="https://unpkg.com/@yaireo/tagify"></script>
   <!--<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>-->
   <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-  
   <script>
     $(document).ready(function(){
       $("#header").load("/html/header.html");
@@ -30,7 +29,12 @@
         <textarea name="generate_txt" id="" rows="5" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이"></textarea>
       </div>
       <div class="generate_img_input_box">
-        <input class="text_box img_file_show" id="file_show" placeholder="파일이름">
+        <input class="text_box img_file_show" id="file_show" placeholder="파일이름" readonly>
+        <div class="file_delete">
+          <a onclick="deleteFile()" class="file_delete_btn" id="file_delete_btn">
+            <img src="delete_btn.svg" alt="">
+          </a>
+        </div>
         <div class="img_input_btn_box">
           <label for="img_file" class="imp_input_btn">+ Upload image</label>
         </div>

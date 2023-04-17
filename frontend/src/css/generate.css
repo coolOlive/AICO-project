@@ -64,9 +64,27 @@ body {
 }
 
 .img_file_show {
-  width: 100%;
+  width: 93%;
   height: 50px;
   display: none;
+}
+
+.file_delete {
+  height: 0em;
+  display: flex;
+  justify-content: end;
+}
+
+.file_delete_btn {
+  /* background-color: indianred; */
+  position: relative;
+  top: -30px;
+  text-decoration: none;
+  display: none;
+}
+
+.file_delete_btn img {
+  width: 13px;
 }
 
 .img_input_btn_box {
@@ -150,6 +168,7 @@ body {
   line-height: 16px;
   height: 39px;
   width: 100%;
+  cursor: pointer;
 }
 
 .generate_picture_box {
@@ -157,7 +176,6 @@ body {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-
 }
 
 .generate_picture_double {
