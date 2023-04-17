@@ -20,7 +20,8 @@ window.onload=function() {
   let show = document.querySelector("#file_show");
   let deleteBtn = document.querySelector("#file_delete_btn");
   
-  file.addEventListener('change',function(){
+  
+  file.addEventListener('change',function() {
     if(window.FileReader){  // modern browser
       var filename = $(this)[0].files[0].name;
     } 
@@ -33,6 +34,20 @@ window.onload=function() {
     $(deleteBtn).css('display', 'block');
     $(this).siblings(show).val(filename);
   });
+};
+
+function textareaSize() {
+  let textarea = document.querySelector("#generate_txt");
+  let generateTxt = textarea.value;
+  
+  textarea.style.height = 'auto';
+  let height = textarea.scrollHeight; // 높이
+
+  if (generateTxt.split('\n').length > 1) {
+    textarea.style.height = `${height + 5}px`;
+  } else {
+    textarea.style.height = 'auto';
+  }
 };
 
 function deleteFile() {

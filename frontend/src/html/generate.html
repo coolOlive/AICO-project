@@ -26,7 +26,7 @@
     <form action="" class="generate_form" onsubmit="return checkGenerate(this)">
       <div class="generate_txt_input">
         <div class="guide_text">Describe your image</div>
-        <textarea name="generate_txt" id="generate_txt" rows="5" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이"></textarea>
+        <textarea name="generate_txt" id="generate_txt" rows="1" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이" onkeyup="textareaSize()" onkeydown="textareaSize()"></textarea>
       </div>
       <div class="generate_img_input_box">
         <input class="text_box img_file_show" id="file_show" placeholder="파일이름" readonly>

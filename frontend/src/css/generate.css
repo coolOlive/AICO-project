@@ -45,7 +45,6 @@ body {
 
 .generate_txt_input {
   width: 90%;
-  /* background-color: #22A39F; */
   /* padding: 0px 10px 0px 10px; */
 }
 
@@ -53,6 +52,11 @@ body {
   width: 100%;
   resize: vertical;
   padding-top: 10px;
+  /* height: 36px; */
+  min-height: 36px;
+  line-height: 20px;
+  overflow: hidden;
+  /* background-color: #22A39F; */
 }
 
 .generate_img_input_box {
