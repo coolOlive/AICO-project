@@ -28,6 +28,23 @@ function checkSignUp() {
   } else if (pw !== cpw) {
     alert(MESSAGE.cpwError);
     return false;
+  } else {
+      $.ajax({
+        url : "/backend/db.js",
+        type : "POST",
+        data : {
+          user_id : id,
+          password : pw
+        },
+        success : function (data) {
+          if (data === "중복ID"){
+            alert("이미 존재하는 ID입니다.");
+          }
+          else if (data === "성공") {
+            alert("정상적으로 회원가입 되었습니다.");
+          }
+        }
+      })
   };
 
   return true;
