@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("./path");
 
-router.get("/",path.home);
+router.get("/main",path.main);
 
 router.get("/login",path.login);
 

@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-const home = (req, res) => {
+const main = (req, res) => {
     res.sendFile(path.join(__dirname,'../../frontend/src/html/main.html'));
 };
 
@@ -20,7 +20,7 @@ const generate = (req, res) => {
 
 // 컨트롤러 모듈 내보내기
 module.exports = {
-    home,
+    main,
     login,
     signup,
     generate,
