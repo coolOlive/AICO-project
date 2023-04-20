@@ -20,11 +20,16 @@
   <div id="header"></div>
   <div class="title">AICO</div>
   <div class="sub_title">AI create objet</div>
-  <button type="button" class="goto_create">start create</button>
-  <div class="search_box">
-    <input type="text" placeholder="&#xf002;">
-  </div>
-  
+  <a href="generate" onclick="return true;">
+    <button type="button" class="goto_create">start create</button>
+  </a>
+
+  <!-- 일단 구글 검색되게 함_이후에 데베 정보 찾는거로 바꾸기 -->
+  <form class="search_box" action="https://www.google.com/search" method="GET">
+    <img class="search_icon" src="search_icon.svg" alt="">
+    <input name="q" class="search_txt" type="text" placeholder="Search for an image">
+    <button class="search_btn" type="submit">Search</button>
+  </form>
   
   
 
