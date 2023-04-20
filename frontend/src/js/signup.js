@@ -3,7 +3,9 @@ const MESSAGE = {
   idError: 'id는 5 ~ 12자 이내여야 합니다.',
   pwError: '비밀번호는 숫자와 문자 포함 형태의 6~12자리 이내로 입력해주세요.',
   cpwError:'비밀번호가 일치하지 않습니다.',
-  blankError: '모든 항목을 입력해주세요.'
+  blankError: '모든 항목을 입력해주세요.',
+  existID: '이미 존재하는 ID입니다.',
+  successSignup: '정상적으로 회원가입 되었습니다.'
 }
 
 const PATTERN = {
@@ -38,11 +40,11 @@ function checkSignUp() {
         },
         success : function (data) {
           if (data === "중복ID"){
-            alert("이미 존재하는 ID입니다.");
+            alert(MESSAGE.existID);
             return false;
           }
           else if (data === "성공") {
-            alert("정상적으로 회원가입 되었습니다.");
+            alert(MESSAGE.successSignup);
           }
         }
       })
