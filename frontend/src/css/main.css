@@ -92,105 +92,26 @@ body {
   border-radius: 25px;
 }
 
-
-
-
-
-
-
-
-
-
-
-/* .login_form {
+.main_img_box {
   margin-top: 40px;
-  background: rgba(89, 89, 89, 0.6);
-  border: 1px solid #F3EFE0;
-  border-radius: 15px;
-  align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 23px;
 }
 
-.login_id_input_box {
+
+.four_img {
   width: 90%;
-}
- 
-.login_password_input_box {
-  width: 90%;
-  margin-top: 32px;
-}
-
-.input_box {
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 16px;
-  color: #F3EFE0;
-  background-color: #434242;
-  border: 1px solid rgba(243, 239, 224, 0.3);
-  border-radius: 15px;
-  width: 100%;
-  height: 39px;
-  padding: 0px 10px 0px 10px;
-}
-
-.login_password_guide_box {
-  display: flex;
-  justify-content: space-between;
-}
-
-.guide_text {
-  text-align: left;
-  margin-bottom: 10px;
-}
-
-
-.guide_forgot {
-  color: #22A39F;
-}
-
-.login_btn {
-  margin-top: 40px;
-  width: 90%;
-}
-
-.btn {
-  background: #22A39F;
-  color: #434242;
-  box-shadow: 0px 0px 4px #595959;
-  border: none;
-  border-radius: 15px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
-  height: 39px;
-  width: 100%;
-}
-
-.signup_btn_box {
-  height: 45px;
-  margin-top: 26px;
-  background: #434242;
-  border: 1px solid rgba(243, 239, 224, 0.3);
-  border-radius: 15px;
+  margin: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 2%;
+  /* padding: 10px; */
 }
 
-.signup_btn {
-  justify-content: center;
-  display: flex;
+.picture {
+  width: 23%;
+  margin: auto;
 }
-
-.signup_btn_txt1 {
-  margin-right: 5px;
-  color: #F3EFE0;
-}
-
-.signup_btn_txt2 {
-  color: #22A39F;
-} */
 
 /* pc용 css */
 @media all and (min-width:1032px) {
@@ -211,5 +132,10 @@ body {
 .signup_btn_box {
   width: 520px;
   margin: -20px auto;
+}
+
+.main_img_box {
+  width: 1200px;
+  margin: 45px auto;
 }
 }
