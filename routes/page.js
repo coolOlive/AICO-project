@@ -11,20 +11,24 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
+router.get('/profile', isLoggedIn, (req, res) => { //페이지 - 프로필 profile
     res.render('profile', { title: '내 정보 - NodeBird' });
 });
 
-router.get('/join',  isNotLoggedIn, (req, res) => {
-    res.render('join', { title: '회원가입 - NodeBird' });
+router.get('/singup',  isNotLoggedIn, (req, res) => { //페이지 - 회원가입 join
+    res.render('singup', { title: '회원가입 - NodeBird' });
 });
 
-router.get('/',  (req, res, next) => {
+router.get('/login',  (req, res, next) => { //페이지 - 로그인
     const twits = [];
-    res.render('main', { 
+    res.render('login', { 
         title: 'NodeBird',
         twits,
      });
+});
+
+router.get('/', (req, res) => { //페이지 - 메인 main
+    res.render('main');
 });
 
 module.exports = router;

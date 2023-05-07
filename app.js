@@ -27,8 +27,8 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 
 dotenv.config();
-const pageRouter = require('./routes/page');
-const authRouter = require('./routes/auth');
+const pageRouter = require('./routes/page'); //페이지라우터
+const authRouter = require('./routes/auth'); //페이지라우터
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -36,7 +36,7 @@ const app = express();
 passportConfig(); //패스포트 설정
 app.set('port', process.env.PORT || 8003);
 app.set('view engine', 'html');
-nunjucks.configure('views', {
+nunjucks.configure('./frontend/src/html', {
   express: app,
   watch: true,
 });
@@ -66,8 +66,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', pageRouter);
-app.use('/auth', authRouter);
+app.use('/', pageRouter); //페이지 - page.js
+app.use('/auth', authRouter); //페이지 - auth.js
 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
