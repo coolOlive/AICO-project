@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AICO_share</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="../css/share.css">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
+  <script src="../js/share.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script>
+    $(document).ready(function(){
+      $("#header").load("/html/header.html");
+      
+    });
+  </script>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <div class="search_box">
+    <!-- 일단 구글 검색되게 함_이후에 데베 정보 찾는거로 바꾸기 -->
+    <form class="search_form" action="https://www.google.com/search" method="GET">
+      <img class="search_icon" src="search_icon.svg" alt="">
+      <input name="q" class="search_txt" type="text" placeholder="Search for an image">
+      <button class="search_btn" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="sort_write_box">
+    <div class="sort_btn">
+      <button class="dropbtn" onclick="dropdown()">
+        <span class="dropbtn_content">Sort</span>
+        <span class="dropbtn_click"><img src="sort_dropdown_btn.svg" alt=""></span>
+      </button>
+      <div class="dropdown-content">
+        <div class="sort_by" onclick="showMenu(this.innerText)">날짜</div>
+        <div class="sort_by" onclick="showMenu(this.innerText)">좋아요</div>
+      </div>
+    </div>
+    <div class="wirte_btn">
+      <a href="#" class="write" onClick="">글쓰기 <img src="share_write_btn.svg" alt=""></a>
+    </div>
+  </div>
+  
+
+  <div class="share_list_box">
+    <div class="four_contents">
+      <div class="card">
+        <div class="card_profile_box">
+          <div class="profile_img">
+            <a href="#"><img src="profile_circle.svg" alt="프로필"></a>
+          </div>
+          <div class="prifile_name">
+            <a href="#"><h3>cat_master</h3></a>
+          </div>
+        </div>
+        <img src="pic1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class="card_icons_box">
+            <div class="card_icons">
+              <img class="card_icon" src="white_heart.svg" alt="">
+              <img class="card_icon" src="download_img.svg" alt="">
+              <img class="card_icon" src="comment_icon.svg" alt="">
+            </div>
+          </div>
+
+          <div class="card_text_box">
+            <p class="card_text">
+              고양이 대장님이다. <br>
+              양복도 잘 어울리는 대장냥dddddddddddddddddddddddddddddddd
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card_profile_box">
+          <div class="profile_img">
+            <a href="#"><img src="profile_circle.svg" alt="프로필"></a>
+          </div>
+          <div class="prifile_name">
+            <a href="#"><h3>pro_grass</h3></a>
+          </div>
+        </div>
+        <img src="pic2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class="card_icons_box">
+            <div class="card_icons">
+              <img class="card_icon" src="white_heart.svg" alt="">
+              <img class="card_icon" src="download_img.svg" alt="">
+              <img class="card_icon" src="comment_icon.svg" alt="">
+            </div>
+          </div>
+
+          <div class="card_text_box">
+            <p class="card_text">
+              햇살이 드는 책방 <br>
+              책이 많다<br>
+              one two two
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card_profile_box">
+          <div class="profile_img">
+            <a href="#"><img src="profile_circle.svg" alt="프로필"></a>
+          </div>
+          <div class="prifile_name">
+            <a href="#"><h3>btf_sky</h3></a>
+          </div>
+        </div>
+        <img src="pic3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class="card_icons_box">
+            <div class="card_icons">
+              <img class="card_icon" src="white_heart.svg" alt="">
+              <img class="card_icon" src="download_img.svg" alt="">
+              <img class="card_icon" src="comment_icon.svg" alt="">
+            </div>
+          </div>
+
+          <div class="card_text_box">
+            <p class="card_text">
+              꼬마 이끼 집이다. <br>
+              귀엽다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card_profile_box">
+          <div class="profile_img">
+            <a href="#"><img src="profile_circle.svg" alt="프로필"></a>
+          </div>
+          <div class="prifile_name">
+            <a href="#"><h3>hiphan_pika</h3></a>
+          </div>
+        </div>
+        <img src="pic1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class="card_icons_box">
+            <div class="card_icons">
+              <img class="card_icon" src="white_heart.svg" alt="">
+              <img class="card_icon" src="download_img.svg" alt="">
+              <img class="card_icon" src="comment_icon.svg" alt="">
+            </div>
+          </div>
+
+          <div class="card_text_box">
+            <p class="card_text">
+              고양이 대장님이다. <br>
+              양복도 잘 어울리는 대장냥
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+</body>

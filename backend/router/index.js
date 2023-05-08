@@ -12,4 +12,6 @@ router.get("/signup",path.signup);
 
 router.get("/generate",path.generate);
 
+router.get("/share",path.share);
+
 module.exports = router;
