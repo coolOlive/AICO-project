@@ -19,6 +19,10 @@ router.get('/signup',  isNotLoggedIn, (req, res) => { //페이지 - 회원가입
     res.render('signup', { title: '회원가입 - NodeBird' });
 });
 
+router.get('/generate',  isNotLoggedIn, (req, res) => { //페이지 - 회원가입 join
+    res.render('generate');
+});
+
 router.get('/login',  (req, res, next) => { //페이지 - 로그인
     const twits = [];
     res.render('login', { 
