@@ -11,19 +11,15 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/profile', isLoggedIn, (req, res) => { //페이지 - 프로필 profile
-    res.render('profile', { title: '내 정보 - NodeBird' });
+router.get('/', (req, res) => { //메인(기본) 페이지
+    res.render('main');
 });
 
-router.get('/signup',  isNotLoggedIn, (req, res) => { //페이지 - 회원가입 join
+router.get('/signup',  isNotLoggedIn, (req, res) => { //회원가입 페이지
     res.render('signup', { title: '회원가입 - NodeBird' });
 });
 
-router.get('/generate',  isNotLoggedIn, (req, res) => { //페이지 - 회원가입 join
-    res.render('generate');
-});
-
-router.get('/login',  (req, res, next) => { //페이지 - 로그인
+router.get('/login',  (req, res, next) => { //로그인 페이지
     const twits = [];
     res.render('login', { 
         title: 'NodeBird',
@@ -31,8 +27,16 @@ router.get('/login',  (req, res, next) => { //페이지 - 로그인
      });
 });
 
-router.get('/', (req, res) => { //페이지 - 메인 main
-    res.render('main');
+router.get('/generate',  isNotLoggedIn, (req, res) => { //생성페이지
+    res.render('generate');
+});
+
+router.get('/share', (req, res) => { //공유(게시판) 페이지
+    res.render('share');
+});
+
+router.get('/mypage', (req, res) => { //마이페이지
+    res.render('mypage');
 });
 
 module.exports = router;

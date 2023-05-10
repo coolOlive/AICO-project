@@ -24,10 +24,14 @@
   <div class="generate_all">
     <!-- 요구사항 입력 박스 -->
     <form action="" class="generate_form" onsubmit="return checkGenerate(this)">
+
+      <!-- 요구사항을 텍스트로 입력하는 부분 -->
       <div class="generate_txt_input">
         <div class="guide_text">Describe your image</div>
         <textarea name="generate_txt" id="generate_txt" rows="1" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이" onkeyup="textareaSize()" onkeydown="textareaSize()"></textarea>
       </div>
+
+      <!-- 이미지 파일을 입력할 수 있는 부분 -->
       <div class="generate_img_input_box">
         <input class="text_box img_file_show" id="file_show" placeholder="파일이름" readonly>
         <div class="file_delete">
@@ -40,15 +44,20 @@
         </div>
         <input type="file" class="img_input" id="img_file">
       </div>
+
+      <!-- 스타일 태그 선택하는 부분_ 리스트 다시 정리해야함(크롤링?) -->
       <div class="generate_styletag_box">
         <div class="guide_text">Choose your style tag</div>
         <input placeholder="" id="tag" name="tags">
       </div>
+      
+      <!-- 생성버튼_누르면 form 태그 실행됨 -->
       <div class="generate_btn">
         <input type="submit" value="generate" class="btn">
       </div>
     </form>
-    <!-- 이미지 표시 박스 -->
+
+    <!-- 이미지 표시 박스 (총 4개) -->
     <div class="generate_picture_box">
       <div class="generate_picture_double">
         <img src="pic1.jpg" alt="" id="picture1" class="picture">
