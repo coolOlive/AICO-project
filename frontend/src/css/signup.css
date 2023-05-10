@@ -32,8 +32,13 @@ body {
   padding: 23px;
 }
 
+.signup_name_input_box {
+  width: 90%;
+}
+
 .signup_id_input_box {
   width: 90%;
+  margin-top: 32px;
 }
  
 .signup_password_input_box {
