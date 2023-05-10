@@ -3,7 +3,7 @@
 // const app = express();
 // const port = 3000;
 
-// //css 파일 연동, 이미지 자료 사용 경로 _ 이건 수정하지 말아주세요.
+//css 파일 연동, 이미지 자료 사용 경로 _ 이건 수정하지 말아주세요.
 // app.use(express.static('frontend/src'));
 // app.use(express.static('frontend/assets/images'));
 // app.use(express.static('frontend/assets/icon'));
@@ -65,6 +65,10 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+//css 파일 연동, 이미지 자료 사용 경로 _ 이건 수정하지 말아주세요.
+app.use(express.static('frontend/src'));
+app.use(express.static('frontend/assets/images'));
+app.use(express.static('frontend/assets/icon'));
 
 app.use('/', pageRouter); //페이지 - page.js
 app.use('/auth', authRouter); //페이지 - auth.js

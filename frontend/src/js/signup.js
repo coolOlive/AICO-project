@@ -9,8 +9,8 @@ const MESSAGE = {
 }
 
 const PATTERN = {
-  idPattern: /^[A-Za-z0-9]{5,12}$/,
-  pwPattern: /^[A-Za-z0-9]{6,12}$/,
+  idPattern: /^[A-Za-z0-9@]{5,12}$/,
+  pwPattern: /^[A-Za-z0-9]{4,12}$/,
 }
 
 function checkSignUp() {
