@@ -111,10 +111,10 @@ body {
   /* width : 5px;
   height : 10px; */
 }
-.dropdown-content::-webkit-scrollbar-thumb{
-  /* border-radius : 2px;
-  background-color :rgb(194, 194, 194) */
-}
+/* .dropdown-content::-webkit-scrollbar-thumb{
+  border-radius : 2px;
+  background-color :rgb(194, 194, 194)
+} */
 
 .dropdown-content div{
   text-decoration : none;
