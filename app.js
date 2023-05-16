@@ -31,6 +31,8 @@ const pageRouter = require('./routes/page'); //페이지라우터
 const authRouter = require('./routes/auth'); //페이지라우터
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+const cors = require("cors");
+const { Configuration, OpenAIApi } = require("openai");
 
 const app = express();
 passportConfig(); //패스포트 설정
@@ -51,6 +53,7 @@ sequelize.sync({ force: false })
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -88,4 +91,27 @@ app.use((err, req, res, next) => {
 
 app.listen(app.get('port'), () => {
   console.log(app.get('port'), '번 포트에서 대기중');
+});
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const generateImage = async (prompt) => {
+  const response = await openai.createImage({
+      prompt: prompt,
+      n: 1,
+      size: "512x512",
+      response_format: "b64_json",
+    });
+    const image = response.data.data[0].b64_json;
+    //image_url = response.data.data[0].url;
+    return image;
+};
+
+app.post("/generateImage", async (req, res) => {
+  const image = await generateImage(req.body.prompt);
+  console.log(image);
+  res.send({ image });
 });
