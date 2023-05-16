@@ -8,6 +8,8 @@ window.onload=()=>{
       $(this).toggleClass('active-8');
       if (category_btn.css('display') == 'none') {
         category_btn.css("display","flex");
+        // category_btn.css("visibility","visible");
+        // category_btn.css("width","visible");
       } else {
         category_btn.css("display","none");
       }
