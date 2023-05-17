@@ -61,6 +61,7 @@ function deleteFile() {
   $(deleteBtn).css('display', 'none');
 };
 
+/*
 function checkGenerate() {
   let show = document.querySelector("#file_show").value;
   let txt = document.querySelector("#generate_txt").value;
@@ -73,3 +74,43 @@ function checkGenerate() {
 
   return true;
 }
+*/
+
+const showNotification = (message) => {
+  alert(message);
+};
+
+const generateImage = async () => {
+  //let show = document.querySelector("#file_show").value;
+  let prompt = document.querySelector("#generate_txt").value;
+  let style = document.querySelector("#tag").value;
+  let generatedImage = document.querySelector("#generate_picture_box");
+  
+  if (prompt && style) {
+      try {
+          generatedImage.src = "frontend\assets\images\pic2.jpg";
+
+          const response = await fetch("http://localhost:8003/generate", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ prompt: prompt }),
+          });
+
+          const data = await response.json();
+          const image = `data:image/jpeg;base64,${data.image}`;
+          generatedImage.src = image;
+          //downloadBtn.href = image;
+      } catch (error) {
+          console.log(error);
+          showNotification("이미지 생성에 오류가 생겼습니다.");
+          generatedImage.src = "frontend\assets\images\pic2.jpg";
+      }
+  } else {
+      showNotification("요구사항을 입력하세요.");
+  }
+};
+
+let generateBtn = document.querySelector("#generate_btn");
+generateBtn.addEventListener("click", generateImage);
