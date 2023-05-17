@@ -17,18 +17,18 @@ router.use((req, res, next) => {
 // });
 
 router.get('/signup',  isNotLoggedIn, (req, res) => { //회원가입 페이지
-    res.render('signup', { title: '회원가입 - NodeBird' });
+    res.render('signup', { title: '회원가입' });
 });
 
 router.get('/login',  (req, res, next) => { //로그인 페이지
     const twits = [];
     res.render('login', { 
-        title: 'NodeBird',
+        title: '로그인',
         twits,
      });
 });
 
-router.get('/',  async (req, res, next) => { //페이지 - 로그인
+router.get('/',  async (req, res, next) => { //페이지
     try {
         const posts = await Post.findAll({
             include:{
@@ -61,7 +61,7 @@ router.get('/hashtag', async (req, res, next) => {
       }
   
       return res.render('main', {
-        title: `${query} | NodeBird`,
+        title: `${query} `,
         twits: posts,
       });
     } catch (error) {
