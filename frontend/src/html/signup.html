@@ -22,24 +22,23 @@
   <div class="title">AICO</div>
   <div class="sub_title">AI create objet</div>
 
-
-  <form action="main" onsubmit="return checkSignUp(this)" class="signup_form" name="signup_form">
+  <form action="/auth/signup" method="post" onsubmit="return checkSignUp(this)" class="signup_form" name="signup_form">
     <!-- 이름(닉네임) 입력받는 부분 -->
     <div class="signup_name_input_box">
       <div class="guide_text">User Name</div>
-      <input name="name_input" type="text" id="nickName" class="input_box">
+      <input name="nick" type="text" id="nickName" class="input_box">
     </div>
 
     <!-- id 입력받는 부분 -->
     <div class="signup_id_input_box">
       <div class="guide_text">User ID</div>
-      <input name="id_input" type="text" id="id" class="input_box">
+      <input name="email" type="text" id="id" class="input_box">
     </div>
 
     <!-- 비번 입력받는 부분 -->
     <div class="signup_password_input_box">
       <div class="guide_text">Password</div>
-      <input name="password_input" type="password" id="pw" class="input_box">
+      <input name="password" type="password" id="pw" class="input_box">
     </div>
 
     <!-- 비번 확인 부분 -->
