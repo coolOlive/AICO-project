@@ -32,7 +32,6 @@ const authRouter = require('./routes/auth'); //페이지라우터
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 const cors = require("cors");
-const { Configuration, OpenAIApi } = require("openai");
 
 const app = express();
 passportConfig(); //패스포트 설정
@@ -93,6 +92,7 @@ app.listen(app.get('port'), () => {
   console.log(app.get('port'), '번 포트에서 대기중');
 });
 
+/*
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -110,8 +110,9 @@ const generateImage = async (prompt) => {
     return image;
 };
 
-app.post("/generateImage", async (req, res) => {
+app.post("/generate", async (req, res) => {
   const image = await generateImage(req.body.prompt);
   console.log(image);
   res.send({ image });
 });
+*/
