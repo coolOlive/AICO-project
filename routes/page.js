@@ -1,6 +1,7 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Post, User } = require('../models');
+const { Configuration, OpenAIApi } = require("openai");
 
 const router = express.Router();
 
@@ -69,7 +70,7 @@ router.get('/hashtag', async (req, res, next) => {
       return next(error);
     }
   });
-
+  
 router.get('/generate',  isNotLoggedIn, (req, res) => { //생성페이지
     res.render('generate');
 });
@@ -80,6 +81,29 @@ router.get('/share', (req, res) => { //공유(게시판) 페이지
 
 router.get('/mypage', (req, res) => { //마이페이지
     res.render('mypage');
+});
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const generateImage = async (prompt) => {
+  const response = await openai.createImage({
+      prompt: prompt,
+      n: 1,
+      size: "512x512",
+      response_format: "b64_json",
+    });
+    const image = response.data.data[0].b64_json;
+    //image_url = response.data.data[0].url;
+    return image;
+};
+
+router.post("/generate", async (req, res) => {
+  const image = await generateImage(req.body.prompt);
+  console.log(image);
+  res.send({ image });
 });
 
 module.exports = router;
