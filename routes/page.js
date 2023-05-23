@@ -83,6 +83,14 @@ router.get('/mypage', (req, res) => { //마이페이지
     res.render('mypage');
 });
 
+
+router.get('/post', (req, res) => { //댓글 및 게시글 입력 화면
+  res.render('post');
+});
+
+router.get('/imgclick', (req, res) => { //이미지 클릭 화면
+  res.render('img_click');
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -104,6 +112,7 @@ router.post("/generate", async (req, res) => {
   const image = await generateImage(req.body.prompt);
   console.log(image);
   res.send({ image });
+
 });
 
 module.exports = router;
