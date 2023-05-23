@@ -1,6 +1,7 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Post, User } = require('../models');
+const { Configuration, OpenAIApi } = require("openai");
 
 const router = express.Router();
 
@@ -17,18 +18,18 @@ router.use((req, res, next) => {
 // });
 
 router.get('/signup',  isNotLoggedIn, (req, res) => { //회원가입 페이지
-    res.render('signup', { title: '회원가입 - NodeBird' });
+    res.render('signup', { title: '회원가입' });
 });
 
 router.get('/login',  (req, res, next) => { //로그인 페이지
     const twits = [];
     res.render('login', { 
-        title: 'NodeBird',
+        title: '로그인',
         twits,
      });
 });
 
-router.get('/',  async (req, res, next) => { //페이지 - 로그인
+router.get('/',  async (req, res, next) => { //페이지
     try {
         const posts = await Post.findAll({
             include:{
@@ -61,7 +62,7 @@ router.get('/hashtag', async (req, res, next) => {
       }
   
       return res.render('main', {
-        title: `${query} | NodeBird`,
+        title: `${query} `,
         twits: posts,
       });
     } catch (error) {
@@ -69,7 +70,7 @@ router.get('/hashtag', async (req, res, next) => {
       return next(error);
     }
   });
-
+  
 router.get('/generate',  isNotLoggedIn, (req, res) => { //생성페이지
     res.render('generate');
 });
@@ -82,12 +83,36 @@ router.get('/mypage', (req, res) => { //마이페이지
     res.render('mypage');
 });
 
+
 router.get('/post', (req, res) => { //댓글 및 게시글 입력 화면
   res.render('post');
 });
 
 router.get('/imgclick', (req, res) => { //이미지 클릭 화면
   res.render('img_click');
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const generateImage = async (prompt) => {
+  const response = await openai.createImage({
+      prompt: prompt,
+      n: 1,
+      size: "512x512",
+      response_format: "b64_json",
+    });
+    const image = response.data.data[0].b64_json;
+    //image_url = response.data.data[0].url;
+    return image;
+};
+
+router.post("/generate", async (req, res) => {
+  const image = await generateImage(req.body.prompt);
+  console.log(image);
+  res.send({ image });
+
 });
 
 module.exports = router;

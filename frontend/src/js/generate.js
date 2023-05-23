@@ -83,12 +83,12 @@ const showNotification = (message) => {
 const generateImage = async () => {
   //let show = document.querySelector("#file_show").value;
   let prompt = document.querySelector("#generate_txt").value;
-  let style = document.querySelector("#tag").value;
-  let generatedImage = document.querySelector("#generate_picture_box");
+  //let style = document.querySelector("#tag").value;
+  let generatedImage = document.querySelector("#picture1");
   
-  if (prompt && style) {
+  if (prompt) {
       try {
-          generatedImage.src = "frontend\assets\images\pic2.jpg";
+          generatedImage.src = "testImage.png";
 
           const response = await fetch("http://localhost:8003/generate", {
               method: "POST",
@@ -105,12 +105,12 @@ const generateImage = async () => {
       } catch (error) {
           console.log(error);
           showNotification("이미지 생성에 오류가 생겼습니다.");
-          generatedImage.src = "frontend\assets\images\pic2.jpg";
+          generatedImage.src = "testImage.png";
       }
   } else {
       showNotification("요구사항을 입력하세요.");
   }
 };
 
-let generateBtn = document.querySelector("#generate_btn");
+let generateBtn = document.querySelector(".generate_btn");
 generateBtn.addEventListener("click", generateImage);
