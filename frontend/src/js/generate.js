@@ -105,7 +105,7 @@ const generateImage = async () => {
       } catch (error) {
           console.log(error);
           showNotification("이미지 생성에 오류가 생겼습니다.");
-          generatedImage.src = "testImage.png";
+          // generatedImage.src = "testImage.png";
       }
   } else {
       showNotification("요구사항을 입력하세요.");
