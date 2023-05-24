@@ -1,6 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { Post, User } = require('../models');
+const { Post, User, Hashtag } = require('../models');
 const { Configuration, OpenAIApi } = require("openai");
 
 const router = express.Router();
@@ -40,7 +40,7 @@ router.get('/',  async (req, res, next) => { //페이지
         });
         // const twits = [];
         res.render('main', { 
-            title: 'NodeBird',
+            title: 'main',
             twits: posts,
         });
     } catch (err) {
@@ -79,7 +79,7 @@ router.get('/share', (req, res) => { //공유(게시판) 페이지
     res.render('share');
 });
 
-router.get('/mypage', (req, res) => { //마이페이지
+router.get('/mypage', isLoggedIn,(req, res) => { //마이페이지
     res.render('mypage');
 });
 

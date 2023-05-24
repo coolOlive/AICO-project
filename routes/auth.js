@@ -6,7 +6,7 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-// POST /auth/join
+// POST /auth/signup
 router.post('/signup', isNotLoggedIn, async (req, res, next) => {
   const { email, nick, password } = req.body;
     try {
