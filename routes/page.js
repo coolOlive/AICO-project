@@ -96,6 +96,22 @@ router.get('/write', (req, res) => { //글쓰기 페이지
   res.render('write');
 });
 
+router.get('/history', (req, res) => { //history 페이지
+  res.render('history');
+});
+
+router.get('/likes', (req, res) => { //likes 페이지
+  res.render('likes');
+});
+
+router.get('/mypost', (req, res) => { //mypost 페이지
+  res.render('mypost');
+});
+
+router.get('/comment', (req, res) => { //내가 쓴 댓글 페이지
+  res.render('comment');
+});
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
