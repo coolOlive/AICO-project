@@ -24,6 +24,8 @@
 .logo {
   height: 32px;
   margin-top: 19px;
+  cursor: pointer;
+  /* background-color: aqua; */
 }
 
 .profile {

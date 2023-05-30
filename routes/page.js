@@ -90,6 +90,11 @@ router.get('/post', (req, res) => { //댓글 및 게시글 입력 화면
 
 router.get('/imgclick', (req, res) => { //이미지 클릭 화면
   res.render('img_click');
+});
+
+router.get('/write', (req, res) => { //글쓰기 페이지
+  res.render('write');
+});
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,

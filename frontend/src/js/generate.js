@@ -88,8 +88,8 @@ const generateImage = async () => {
   
   if (prompt) {
       try {
-          generatedImage.src = "testImage.png";
-
+          //generatedImage.src = "testImage.png";
+          
           const response = await fetch("http://localhost:8003/generate", {
               method: "POST",
               headers: {
@@ -104,8 +104,8 @@ const generateImage = async () => {
           //downloadBtn.href = image;
       } catch (error) {
           console.log(error);
-          showNotification("이미지 생성에 오류가 생겼습니다.");
-          // generatedImage.src = "testImage.png";
+          showNotification(generatedImage.src);
+          generatedImage.src = "testImage.png";
       }
   } else {
       showNotification("요구사항을 입력하세요.");
