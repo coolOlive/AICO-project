@@ -1,0 +1,35 @@
+#post {
+  outline: 2px solid #22A39F99;
+}
+
+#mypage {
+  outline: none;
+}
+
+#history {
+  outline: none;
+}
+
+#likes {
+  outline: none;
+}
+
+#comments {
+  outline: none;
+}
+
+#mypage:hover{
+  outline: 2px solid #22A39F99;
+}
+
+#history:hover{
+  outline: 2px solid #22A39F99;
+}
+
+#likes:hover{
+  outline: 2px solid #22A39F99;
+}
+
+#comments:hover{
+  outline: 2px solid #22A39F99;
+}

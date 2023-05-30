@@ -94,7 +94,11 @@ a {
 .each_category_btn li:hover {
   /* background-color: violet; */
   /* border-top: 2px solid ; */
-  outline: 2px solid #22A39F99
+  outline: 2px solid #22A39F99;
+}
+
+#mypage{
+  outline: 2px solid #22A39F99;
 }
 
 .hambuger_btn {
