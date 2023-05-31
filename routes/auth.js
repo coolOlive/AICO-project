@@ -48,11 +48,15 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
   });
 
 // GET /auth/logout
-router.get('/logout', isLoggedIn, (req, res) => {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/');
+router.get('/logout', isLoggedIn, (req, res, next) => {
+  //req.logout();
+  //req.session.destroy();
+  req.logout(function(err) {
+    if (err) { return next(err); }
+  //res.clearCookie('connect.sid');
+  res.redirect('/');
   });
+});
 
 // GET /auth/kakao
 router.get('/kakao', passport.authenticate('kakao'));
