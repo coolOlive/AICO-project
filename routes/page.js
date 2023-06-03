@@ -99,6 +99,31 @@ router.get('/share', async (req, res, next) => { //페이지 - 로그인
   }
 });
 
+
+router.get('/hashtag', async (req, res, next) => {
+  const query = req.query.hashtag;
+  if (!query) {
+    return res.redirect('/');
+  }
+  try {
+    const hashtag = await Hashtag.findOne({ where: { title: query } });
+    let posts = [];
+    if (hashtag) {
+      posts = await hashtag.getPosts({ include: [{ model: User }] });
+    }
+
+    return res.render('share', {
+      //title: `${query}`,
+      twits: posts,
+    });
+  } catch (error) {
+    console.error(error);
+    return next(error);
+  }
+});
+
+
+
 router.get('/mypage', isLoggedIn,(req, res) => { //마이페이지
     res.render('mypage');
 });
