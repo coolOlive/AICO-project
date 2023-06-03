@@ -79,7 +79,7 @@ router.get('/share', (req, res) => { //공유(게시판) 페이지
     res.render('share');
 });
 
-router.get('/mypage', isLoggedIn,(req, res) => { //마이페이지
+router.get('/mypage', (req, res) => { //마이페이지 isLoggedIn,
     res.render('mypage');
 });
 
