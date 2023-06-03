@@ -75,8 +75,29 @@ router.get('/generate',  isNotLoggedIn, (req, res) => { //생성페이지
     res.render('generate');
 });
 
-router.get('/share', (req, res) => { //공유(게시판) 페이지
-    res.render('share');
+router.get('/share', (req, resnext) => { //페이지 - 로그인
+  try {
+      const posts = await Post.findAll({
+          include:[{ //작성자 가져옴
+              model: User,
+              attributes: ['id', 'nick'],
+          }, { //좋아요 누른 사람 가져옴
+              model: User,
+              attributes: ['id', 'nick'],
+              as: 'Liker', //as로 구분함
+          }],
+          other: [['createdAt', 'DESC']],
+      });
+      // const twits = [];
+      res.render('main', { 
+          title: 'main',
+          twits: posts,
+          user:req.user,
+      });
+  } catch (err) {
+      console.error(err);
+      next(err);
+  }
 });
 
 router.get('/mypage', isLoggedIn,(req, res) => { //마이페이지

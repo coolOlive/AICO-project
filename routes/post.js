@@ -5,6 +5,7 @@ const fs = require('fs');
 
 const { Post, Hashtag } = require('../models');
 const { isLoggedIn } = require('./middlewares');
+const User = require('../models/user');
 
 const router = express.Router();
 
@@ -59,6 +60,40 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
         console.error(error);
         next(error);
     }
+});
+
+router.post('/:id/like', async (req, res, next) => {
+  try {
+    const post = await Post.find({ where: { id: req.params.id }});
+    await post.addLiker(req.user.id); //사용자가 이 게시글을 좋아합니다.
+    //res.redirect('/');
+    res.send('OK');
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.delete('/:id/like', async (req, res, next) => {
+  try {
+    const post = await Post.find({ where: { id: req.params.id }});
+    await post.removeLiker(req.user.id);
+    //res.redirect('/');
+    res.send('OK');
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Post.destroy({ where: { id: req.params.id, userId: req.user.id}});
+    res.send('OK');
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
 });
 
 module.exports = router;
