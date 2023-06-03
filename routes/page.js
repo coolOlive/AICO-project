@@ -26,11 +26,7 @@ router.get('/signup',  isNotLoggedIn, (req, res) => { //회원가입 페이지
 });
 
 router.get('/login',  (req, res, next) => { //로그인 페이지
-    const twits = [];
-    res.render('login', { 
-        title: '로그인',
-        twits,
-     });
+    res.render('login');
 });
 
 router.get('/',  async (req, res, next) => { //페이지
