@@ -55,7 +55,7 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
             );
             await post.addHashtags(result.map(r => r[0]));
         }
-        res.redirect('/');
+        res.redirect('/share');
     } catch (error) {
         console.error(error);
         next(error);
