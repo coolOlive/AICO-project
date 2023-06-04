@@ -29,6 +29,8 @@ const passport = require('passport');
 dotenv.config();
 const pageRouter = require('./routes/page'); //페이지라우터
 const authRouter = require('./routes/auth'); //페이지라우터
+const postRouter = require('./routes/post');
+const userRouter = require('./routes/user');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 const cors = require("cors");
@@ -74,6 +76,8 @@ app.use(express.static('frontend/assets/icon'));
 
 app.use('/', pageRouter); //페이지 - page.js
 app.use('/auth', authRouter); //페이지 - auth.js
+app.use('/post', postRouter);
+app.use('/user', userRouter);
 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

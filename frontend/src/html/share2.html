@@ -128,25 +128,25 @@
 
 </body>
 
-<!-- 
+
 {% block script %}
   <script>
-    // if (document.getElementById('img')) {
-    //   document.getElementById('img').addEventListener('change', function(e) {
-    //     const formData = new FormData();
-    //     console.log(this, this.files);
-    //     formData.append('img', this.files[0]);
-    //     axios.post('/post/img', formData)
-    //       .then((res) => {
-    //         document.getElementById('img-url').value = res.data.url;
-    //         document.getElementById('img-preview').src = res.data.url;
-    //         document.getElementById('img-preview').style.display = 'inline';
-    //       })
-    //       .catch((err) => {
-    //         console.error(err);
-    //       });
-    //   });
-    // }
+    if (document.getElementById('img')) {
+      document.getElementById('img').addEventListener('change', function(e) {
+        const formData = new FormData();
+        console.log(this, this.files);
+        formData.append('img', this.files[0]);
+        axios.post('/post/img', formData)
+          .then((res) => {
+            document.getElementById('img-url').value = res.data.url;
+            document.getElementById('img-preview').src = res.data.url;
+            document.getElementById('img-preview').style.display = 'inline';
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      });
+    }
     document.querySelectorAll('.twit-follow').forEach(function(tag) {
       tag.addEventListener('click', function() { //클릭시 변경
         const myId = document.querySelector('#my-id'); //#id 접근 layout 24줄 {{user.id}}값의 id
@@ -237,4 +237,4 @@
       });
     });
   </script>
-{% endblock %} -->
+{% endblock %} 
