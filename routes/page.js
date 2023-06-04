@@ -49,27 +49,6 @@ router.get('/',  async (req, res, next) => { //페이지
     }
 });
 
-router.get('/hashtag', async (req, res, next) => {
-    const query = req.query.hashtag;
-    if (!query) {
-      return res.redirect('/');
-    }
-    try {
-      const hashtag = await Hashtag.findOne({ where: { title: query } });
-      let posts = [];
-      if (hashtag) {
-        posts = await hashtag.getPosts({ include: [{ model: User }] });
-      }
-  
-      return res.render('main', {
-        title: `${query} `,
-        twits: posts,
-      });
-    } catch (error) {
-      console.error(error);
-      return next(error);
-    }
-  });
   
 router.get('/generate', (req, res) => { //생성페이지
     res.render('generate');
@@ -103,7 +82,7 @@ router.get('/share', async (req, res, next) => { //페이지 - 로그인
 router.get('/hashtag', async (req, res, next) => {
   const query = req.query.hashtag;
   if (!query) {
-    return res.redirect('/');
+    return res.redirect('/share');
   }
   try {
     const hashtag = await Hashtag.findOne({ where: { title: query } });
@@ -112,9 +91,10 @@ router.get('/hashtag', async (req, res, next) => {
       posts = await hashtag.getPosts({ include: [{ model: User }] });
     }
 
-    return res.render('share', {
-      //title: `${query}`,
+    return res.render('share2', {
+      title: `${query}`,
       twits: posts,
+      user:req.user,
     });
   } catch (error) {
     console.error(error);
