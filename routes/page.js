@@ -71,7 +71,7 @@ router.get('/hashtag', async (req, res, next) => {
     }
   });
   
-router.get('/generate',  isNotLoggedIn, (req, res) => { //생성페이지
+router.get('/generate', (req, res) => { //생성페이지
     res.render('generate');
 });
 
@@ -89,7 +89,7 @@ router.get('/share', async (req, res, next) => { //페이지 - 로그인
           other: [['createdAt', 'DESC']],
       });
       // const twits = [];
-      res.render('share', { 
+      res.render('share2', { 
           twits: posts,
           user:req.user,
       });
