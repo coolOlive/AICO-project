@@ -98,6 +98,13 @@
           <div class="prifile_name">
             <a href="#"><h3>{{twit.User.nick}}</h3></a>
           </div>
+
+          {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+            <button class="twit-follow">팔로우하기</button>
+          {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+            <button class="twit-unfollow">팔로우끊기</button>
+          {% endif %}
+          
         </div>
 
         <!-- 게시하는 이미지 -->
