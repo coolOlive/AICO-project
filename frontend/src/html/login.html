@@ -25,7 +25,7 @@
     <!-- id 입력하는 부분 -->
     <div class="login_id_input_box">
       <div class="guide_text">Username or email address</div>
-      <input name="id_input" type="text" class="input_box">
+      <input id="email" name="email" type="text" class="input_box" required autofocus>
     </div>
 
     <!-- 비밀번호 입력하는 부분 -->
@@ -34,12 +34,12 @@
         <div class="guide_text">Password</div>
         <div><a class="guide_forgot" href="">Forget password?</a></div>
       </div>
-      <input name="password_input" type="password" class="input_box">
+      <input id="password" name="password" type="password" class="input_box" required>
     </div>
 
     <!-- 로그인 버튼 _ 클릭시 form 태그 실행 -->
     <div class="login_btn">
-      <input type="submit" name="" value="sign in" class="btn">
+      <button id="login" type="submit" name="" class="btn">sign in</button>
     </div>
   </form>
 
