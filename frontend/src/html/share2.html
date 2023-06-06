@@ -114,9 +114,9 @@
           </div>
 
           {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
-            <button class="twit-follow">팔로우하기</button>
+            <button class="twit-follow follow_btn">팔로우</button>
           {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
-            <button class="twit-unfollow">팔로우끊기</button>
+            <button class="twit-unfollow follow_btn">팔로우끊기</button>
           {% endif %}
           
         </div>
