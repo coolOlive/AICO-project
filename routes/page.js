@@ -17,16 +17,16 @@ router.use((req, res, next) => {
 //     res.render('main');
 // });
 
+// router.get('/profile', isLoggedIn, (req, res) => { //페이지 - 프로필 profile
+//   res.render('profile', { title: '내 정보' , user: req.user});
+// });
+
 router.get('/signup',  isNotLoggedIn, (req, res) => { //회원가입 페이지
     res.render('signup', { title: '회원가입' });
 });
 
 router.get('/login',  (req, res, next) => { //로그인 페이지
-    const twits = [];
-    res.render('login', { 
-        title: '로그인',
-        twits,
-     });
+    res.render('login');
 });
 
 router.get('/',  async (req, res, next) => { //페이지
@@ -49,37 +49,62 @@ router.get('/',  async (req, res, next) => { //페이지
     }
 });
 
-router.get('/hashtag', async (req, res, next) => {
-    const query = req.query.hashtag;
-    if (!query) {
-      return res.redirect('/');
-    }
-    try {
-      const hashtag = await Hashtag.findOne({ where: { title: query } });
-      let posts = [];
-      if (hashtag) {
-        posts = await hashtag.getPosts({ include: [{ model: User }] });
-      }
   
-      return res.render('main', {
-        title: `${query} `,
-        twits: posts,
-      });
-    } catch (error) {
-      console.error(error);
-      return next(error);
-    }
-  });
-  
-router.get('/generate',  isNotLoggedIn, (req, res) => { //생성페이지
+router.get('/generate', (req, res) => { //생성페이지
     res.render('generate');
 });
 
-router.get('/share', (req, res) => { //공유(게시판) 페이지
-    res.render('share');
+router.get('/share', async (req, res, next) => { //페이지 - 로그인
+  try {
+      const posts = await Post.findAll({
+          include:{ //작성자 가져옴
+              model: User,
+              attributes: ['id', 'nick'],
+          }, //{ //좋아요 누른 사람 가져옴
+          //     model: User,
+          //     attributes: ['id', 'nick'],
+          //     as: 'Liker', //as로 구분함
+          // },
+          other: [['createdAt', 'DESC']],
+      });
+      // const twits = [];
+      res.render('share2', { 
+          twits: posts,
+          user:req.user,
+      });
+  } catch (err) {
+      console.error(err);
+      next(err);
+  }
 });
 
-router.get('/mypage', (req, res) => { //마이페이지 isLoggedIn,
+
+router.get('/hashtag', async (req, res, next) => {
+  const query = req.query.hashtag;
+  if (!query) {
+    return res.redirect('/share');
+  }
+  try {
+    const hashtag = await Hashtag.findOne({ where: { title: query } });
+    let posts = [];
+    if (hashtag) {
+      posts = await hashtag.getPosts({ include: [{ model: User }] });
+    }
+
+    return res.render('share2', {
+      title: `${query}`,
+      twits: posts,
+      user:req.user,
+    });
+  } catch (error) {
+    console.error(error);
+    return next(error);
+  }
+});
+
+
+
+router.get('/mypage', isLoggedIn,(req, res) => { //마이페이지
     res.render('mypage');
 });
 
