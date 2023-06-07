@@ -141,6 +141,10 @@ router.get('/account', (req, res) => { //account 페이지
   res.render('account');
 });
 
+router.get('/about', (req, res) => { //about 페이지
+  res.render('about');
+});
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
