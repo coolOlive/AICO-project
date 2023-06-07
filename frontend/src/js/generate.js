@@ -44,7 +44,10 @@ function textareaSize() {
   textarea.style.minHeight = `36px`;
   let height = textarea.scrollHeight; // 높이
 
-  if (generateTxt.split('\n').length > 1) {
+  if (height > 300) {
+    textarea.style.height = `300px`;
+    textarea.style.overflow = `auto`;
+  } else if (generateTxt.split('\n').length > 1) {
     textarea.style.height = `${height + 5}px`;
     textarea.style.minHeight = `${height + 5}px`;
   } else {
