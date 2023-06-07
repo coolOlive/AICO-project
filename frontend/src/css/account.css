@@ -1,22 +1,63 @@
-body {
-  font-family: 'Nanum Gothic', sans-serif;
-  background-color: #434242;
-  color: #F3EFE0;
-  text-align: center;
-  height: 1000px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
-  /* 드래그 막기 */
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
+#account {
+  outline: 2px solid #22A39F99;
 }
 
-a {
-  text-decoration: none;
+#mypage {
+  outline: none;
 }
+
+#history {
+  outline: none;
+}
+
+#post {
+  outline: none;
+}
+
+#likes {
+  outline: none;
+}
+
+#comments {
+  outline: none;
+}
+
+#mypage:hover{
+  outline: 2px solid #22A39F99;
+}
+
+#history:hover{
+  outline: 2px solid #22A39F99;
+}
+
+#post:hover{
+  outline: 2px solid #22A39F99;
+}
+
+#likes:hover{
+  outline: 2px solid #22A39F99;
+}
+
+#comments:hover{
+  outline: 2px solid #22A39F99;
+}
+
+.user_modify {
+  margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .title {
   margin-top: 50px;
@@ -30,7 +71,7 @@ a {
   margin-top: 25px;
 }
 
-.login_form {
+.signup_form {
   margin-top: 40px;
   background: rgba(89, 89, 89, 0.6);
   border: 1px solid #F3EFE0;
@@ -41,11 +82,16 @@ a {
   padding: 23px;
 }
 
-.login_id_input_box {
+.signup_name_input_box {
   width: 90%;
 }
+
+.user_id_input_box {
+  width: 90%;
+  margin-top: 32px;
+}
  
-.login_password_input_box {
+.user_password_input_box {
   width: 90%;
   margin-top: 32px;
 }
@@ -62,27 +108,17 @@ a {
   padding: 0px 10px 0px 10px;
 }
 
-.login_password_guide_box {
-  display: flex;
-  justify-content: space-between;
-}
-
 .guide_text {
   text-align: left;
   margin-bottom: 10px;
 }
 
-
-.guide_forgot {
-  color: #22A39F;
-}
-
-.login_btn {
+.user_btn {
   margin-top: 40px;
   width: 90%;
 }
 
-.btn {
+/* .btn {
   background: #22A39F;
   color: #434242;
   box-shadow: 0px 0px 4px #595959;
@@ -93,32 +129,7 @@ a {
   line-height: 16px;
   height: 39px;
   width: 100%;
-}
-
-.signup_btn_box {
-  height: 45px;
-  margin-top: 26px;
-  background: #434242;
-  border: 1px solid rgba(243, 239, 224, 0.3);
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.signup_btn {
-  justify-content: center;
-  display: flex;
-}
-
-.signup_btn_txt1 {
-  margin-right: 5px;
-  color: #F3EFE0;
-}
-
-.signup_btn_txt2 {
-  color: #22A39F;
-}
+} */
 
 /* pc용 css */
 @media all and (min-width:1032px) {
@@ -130,14 +141,9 @@ body {
   margin-top: 100px;
 }
 
-.login_form {
+.signup_form {
   width: 496px;
   margin: 45px auto;
-  
-}
-
-.signup_btn_box {
-  width: 520px;
-  margin: -20px auto;
+  padding: 32px 23px 50px 23px;
 }
 }

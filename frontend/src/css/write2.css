@@ -30,6 +30,7 @@
 .img_file_show {
   width: 80%;
   height: 30px;
+  cursor: default;
   /* display: none; */
 }
 
@@ -44,6 +45,7 @@
   position: relative;
   top: -20px;
   text-decoration: none;
+  cursor: pointer;
   /* display: none; */
 }
 
@@ -114,18 +116,54 @@
   border-radius: 10px;
 }
 
+.img_file_show:focus {
+  outline: none;
+}
+
 .post_txt {
-  width: 100%;
+  width: 95%;
   height: 90%;
   resize: vertical;
-  padding-top: 10px;
+  padding: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px; */
   /* height: 36px; */
   min-height: 36px;
   max-height: 300px;
   line-height: 20px;
   overflow: hidden;
+
+  font-family: 'NanumGothic';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #F3EFE0;
+  background-color: #434242;
+  border: 1px solid rgba(243, 239, 224, 0.3);
+  border-radius: 10px;
   /* background-color: red; */
 }
+
+.post_txt::-webkit-scrollbar {
+  width: 10px;
+  background-color: none;
+}
+
+.post_txt::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: #22A39F;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.post_txt::-webkit-scrollbar-track {
+  width: 10px;
+  background-color: #434242;
+  border-radius: 10px;
+}
+
 
 .post_btn {
   width: 20%;

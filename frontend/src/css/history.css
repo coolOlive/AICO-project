@@ -18,6 +18,14 @@
   outline: none;
 }
 
+#account {
+  outline: none;
+}
+
+#account:hover{
+  outline: 2px solid #22A39F99;
+}
+
 #mypage:hover{
   outline: 2px solid #22A39F99;
 }
@@ -33,3 +41,6 @@
 #comments:hover{
   outline: 2px solid #22A39F99;
 }
+
+
+

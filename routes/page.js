@@ -133,8 +133,16 @@ router.get('/mypost', (req, res) => { //mypost 페이지
   res.render('mypost');
 });
 
+router.get('/comment', (req, res) => { //comment 페이지
+  res.render('comment');
+});
+
 router.get('/account', (req, res) => { //account 페이지
   res.render('account');
+});
+
+router.get('/about', (req, res) => { //about 페이지
+  res.render('about');
 });
 
 const configuration = new Configuration({

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/mypage.css">
-  <link rel="stylesheet" href="../css/account.css">
+  <link rel="stylesheet" href="../css/comment.css">
   <script src="../js/mypage.js"></script>
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
   <script>
@@ -60,48 +60,16 @@
       <!-- history 부분(theme_and_moreBtn는 각 테마 이름과 더보기 버튼, four_img는 이미지들) -->
       <div class="history_preview theme">
         <div class="theme_and_moreBtn">
-          <h3>회원 정보</h3>
+          <h3>내가 쓴 댓글</h3>
         </div>
-
-        <form action="" method="post" onsubmit="" class="user_modify" name="user_modify">
-
-          <!-- 이름(닉네임) 부분 -->
-          <div class="user_nick">
-            <div class="guide_text">User Name</div>
-            <div>{{twit.User.nick}}</div>
-          </div>
-      
-          <!-- id 입력받는 부분 -->
-          <div class="user_id_input_box">
-            <div class="guide_text">User ID</div>
-            <input name="email" type="text" id="id" class="input_box" value="{{twit.User.id}}">
-          </div>
-      
-          <!-- 비번 입력받는 부분 -->
-          <div class="user_password_input_box">
-            <div class="guide_text">Password</div>
-            <input name="password" type="password" id="pw" class="input_box">
-          </div>
-      
-          <!-- 비번 확인 부분 -->
-          <div class="user_password_input_box">
-            <div class="guide_text">Password check</div>
-            <input name="password_check_input" type="password" id="cpw" class="input_box">
-          </div>
-      
-          <!-- 회원가입 버튼_ 누르면 form 태그 실행 -->
-          <div class="user_btn">
-            <input type="submit" value="수정" class="btn">
-          </div>
-        </form>
         
-        <!-- <div class="four_img history">
-          <img src="pic2.jpg" alt="" class="picture">
+        <div class="four_img history">
           <img src="pic1.jpg" alt="" class="picture">
-          <img src="pic3.jpg" alt="" class="picture">
           <img src="pic2.jpg" alt="" class="picture">
+          <img src="pic3.jpg" alt="" class="picture">
+          <img src="pic1.jpg" alt="" class="picture">
         </div>
-      </div> -->
+      </div>
 
     </div>
   </div>
