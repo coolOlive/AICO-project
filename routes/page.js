@@ -2,6 +2,8 @@ const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Post, User, Hashtag } = require('../models');
 const { Configuration, OpenAIApi } = require("openai");
+require('dotenv').config();
+const cors = require("cors");
 
 const router = express.Router();
 
@@ -12,6 +14,9 @@ router.use((req, res, next) => {
     res.locals.followingIdList = req.user?.Followings?.map(f => f.id) || [];
     next();
   });
+
+  router.use(cors());
+  router.use(express.json());
 
 // router.get('/', (req, res) => { //메인(기본) 페이지
 //     res.render('main');
@@ -157,16 +162,28 @@ const generateImage = async (prompt) => {
       size: "512x512",
       response_format: "b64_json",
     });
-    const image = response.data.data[0].b64_json;
-    //image_url = response.data.data[0].url;
-    return image;
+    //console.log(response);
+    console.log("prompt: ", prompt);
+    //console.log("response data: ", response.data);
+
+    const imageUrl = response.data.data[0].b64_json;
+    return imageUrl;
 };
 
 router.post("/generate", async (req, res) => {
-  const image = await generateImage(req.body.prompt);
-  console.log(image);
-  res.send({ image });
-
+  try {
+    const { prompt } = req.body;
+    console.log("router prompt: ",prompt);
+    const image = await generateImage(prompt);
+    //console.log("image: ",image);
+    //const imageUrl = await uploadToImgur(image);
+    res.send({ image });
+  } catch (error) {
+    console.error('Image generation failed:', error);
+    console.error("response data error: ", error.response.data);
+    console.error("response status error: ", error.response.status);
+    res.status(500).json({ error: 'Image generation failed' });
+  }
 });
 
 module.exports = router;
