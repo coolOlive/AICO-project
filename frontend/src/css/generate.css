@@ -193,6 +193,26 @@ body {
   cursor: pointer;
 }
 
+
+.generated_img {
+  margin-top: 40px;
+  width: 80%;
+  margin: 45px auto;
+  display: flex;
+  align-items: center;
+  /* background-color: yellowgreen; */
+  /* width: 90%; */
+}
+
+.generated_pic {
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+
+
+
 .generate_picture_box {
   /* background-color: yellow; */
   margin-top: 40px;
@@ -236,6 +256,7 @@ body {
 .generate_form {
   background: none;
   width: 400px;
+  /* width: 40%; */
   /* height: 430px; */
   margin: 45px auto;
   border: none;
@@ -244,6 +265,13 @@ body {
 .btn {
   width: 30%;
   float: right;
+}
+
+.generated_img {
+  width: 400px;
+  width: 40%;
+  margin: 45px auto;
+  /* background-color: blue; */
 }
 
 .generate_picture_box {
