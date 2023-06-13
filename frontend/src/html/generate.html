@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/generate.css">
-  <script src="../js/generate.js"></script>
+  
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="https://unpkg.com/@yaireo/tagify"></script>
   <!--<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>-->
@@ -23,12 +23,12 @@
   <div id="header"></div>
   <div class="generate_all">
     <!-- 요구사항 입력 박스 -->
-    <form action="generate" method="post" class="generate_form" onsubmit="return checkGenerate(this)">
+    <form action="generate" method="post" class="generate_form">
 
       <!-- 요구사항을 텍스트로 입력하는 부분 -->
       <div class="generate_txt_input">
         <div class="guide_text">Describe your image</div>
-        <textarea name="generate_txt" id="generate_txt" rows="1" class="text_box generate_txt" maxlength='500' placeholder="사과를 먹는 곰돌이" onkeyup="textareaSize()" onkeydown="textareaSize()"></textarea>
+        <textarea name="generate_txt" id="generate_txt" rows="1" class="text_box generate_txt" placeholder="사과를 먹는 곰돌이" onkeyup="textareaSize()" onkeydown="textareaSize()"></textarea>
       </div>
 
       <!-- 이미지 파일을 입력할 수 있는 부분 -->
@@ -70,7 +70,7 @@
 
     </div>
   </div>
-  
+  <script src="../js/generate.js"></script>
 </body>
   
 </html>

@@ -79,15 +79,15 @@ function checkGenerate() {
 }
 */
 
-const showNotification = (message) => {
-  alert(message);
-};
+const promptInput = document.querySelector("#generate_txt");
+const generatedImage = document.querySelector("#picture1");
 
-const generateImage = async () => {
+const generateImage = async (event) => {
+  event.preventDefault();
+
   //let show = document.querySelector("#file_show").value;
-  let prompt = document.querySelector("#generate_txt").value;
+  const prompt = promptInput.value;
   //let style = document.querySelector("#tag").value;
-  let generatedImage = document.querySelector("#picture1");
   
   if (prompt) {
       try {
@@ -115,5 +115,10 @@ const generateImage = async () => {
   }
 };
 
-let generateBtn = document.querySelector(".generate_btn");
+const generateBtn = document.querySelector(".generate_btn");
 generateBtn.addEventListener("click", generateImage);
+
+const forms = document.getElementsByClassName(".generate_form");
+for (let i = 0; i < forms.length; i++) {
+  forms[i].addEventListener("submit", generateImage);
+}
