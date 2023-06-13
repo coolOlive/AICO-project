@@ -32,11 +32,23 @@
             <div class="twit-author">{{twit.User.nick}}</div>
             {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
               <button class="twit-follow">팔로우하기</button>
+            {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+              <button class="twit-unfollow">팔로우끊기</button>
             {% endif %}
             <div class="twit-content">{{twit.content}}</div>
             {% if twit.img %}
               <div class="twit-img"><img src="{{twit.img}}" alt="섬네일"></div>
             {% endif %}
+            {% if not twit.Liker.includes(User.id) and twit.User.id !== user.id %}
+              <button class="like">좋아요</button>
+            {% elif twit.Liker.includes(User.id) and twit.User.id !== user.id %}
+              <button class="unlike">좋아요 취소</button>
+            {% endif %}
+            {% if user.id === twit.user.id %}
+              <button class="delete">게시글 삭제</button>
+            {% endif %}
+
+
           </div>
         {% endfor %}
       </div>
@@ -62,13 +74,83 @@
       });
     }
     document.querySelectorAll('.twit-follow').forEach(function(tag) {
+      tag.addEventListener('click', function() { //클릭시 변경
+        const myId = document.querySelector('#my-id'); //#id 접근 layout 24줄 {{user.id}}값의 id
+        if (myId) {
+          const userId = tag.parentNode.querySelector('.twit-user-id').value; //.class 접근
+          if (userId !== myId.value) {
+            if (confirm('팔로잉하시겠습니까?')) {
+              axios.post(`/user/${userId}/follow`)
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            }
+          }
+        }
+      });
+    });
+    document.querySelectorAll('.twit-unfollow').forEach(function(tag) {
       tag.addEventListener('click', function() {
         const myId = document.querySelector('#my-id');
         if (myId) {
           const userId = tag.parentNode.querySelector('.twit-user-id').value;
           if (userId !== myId.value) {
-            if (confirm('팔로잉하시겠습니까?')) {
-              axios.post(`/user/${userId}/follow`)
+            if (confirm('팔로잉 끊으시겠습니까?')) {
+              axios.post(`/user/${userId}/unfollow`)
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            }
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('.like').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        const myId = document.querySelector('#my-id');
+        const twitId = tag.parentNode.querySelector('.twit-id').value;
+        if (myId) {
+              axios.post(`/post/${twitId}/like`) //트윗 아이디 가져와서 좋아요 요청 보냄
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+        }
+      });
+    });
+    document.querySelectorAll('.unlike').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        const myId = document.querySelector('#my-id');
+        const twitId = tag.parentNode.querySelector('.twit-id').value;
+        if (myId) {
+              axios.delete(`/post/${twitId}/like`) //트윗 아이디 가져와서 좋아요 요청 보냄
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+        }
+      });
+    });
+    document.querySelectorAll('.delete').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        const myId = document.querySelector('#my-id');
+        const twitId = tag.parentNode.querySelector('.twit-id').value;
+        if (myId) {
+          const userId = tag.parentNode.querySelector('.twit-user-id').value;
+          if (userId === myId.value) {
+            if (confirm('게시글을 삭제하시겠습니까?')) {
+              axios.delete(`/post/${twitId}`) //트윗 아이디 가져와서 좋아요 요청 보냄
                 .then(() => {
                   location.reload();
                 })
