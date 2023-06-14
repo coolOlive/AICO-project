@@ -5,6 +5,11 @@ window.onload=()=>{
   document.getElementsByClassName('sort_by').onclick = ()=>{
     showMenu(value);
   };
+
+  // document.querySelector('.heart').onclick = ()=>{
+  //   changeHeart();
+  // }
+
   dropdown = () => {
     var v = document.querySelector('.dropdown-content');
     var dropbtn = document.querySelector('.dropbtn')
@@ -19,6 +24,17 @@ window.onload=()=>{
 
     dropbtn_content.innerText = value;
   }
+
+  // changeHeart=(value)=> {
+  //   var heart = document.querySelector("#heart");
+
+  //   if (heart.src == 'white_heart.svg') {
+  //     heart.src ='like_btn.svg';
+  //   } else {
+  //     heart.src ='white_heart.svg';
+  //   }
+
+  // }
 }
 window.onclick= (e)=>{
   if(!e.target.matches('.dropbtn')){
@@ -35,4 +51,11 @@ window.onclick= (e)=>{
       }
     }
   }
+}
+
+function changeHeart() {
+  // let heart = document.querySelector(".heart");
+  // alert(heart.src)
+  // document.getElementsByClassName("heart").src = "like_btn.svg";
+  
 }

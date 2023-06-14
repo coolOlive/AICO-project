@@ -247,7 +247,7 @@ body {
   margin: auto;
   margin-top: 2%;
   cursor: pointer;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 .card_icons_box {
@@ -266,10 +266,14 @@ body {
 .card_icon {
   margin-left: 6%;
   width: 25%;
+  cursor: pointer;
+  /* background-color: blue; */
 }
 
 .card_icon:first-child {
   margin-left: 0px;
+  /* background-color: yellow; */
+  
 }
 
 .card_text_box {
