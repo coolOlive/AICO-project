@@ -38,8 +38,15 @@
       <div class="img_input_btn_box">
         <label for="img" class="imp_input_btn">+ Upload image</label>
       </div>
-      <input id="img" type="file" accept="image/*">
-      <img class="preview" id="img-preview" src="">
+      <div class="img-preview">
+        <img class="preview" id="img-preview" src="" style="display: none;" width="250" alt="미리보기">
+        <input id="img-url" type="hidden" name="url">
+      </div>
+      <div>
+        <input id="img" type="file" accept="image/*">
+      </div>
+      <!-- <input id="img" type="file" accept="image/*">
+      <img class="preview" id="img-preview" src=""> -->
     </div>
 
     <hr class="mid_line">
@@ -122,7 +129,12 @@
         </div>
 
         <!-- 게시하는 이미지 -->
+        {% if twit.img %}
+        <div class="twit-img">
         <img src="{{twit.img}}" id="preview" class="card-img-top" alt="." onclick="showPopup();">
+      </div>
+      <!-- <div class="twit-img"><img src="{{twit.img}}" ></div> -->
+        {% endif %}
         <!-- <img class="preview" id="preview" src="{{twit.img}}"> -->
         <!-- 아이콘 및 게시글 미리보이는 부분 -->
         <div class="card-body">
