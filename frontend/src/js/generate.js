@@ -80,7 +80,7 @@ function checkGenerate() {
 */
 
 const promptInput = document.querySelector("#generate_txt");
-const generatedImage = document.querySelector("#picture1");
+const generatedImage = document.querySelector("#picture");
 
 const generateImage = async (event) => {
   event.preventDefault();
