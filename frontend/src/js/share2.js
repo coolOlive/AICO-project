@@ -53,9 +53,12 @@ window.onclick= (e)=>{
   }
 }
 
-function changeHeart() {
-  // let heart = document.querySelector(".heart");
-  // alert(heart.src)
-  // document.getElementsByClassName("heart").src = "like_btn.svg";
-  
+function changeHeart(num) {
+  let heart = document.getElementById(num).src;
+
+  if (heart == "http://localhost:8003/white_heart.svg") {
+    document.getElementById(num).src = "http://localhost:8003/like_btn.svg";
+  } else {
+    document.getElementById(num).src = "http://localhost:8003/white_heart.svg";
+  }
 }
