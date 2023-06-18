@@ -29,13 +29,16 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-// POST /post/img
+// POST /post/img 
+// 이미지를 업로드 받은 뒤 저장경로를 클라이언트로 응답
 router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
+    console.log("hhghghg");
     console.log(req.file);
     res.json({url: `/img/${req.file.filename}`});
 });
 
 // POST /post
+// /img 라우터에서 이미지 업로드 했으면 이미지 주소 req.body.url로 전송
 const upload2 = multer();
 router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     try {
@@ -44,6 +47,7 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
             img:req.body.url,
             UserId: req.user.id,
         });
+        console.log(post)
         const hashtags = req.body.content.match(/#[^\s#]+/g);
         if (hashtags) {
             const result = await Promise.all(

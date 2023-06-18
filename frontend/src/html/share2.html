@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../css/write2.css">
   <script src="../js/write2.js"></script>
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
     $(document).ready(function(){
       $("#header").load("/html/header.html");
@@ -163,10 +164,13 @@
     if (document.getElementById('img')) {
       document.getElementById('img').addEventListener('change', function(e) {
         const formData = new FormData();
+        console.log('아무거나1')
         console.log(this, this.files);
+        console.log('아무거나2')
         formData.append('img', this.files[0]);
         axios.post('/post/img', formData)
           .then((res) => {
+            console.log(res)
             document.getElementById('img-url').value = res.data.url;
             document.getElementById('img-preview').src = res.data.url;
             document.getElementById('img-preview').style.display = 'inline';
