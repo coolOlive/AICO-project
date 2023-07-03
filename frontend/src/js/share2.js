@@ -62,3 +62,17 @@ function changeHeart(num) {
     document.getElementById(num).src = "http://localhost:8003/white_heart.svg";
   }
 }
+
+function imgDownload(imageURL, fileName) {
+  var img = new Image();
+      img.crossOrigin = "Anonymous";
+        img.id = "getshot";
+        img.src = imageURL;
+        document.body.appendChild(img);
+        
+    var a = document.createElement("a");
+        a.href = getshot.src;
+        a.download = fileName;
+        a.click();
+        document.body.removeChild(img);
+}

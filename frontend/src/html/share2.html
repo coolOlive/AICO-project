@@ -142,8 +142,9 @@
           <div class="card_icons_box">
             <div class="card_icons">
               <img class="card_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
-              <img class="card_icon download_img" src="download_img.svg" alt="">
+              <img class="card_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')">
               <img class="card_icon comment_icon" src="comment_icon.svg" alt="">
+              <!-- <a href="{{twit.img}}" onclick="javascript:imgDownload(this.src, 'logo.png')"></a> -->
             </div>
           </div>
 
