@@ -107,9 +107,9 @@
       {% for twit in twits %}
       <!-- 개별 게시물 _ class명 card-->
       <div class="card">
-        <input type="hidden" value="{{twit.User.id}}" class="twit-user-id">
-        <input type="hidden" value="{{twit.id}}" class="twit-id">
         <div class="card_profile_box">
+          <input type="hidden" value="{{twit.User.id}}" class="twit-user-id">
+          <input type="hidden" value="{{twit.id}}" class="twit-id">
 
           <!-- 작성자의 프로필 이미지 -->
           <div class="profile_img">
@@ -122,9 +122,9 @@
           </div>
 
           {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
-            <button class="twit-follow follow_btn">팔로우</button>
+            <button class="twit-follow">팔로우</button>
           {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
-            <button class="twit-unfollow follow_btn">팔로우끊기</button>
+            <button class="twit-unfollow">팔로우끊기</button>
           {% endif %}
           
         </div>
@@ -164,9 +164,7 @@
     if (document.getElementById('img')) {
       document.getElementById('img').addEventListener('change', function(e) {
         const formData = new FormData();
-        console.log('아무거나1')
         console.log(this, this.files);
-        console.log('아무거나2')
         formData.append('img', this.files[0]);
         axios.post('/post/img', formData)
           .then((res) => {
@@ -181,10 +179,15 @@
       });
     }
     document.querySelectorAll('.twit-follow').forEach(function(tag) {
+      console.log('성공')
       tag.addEventListener('click', function() { //클릭시 변경
         const myId = document.querySelector('#my-id'); //#id 접근 layout 24줄 {{user.id}}값의 id
+        console.log(myId)
         if (myId) {
+          console.log('성공3')
+          console.log(tag.parentNode)
           const userId = tag.parentNode.querySelector('.twit-user-id').value; //.class 접근
+          console.log(userId)
           if (userId !== myId.value) {
             if (confirm('팔로잉하시겠습니까?')) {
               axios.post(`/user/${userId}/follow`)
