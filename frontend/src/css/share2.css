@@ -227,6 +227,7 @@ body {
 }
 
 .follow_btn {
+  cursor: pointer;
   margin-left: 35px;
   border-radius: 5px;
   border: none;
