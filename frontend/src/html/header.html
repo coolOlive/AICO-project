@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/header.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 </head>
 
 <body>
@@ -18,6 +20,11 @@
         <a href="/"><img src="logo2.svg" alt="로고2"></a>
       </div>
       <div class="profile">
+        <!-- {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+          <button class="twit-follow follow_btn">팔로우</button>
+        {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+          <button class="twit-unfollow follow_btn">팔로우끊기</button>
+        {% endif %} -->
         <a href="login"><img src="profile_circle.svg" alt="프로필"></a>
       </div>
     </div>
