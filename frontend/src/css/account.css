@@ -46,19 +46,6 @@
   margin-top: 30px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .title {
   margin-top: 50px;
   font-weight: 800;
@@ -84,6 +71,24 @@
 
 .signup_name_input_box {
   width: 90%;
+}
+
+.user_nick {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.user_name_text {
+  /* margin-top: 32px; */
+  border: 1px solid rgba(243, 239, 224, 0.3);
+  border-radius: 15px;
+  /* width: 100%; */
+  width: 90%;
+  height: 39px;
+  padding: 0px 10px 0px 10px;
+  line-height: 39px;
 }
 
 .user_id_input_box {
@@ -114,8 +119,24 @@
 }
 
 .user_btn {
+  /* background-color: bisque; */
+  width: 100%;
+  display: flex;
+  justify-content: end;
   margin-top: 40px;
-  width: 90%;
+}
+
+.submit_btn {
+  cursor: pointer;
+  margin-right: 10%;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 16px;
+  color: #F3EFE0;
+  background-color: #434242;
+  border: 1px solid rgba(243, 239, 224, 0.3);
+  border-radius: 15px;
+  width: 35%;
+  height: 35px;
 }
 
 /* .btn {
