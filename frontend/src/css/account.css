@@ -46,19 +46,6 @@
   margin-top: 30px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .title {
   margin-top: 50px;
   font-weight: 800;
@@ -139,7 +126,7 @@
   margin-top: 40px;
 }
 
-.btn {
+.submit_btn {
   cursor: pointer;
   margin-right: 10%;
   font-family: 'Nanum Gothic', sans-serif;
