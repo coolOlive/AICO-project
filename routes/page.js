@@ -30,9 +30,22 @@ router.get('/signup',  isNotLoggedIn, (req, res) => { //회원가입 페이지
     res.render('signup', { title: '회원가입' });
 });
 
-router.get('/login', (req, res, next) => { //로그인 페이지
+router.get('/login', (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // 이미 로그인한 경우
+    res.redirect('/mypage');
+  } else {
+    // 로그인하지 않은 경우
     res.render('login');
+  }
 });
+
+// router.get('/login', isNotLoggedIn, (req, res, next) => { //로그인 페이지 로그인 안했을 때
+//   res.render('login');
+// });
+// router.get('/login', isLoggedIn, (req, res, next) => { //로그인 페이지 로그인 앴을 때
+//    res.redirect('/mypage');
+//  });
 
 router.get('/', async (req, res, next) => { //페이지
     try {
@@ -62,14 +75,14 @@ router.get('/generate', (req, res) => { //생성페이지
 router.get('/share', isLoggedIn, async (req, res, next) => { //페이지 - 로그인
   try {
       const posts = await Post.findAll({
-          include:{ //작성자 가져옴
+          include:[{ //작성자 가져옴
               model: User,
               attributes: ['id', 'nick'],
-          }, //{ //좋아요 누른 사람 가져옴
-          //     model: User,
-          //     attributes: ['id', 'nick'],
-          //     as: 'Liker', //as로 구분함
-          // },
+          }, { //좋아요 누른 사람 가져옴
+            model: User,
+            attributes: ['id', 'nick'],
+            as: 'Liker', //as로 구분함
+        }],
           other: [['createdAt', 'DESC']],
       });
       // const twits = [];
