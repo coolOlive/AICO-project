@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="../css/post.css">
   <link rel="stylesheet" href="../css/share2.css">
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
   <script src="../js/share2.js"></script>
@@ -61,18 +62,7 @@
         <button id="twit-btn" type="submit" class="btn">upload</button>
       </div>
     </div>
-
   </form>
-
-  <!-- 검색 부분 -->
-  <!-- <div class="search_box"> -->
-    <!-- 일단 구글 검색되게 함_이후에 데베 정보 찾는거로 바꾸기 -->
-    <!-- <form class="search_form" action="https://www.google.com/search" method="GET">
-      <img class="search_icon" src="search_icon.svg" alt="">
-      <input name="q" class="search_txt" type="text" placeholder="Search for an image">
-      <button class="search_btn" type="submit">Search</button>
-    </form>
-  </div> -->
 
   <div class="search_box">
     <form class="search_form" id="hashtag-form" action="/hashtag">
@@ -84,17 +74,6 @@
 
   <!-- 정렬 버튼 -->
   <div class="sort_write_box">
-    <!-- <div class="sort_btn">
-      <button class="dropbtn" onclick="dropdown()">
-        <span class="dropbtn_content">정렬 </span>
-        <span class="dropbtn_click"><img src="sort_dropdown_btn.svg" alt=""></span>
-      </button>
-      정렬할 기준
-      <div class="dropdown-content">
-        <div class="sort_by" onclick="showMenu(this.innerText)">날짜</div>
-        <div class="sort_by" onclick="showMenu(this.innerText)">좋아요</div>
-      </div>
-    </div> -->
     <div class="wirte_btn">
       <div class="write" onClick="showWrite()">글쓰기 <img src="share_write_btn.svg" alt=""></div>
     </div>
@@ -132,7 +111,7 @@
         <!-- 게시하는 이미지 -->
         {% if twit.img %}
         <div class="twit-img">
-        <img src="{{twit.img}}" id="preview" class="card-img-top" alt="." onclick="showPopup();">
+        <img src="{{twit.img}}" id="preview" class="card-img-top" alt="." onclick="showPopup()">
       </div>
       <!-- <div class="twit-img"><img src="{{twit.img}}" ></div> -->
         {% endif %}
@@ -143,19 +122,136 @@
             <div class="card_icons">
               <img class="card_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
               <img class="card_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')">
-              <img class="card_icon comment_icon" src="comment_icon.svg" alt="">
+              <img class="card_icon comment_icon" src="comment_icon.svg" alt="" onclick="showPopup()">
               <!-- <a href="{{twit.img}}" onclick="javascript:imgDownload(this.src, 'logo.png')"></a> -->
             </div>
           </div>
 
           <div class="card_text_box">
-            <p class="card_text">{{twit.content}}</p> 
+            <p class="card_text">{{twit.content}}</p>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
+  
+  <!-- 팝업창 -->
+  <div id="popup" class="popup_bg">
+    <!-- 창 닫는 버튼 -->
+    <img class="close" src="close_btn.svg" onclick="closePopup()">
+    <div class="post_pop">
+      <div class="post_img_box">
+        <img id="post_img" class="post_img" src="pic1.jpg" alt="">
+        
+        <div class="post_icon_box">
+          <div class="card_icons">
+            <img class="card_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
+            <img class="card_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')">
+          </div>
+        </div>
+      </div>
+      <div class="contents_box">
+        <!-- 게시물 공간 -->
+        <div class="contents">
+          <div class="writer_icon_name">
+            <img class="writer_icon" src="profile_circle.svg">
+            <div class="writer_name">
+                닉네임
+            </div>
+            {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+              <button class="twit-follow follow_btn">팔로우</button>
+            {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+              <button class="twit-unfollow follow_btn">팔로우끊기</button>
+            {% endif %}
+          </div>
+          <div class="writer_contents_style">
+            <div class="contents_text">
+              내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+            </div>
+            <hr>
+            <div class="contents_style">
+              <div class="img_style">#몽환적인</div>
+              <div class="img_style">#몽환적인</div>
+              <div class="img_style">#몽환적인</div>
+              <div class="img_style">#rkskekdkjdfklajdljdddddddddddddfkdjkd</div>
+              <div class="img_style">#rkskekdkjdfklajdljdddddddddddddfkdjkd</div>
+              <div class="img_style">#rkskekdkjdfklajdljdddddddddddddfkdjkd</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 댓글 공간 -->
+        <ul class="post_box">
+          <li class="post">
+            <div class="post_writer_icon_name">
+              <img class="post_icon" src="profile_circle.svg">
+              <div class="post_name">
+                  댓글 닉네임
+              </div>
+            </div>
+            <p class="img_post_txt">공감합니다. 좋아요.</p>
+          </li>
+          <li class="post">
+            <div class="post_writer_icon_name">
+              <img class="post_icon" src="profile_circle.svg">
+              <div class="post_name">
+                  댓글 닉네임
+              </div>
+            </div>
+            <p class="img_post_txt">공감합니다. 좋아요.</p>
+          </li>
+          <li class="post">
+            <div class="post_writer_icon_name">
+              <img class="post_icon" src="profile_circle.svg">
+              <div class="post_name">
+                  댓글 닉네임
+              </div>
+            </div>
+            <p class="img_post_txt">공감합니다. 좋아요.</p>
+          </li>
+          <li class="post">
+            <div class="post_writer_icon_name">
+              <img class="post_icon" src="profile_circle.svg">
+              <div class="post_name">
+                  댓글 닉네임
+              </div>
+            </div>
+            <p class="img_post_txt">공감합니다. 좋아요.</p>
+          </li>
+          <li class="post">
+            <div class="post_writer_icon_name">
+              <img class="post_icon" src="profile_circle.svg">
+              <div class="post_name">
+                  댓글 닉네임
+              </div>
+            </div>
+            <p class="img_post_txt">공감합니다. 좋아요.</p>
+          </li>
+          <li class="post">
+            <div class="post_writer_icon_name">
+              <img class="post_icon" src="profile_circle.svg">
+              <div class="post_name">
+                  댓글 닉네임
+              </div>
+            </div>
+            <p class="img_post_txt">공감합니다. 좋아요.</p>
+          </li>
+        </ul>
+  
+        <!-- 댓글 입력란 -->
+        <form action="" method="post" class="write_img_post_box">
+          <textarea id="write_txt" rows="1" class="write_txt" placeholder="댓글을 입력하세요"></textarea>
+          <button class="post_img_btn" type="submit">
+            <img src="send_icon.svg" alt="">
+          </button>
+        </form>
+  
+  
+      </div>
+    </div>
+  </div>
+  
 
 </body>
 
