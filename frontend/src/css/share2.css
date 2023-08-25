@@ -9,10 +9,10 @@ body {
   line-height: 16px;
   padding-bottom: 50px;
   /* 드래그 막기 */
-  -webkit-user-select:none;
+  /* -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
-  user-select:none
+  user-select:none */
 }
 
 .search_box {
@@ -152,25 +152,6 @@ body {
   
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .share_list_box {
   margin: auto;
   width: 80%;
@@ -300,6 +281,29 @@ body {
   text-overflow: ellipsis;
 }
 
+.popup_bg {
+  display: none;
+  background: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 110px;
+  left: 0;
+  width: 100%;
+  height: 300%;
+}
+
+.close {
+  position: absolute;
+  top: 100px;
+  right: 8%;
+  cursor: pointer;
+}
+
+.post_pop {
+  background-color: #6E6E6E;
+  margin: 20px;
+  margin-top: 200px;
+  border-radius: 15px;
+}
 
 /* pc용 css */
 @media all and (min-width:1032px) {
@@ -316,4 +320,14 @@ body {
   width: 100%;
 }
 
+.popup_bg {
+  position: absolute;
+  top: 70px;
+}
+
+.post_pop {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
 }

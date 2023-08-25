@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/post.css">
   <script src="../js/post.js"></script>
+  <script src="../js/share2.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
   <!-- <script>
@@ -22,13 +23,19 @@
   <div class="post_pop">
     <div class="post_img_box">
       <img class="post_img" src="pic1.jpg" alt="">
+      
       <div class="post_icon_box">
-        <button class="post_icon white_heart">
+        <div class="card_icons">
+          <img class="card_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
+          <img class="card_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')">
+          <!-- <a href="{{twit.img}}" onclick="javascript:imgDownload(this.src, 'logo.png')"></a> -->
+        </div>
+        <!-- <button class="post_icon white_heart">
           <img src="unlike_btn.svg" alt="">
         </button>
         <button class="post_icon download_btn">
           <img src="download_btn.svg" alt="">
-        </button>
+        </button> -->
       </div>
     </div>
     <div class="contents_box">
@@ -39,6 +46,11 @@
           <div class="writer_name">
               닉네임
           </div>
+          {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+            <button class="twit-follow follow_btn">팔로우</button>
+          {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
+            <button class="twit-unfollow follow_btn">팔로우끊기</button>
+          {% endif %}
         </div>
         <div class="writer_contents_style">
           <div class="contents_text">
