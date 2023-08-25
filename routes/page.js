@@ -2,6 +2,8 @@ const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Post, User, Hashtag } = require('../models');
 const { Configuration, OpenAIApi } = require("openai");
+const fs = require("fs");
+const AWS = require("aws-sdk");
 require('dotenv').config();
 const cors = require("cors");
 
@@ -184,23 +186,39 @@ router.get('/about', (req, res) => { //about 페이지
   res.render('about');
 });
 
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-const generateImage = async (prompt) => {
+const generateImage = async (combinedPrompt) => {
   const response = await openai.createImage({
-      prompt: prompt,
+      prompt: combinedPrompt,
       n: 1,
       size: "512x512",
       response_format: "b64_json",
     });
     //console.log(response);
-    console.log("prompt: ", prompt);
+    console.log("combinedPrompt: ", combinedPrompt);
     //console.log("response data: ", response.data);
 
     const imageUrl = response.data.data[0].b64_json;
+
+    const params = {
+      Bucket: "aico-content",
+      Key: "generated-image.png",
+      Body: Buffer.from(imageUrl, "base64"),
+      ContentEncoding: "base64",
+      ContentType:"image/png",
+    };
+
+    await s3.upload(params).promise();
+
     return imageUrl;
 };
 
@@ -211,7 +229,9 @@ router.post("/generate", async (req, res) => {
     const image = await generateImage(prompt);
     //console.log("image: ",image);
     //const imageUrl = await uploadToImgur(image);
-    res.send({ image });
+    const s3ObjectUrl = "https://aico-content.s3.amazonaws.com/generated-image.png";
+
+    res.send({ image, s3ObjectUrl });
   } catch (error) {
     console.error('Image generation failed:', error);
     console.error("response data error: ", error.response.data);
