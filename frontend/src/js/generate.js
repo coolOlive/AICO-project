@@ -93,7 +93,7 @@ const generateImage = async (event) => {
   
   if (combinedPrompt) {
       try {
-          generatedImage.src = "loadingImage.png";
+          //generatedImage.src = "loadingImage.png";
           
           const response = await fetch("http://localhost:8003/generate", {
               method: "POST",

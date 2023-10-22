@@ -5,6 +5,7 @@ const { Configuration, OpenAIApi } = require("openai");
 const fs = require("fs");
 const AWS = require("aws-sdk");
 require('dotenv').config();
+const db = require('../backend/db');
 const cors = require("cors");
 
 const router = express.Router();
@@ -203,15 +204,21 @@ const generateImage = async (combinedPrompt) => {
       size: "512x512",
       response_format: "b64_json",
     });
-    //console.log(response);
+    console.log(response);
     console.log("combinedPrompt: ", combinedPrompt);
-    //console.log("response data: ", response.data);
+    console.log("response data: ", response.data);
 
     const imageUrl = response.data.data[0].b64_json;
 
+    const timestamp = Date.now().toString();
+    const randomString = Math.random().toString(36).substring(2, 15);
+    const uniqueId = `${combinedPrompt}_${timestamp}_${randomString}`;
+    const objectPrefix = "image_";
+    const objectKey = `${objectPrefix}${uniqueId}.png`;
+
     const params = {
       Bucket: "aico-content",
-      Key: "generated-image.png",
+      Key: objectKey,
       Body: Buffer.from(imageUrl, "base64"),
       ContentEncoding: "base64",
       ContentType:"image/png",
@@ -219,6 +226,26 @@ const generateImage = async (combinedPrompt) => {
 
     await s3.upload(params).promise();
 
+    const s3ObjectUrl = `https://aico-content.s3.amazonaws.com/${objectKey}`;
+
+    const query = 'INSERT INTO image (img_name, img_date, img_path) VALUES (?, NOW(), ?)';
+    const values = [combinedPrompt, s3ObjectUrl];
+
+    db.connect(err => {
+      if (err) throw err;
+
+      db.query(query, values, (err, result) => {
+        if (err) throw err;
+
+        console.log('Image inserted:', result);
+        db.end();
+      });
+    });
+
+    /*
+    const s3Url = s3.getSignedUrl('getObject', params);
+    console.log("url: ", s3Url);
+    */
     return imageUrl;
 };
 
@@ -229,9 +256,10 @@ router.post("/generate", async (req, res) => {
     const image = await generateImage(prompt);
     //console.log("image: ",image);
     //const imageUrl = await uploadToImgur(image);
-    const s3ObjectUrl = "https://aico-content.s3.amazonaws.com/generated-image.png";
 
-    res.send({ image, s3ObjectUrl });
+
+
+    res.send({ image });
   } catch (error) {
     console.error('Image generation failed:', error);
     console.error("response data error: ", error.response.data);
