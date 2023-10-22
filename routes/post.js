@@ -66,24 +66,21 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     }
 });
 
-router.post('/:id/like', async (req, res, next) => {
+router.post("/:id/like", async (req, res, next) => {
   try {
-    const post = await Post.find({ where: { id: req.params.id }});
-    await post.addLiker(req.user.id); //사용자가 이 게시글을 좋아합니다.
-    //res.redirect('/');
-    res.send('OK');
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
-});
+    const post = await Post.findOne({ where: { id: req.params.id } });
+    const liker = await post.getLiker({
+      where: { id: req.user.dataValues.id },
+    });
 
-router.delete('/:id/like', async (req, res, next) => {
-  try {
-    const post = await Post.find({ where: { id: req.params.id }});
-    await post.removeLiker(req.user.id);
-    //res.redirect('/');
-    res.send('OK');
+    if (liker.length > 0) {
+      console.log("이미 좋아요를 누름");
+      await post.removeLiker(req.user.dataValues.id);
+      return res.send("Unliked");
+    }
+    console.log("좋아요를 누름");
+    await post.addLiker(req.user.dataValues.id);
+    res.send("Liked");
   } catch (error) {
     console.error(error);
     next(error);

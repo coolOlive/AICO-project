@@ -75,27 +75,39 @@ router.get('/generate', (req, res) => { //생성페이지
     res.render('generate');
 });
 
-router.get('/share', isLoggedIn, async (req, res, next) => { //페이지 - 로그인
+router.get("/share", isLoggedIn, async (req, res, next) => {
+  //페이지 - 로그인
   try {
-      const posts = await Post.findAll({
-          include:[{ //작성자 가져옴
-              model: User,
-              attributes: ['id', 'nick'],
-          }, { //좋아요 누른 사람 가져옴
-            model: User,
-            attributes: ['id', 'nick'],
-            as: 'Liker', //as로 구분함
-        }],
-          other: [['createdAt', 'DESC']],
-      });
-      // const twits = [];
-      res.render('share2', { 
-          twits: posts,
-          user:req.user,
-      });
+    const posts = await Post.findAll({
+      include: [
+        {
+          //작성자 가져옴
+          model: User,
+          attributes: ["id", "nick"],
+        },
+        {
+          //좋아요 누른 사람 가져옴
+          model: User,
+          attributes: ["id", "nick"],
+          as: "Liker", //as로 구분함
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    });
+    const postsWithIsLiked = posts.map((post) => ({
+      ...post.get({ plain: true }),
+      isLiked: post.Liker.some((user) => user.id === req.user.id),
+    }));
+    console.log("page.js /share :", postsWithIsLiked);
+    console.log("post : ", posts);
+    res.render("share2", {
+      twitsJSON: JSON.stringify(postsWithIsLiked), // JSON.stringify를 사용하여 문자열로 변환
+      twits: posts,
+      user: req.user,
+    });
   } catch (err) {
-      console.error(err);
-      next(err);
+    console.error(err);
+    next(err);
   }
 });
 

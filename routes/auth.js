@@ -28,6 +28,8 @@ router.post('/signup', isNotLoggedIn, async (req, res, next) => {
 
 // POST /auth/login
 router.post('/login', isNotLoggedIn, (req, res, next) => {
+
+  console.log("test body", req.body)
     passport.authenticate('local', (authError, user, info) => {
       if (authError) {
         console.error(authError);
