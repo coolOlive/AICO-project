@@ -209,18 +209,14 @@
             {% endif %}
           </div>
         </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    <!-- 팝업창 -->
+        <!-- 팝업창 -->
     <div id="popup" class="popup_bg">
       <!-- 창 닫는 버튼 -->
       <img class="close" src="close_btn.svg" onclick="closePopup()" />
       <div class="post_pop">
         <div class="post_img_box">
           <!-- 팝업창 이미지 -->
-          <img id="post_img" class="post_img" src="pic1.jpg" alt="" />
+          <img id="post_img" class="post_img" src="{{twit.img}}" alt="" />
           <div class="post_icon_box">
             <!-- 팝업창 하트, 다운로드 버튼 -->
             <div class="card_icons">
@@ -256,11 +252,11 @@
             </div>
             <div class="writer_contents_style">
               <!-- 게시글 부분 -->
-              <div class="contents_text">정장을 입은 고양이 입니다.</div>
+              <div class="contents_text">{{twit.content}}</div>
               <hr />
               <!-- 스타일 태그 보이는 부분 -->
               <div class="contents_style">
-                <div class="img_style">정장을 입은 고양이</div>
+                <div class="img_style">{{twit.content}}</div>
                 <br />
                 <div class="img_style">#고양이</div>
                 <div class="img_style">#고전적인</div>
@@ -331,6 +327,11 @@
         </div>
       </div>
     </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    
   </body>
 
   {% block script %}
