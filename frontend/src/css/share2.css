@@ -281,6 +281,21 @@ body {
   text-overflow: ellipsis;
 }
 
+.delete {
+  text-decoration: none;
+  color: #F3EFE0;
+  align-items: center;
+  text-align: center;
+  background: #595959;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.delete:focus{ 	
+  border: none;
+  outline:none;
+}
+
 .popup_bg {
   display: none;
   background: rgba(0,0,0,0.5);

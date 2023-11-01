@@ -9,7 +9,17 @@
   <link rel="stylesheet" href="../css/img_click.css">
   <!-- <script src="../js/post.js"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
-  <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>
+    function copy(id) {
+      var r = document.createRange();
+      r.selectNode(document.getElementById(id));
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(r);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+    }
+  </script>
 </head>
 
 <body>
@@ -35,14 +45,14 @@
     <div class="generate_txt_box">
       <img class="writer_icon" src="profile_circle.svg">
       <div class="generate_txt_style">
-        <p>
+        <p id="copy_text">
           내용입니다.내용입니다.내용입니다. <br>
           #몽환적인 #몽환적인
         </p>
       </div>
     </div>
     <div class="copy_btn_box">
-      <button class="copy_btn" onclick="alert('복사')">Copy prompt</button>
+      <button class="copy_btn" onclick="copy('copy_text');return false;">Copy prompt</button>
     </div>
 
   </div>

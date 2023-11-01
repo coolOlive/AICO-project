@@ -12,6 +12,16 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
   <script>
+    function copyToClipboard(element) {
+    var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(element).text()).select();
+    document.execCommand("copy");
+      $temp.remove();
+    alert("복사 완료"); //Optional Alert, 삭제해도 됨
+    }
+    </script>
+  <script>
     $(document).ready(function(){
       $("#header").load("/html/header.html");
     });
@@ -74,14 +84,13 @@
       <div class="generate_txt_box">
         <img class="writer_icon" src="profile_circle.svg">
         <div class="generate_txt_style">
-          <p>
-            내용입니다.내용입니다.내용입니다. <br>
+          <p id="p1"> 내용입니다.내용입니다.내용입니다. <br>
             #몽환적인 #몽환적인
           </p>
         </div>
       </div>
       <div class="copy_btn_box">
-        <button class="copy_btn" onclick="alert('복사')">Copy prompt</button>
+        <button class="copy_btn" onclick="copyToClipboard('#p1')">Copy prompt</button>
       </div>
   
     </div>
