@@ -5,7 +5,7 @@ const { Configuration, OpenAIApi } = require("openai");
 const fs = require("fs");
 const AWS = require("aws-sdk");
 require('dotenv').config();
-const db = require('../backend/db');
+const connection = require('../backend/db');
 const cors = require("cors");
 
 const router = express.Router();
@@ -243,14 +243,14 @@ const generateImage = async (combinedPrompt) => {
     const query = 'INSERT INTO image (img_name, img_date, img_path) VALUES (?, NOW(), ?)';
     const values = [combinedPrompt, s3ObjectUrl];
 
-    db.connect(err => {
+    connection.connect(err => {
       if (err) throw err;
 
-      db.query(query, values, (err, result) => {
+      connection.query(query, values, (err, result) => {
         if (err) throw err;
 
         console.log('Image inserted:', result);
-        db.end();
+        connection.end();
       });
     });
 
