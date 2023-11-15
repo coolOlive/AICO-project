@@ -280,4 +280,17 @@ router.post("/generate", async (req, res) => {
   }
 });
 
+router.get('/api/images', (req, res) => {
+  connection.query('SELECT img_path FROM image ORDER BY img_num ASC', (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
+
 module.exports = router;
