@@ -98,7 +98,7 @@ body {
   margin: auto;
   margin-top: 25px;
 
-  width: 80%;
+  width: 300px;
   display: grid;
   justify-items: center;
   gap: 0.25rem;
