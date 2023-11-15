@@ -12,16 +12,6 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
   <script>
-    function copyToClipboard(element) {
-    var $temp = $("<input>");
-      $("body").append($temp);
-      $temp.val($(element).text()).select();
-    document.execCommand("copy");
-      $temp.remove();
-    alert("복사 완료"); //Optional Alert, 삭제해도 됨
-    }
-    </script>
-  <script>
     $(document).ready(function(){
       $("#header").load("/html/header.html");
     });
@@ -47,16 +37,10 @@
 
   <!-- 생성한 이미지 보이는 부분 -->
   <div class="main_img_box">
-    <img src="p1.png" alt="" class="picture" onclick="showPopup()">
-    <img src="p2.png" alt="" class="picture" onclick="showPopup()">
-    <img src="p3.png" alt="" class="picture" onclick="showPopup()">
-    <img src="p4.png" alt="" class="picture" onclick="showPopup()">
-    <img src="p5.png" alt="" class="picture" onclick="showPopup()">
-    <img src="p6.png" alt="" class="picture" onclick="showPopup()">
-    <img src="p7.png" alt="" class="picture" onclick="showPopup()">
-    <img src="p8.png" alt="" class="picture" onclick="showPopup()">
+    {% for twit in twits %}
+    <img src="{{twit.img}}" alt="" class="picture" onclick="showPopup()">
+    {% endfor %}
   </div>
-
 
   <!-- 팝업창 -->
   <div id="popup_bg" class="popup_bg">
@@ -84,13 +68,14 @@
       <div class="generate_txt_box">
         <img class="writer_icon" src="profile_circle.svg">
         <div class="generate_txt_style">
-          <p id="p1"> 내용입니다.내용입니다.내용입니다. <br>
+          <p>
+            내용입니다.내용입니다.내용입니다. <br>
             #몽환적인 #몽환적인
           </p>
         </div>
       </div>
       <div class="copy_btn_box">
-        <button class="copy_btn" onclick="copyToClipboard('#p1')">Copy prompt</button>
+        <button class="copy_btn" onclick="alert('복사')">Copy prompt</button>
       </div>
   
     </div>
