@@ -202,15 +202,27 @@ a {
   margin: auto;
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  /* justify-content: space-between; */
   /* padding: 2%; */
   /* padding: 10px; */
+  /* background-color: yellowgreen; */
 }
 
-.picture {
+.four_img img {
+  width: 23%;
+  margin: 1%;
+  /* margin: auto; */
+  /* display: block; */
+  
+  
+}
+
+/* .picture {
   width: 23%;
   margin: auto;
-}
+} */
 
 /* pc용 css */
 @media all and (min-width:1032px) {
