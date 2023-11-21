@@ -240,7 +240,7 @@ const generateImage = async (combinedPrompt) => {
 
     const s3ObjectUrl = `https://aico-content.s3.amazonaws.com/${objectKey}`;
 
-    const query = 'INSERT INTO image (img_name, img_date, img_path) VALUES (?, NOW(), ?)';
+    const query = 'INSERT INTO image (img_user, img_name, img_date, img_path) VALUES (1, ?, NOW(), ?)';
     const values = [combinedPrompt, s3ObjectUrl];
 
     connection.connect(err => {
