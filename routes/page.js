@@ -240,7 +240,7 @@ const generateImage = async (combinedPrompt) => {
 
     const s3ObjectUrl = `https://aico-content.s3.amazonaws.com/${objectKey}`;
 
-    const query = 'INSERT INTO image (img_name, img_date, img_path) VALUES (?, NOW(), ?)';
+    const query = 'INSERT INTO image (img_user, img_name, img_date, img_path) VALUES (1, ?, NOW(), ?)';
     const values = [combinedPrompt, s3ObjectUrl];
 
     connection.connect(err => {
@@ -279,5 +279,18 @@ router.post("/generate", async (req, res) => {
     res.status(500).json({ error: 'Image generation failed' });
   }
 });
+
+router.get('/api/images', (req, res) => {
+  connection.query('SELECT img_path FROM image ORDER BY img_num ASC', (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
 
 module.exports = router;
