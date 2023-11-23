@@ -29,21 +29,21 @@
   </a>
 
   <!-- 검색하는 부분 _ 일단 구글 검색되게 함_이후에 데베 정보 찾는거로 바꾸기 -->
-  <form class="search_box" action="https://www.google.com/search" method="GET">
+  <!-- <form class="search_box" action="https://www.google.com/search" method="GET">
     <img class="search_icon" src="search_icon.svg" alt="">
     <input name="q" class="search_txt" type="text" placeholder="Search for an image">
     <button class="search_btn" type="submit">Search</button>
-  </form>
+  </form> -->
 
   <!-- 생성한 이미지 보이는 부분 -->
   <div class="main_img_box">
     {% for twit in twits %}
-    <img src="{{twit.img}}" alt="" class="picture" onclick="showPopup()">
+    <img src="{{twit.img}}" alt="" class="picture">
     {% endfor %}
   </div>
 
   <!-- 팝업창 -->
-  <div id="popup_bg" class="popup_bg">
+  <!-- <div id="popup_bg" class="popup_bg">
     <img class="close" src="close_btn.svg" onclick="closePopup()">
     <div id="popup" class="img_click_box">
       <div class="img_and_next_btn">
@@ -58,12 +58,6 @@
       <div class="like_down_box">
         <img class="img_click_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
         <img class="img_click_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')">
-        <!-- <button class="img_click_icon white_heart">
-          <img src="unlike_btn.svg" alt="">
-        </button>
-        <button class="img_click_icon download_img">
-          <img src="download_btn.svg" alt="">
-        </button> -->
       </div>
       <div class="generate_txt_box">
         <img class="writer_icon" src="profile_circle.svg">
@@ -79,7 +73,7 @@
       </div>
   
     </div>
-  </div>
+  </div> -->
   
 </body>
 
