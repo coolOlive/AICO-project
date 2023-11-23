@@ -111,10 +111,10 @@ a {
 
 
 .menu-trigger {
+  /* background-color: aqua; */
   margin: auto;
   margin-top: 20px;
-  /* margin-right: 70px;
-  margin-bottom: 50px; */
+  cursor: pointer;
 }
 .menu-trigger,
 .menu-trigger span {
@@ -215,8 +215,6 @@ a {
   margin: 1%;
   /* margin: auto; */
   /* display: block; */
-  
-  
 }
 
 /* .picture {
