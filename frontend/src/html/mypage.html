@@ -33,10 +33,9 @@
         // 이미지를 표시할 img 태그 생성
         const imgElement = document.createElement('img');
         // 이미지의 URL을 설정
-        imgElement.src = image.img_path;
-        // 이미지의 대체 텍스트 설정 (optional)
+        imgElement.src = image.img_path.replace(`#`,`%23`);
+
         imgElement.alt = `Image ${image.img_num}`;
-        // imgElement.id = `history_${idx}`;
 
         imgElement.onclick = function(){showPopup(imgElement.src)};
 
