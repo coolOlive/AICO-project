@@ -137,7 +137,8 @@ body {
 
 .copy_btn:active, .copy_btn:focus {
   outline:none !important;
-  box-shadow:none !important;}
+  box-shadow:none !important;
+}
 
 
 

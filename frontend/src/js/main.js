@@ -29,6 +29,18 @@ function showPopup(imgsrc) {
   popup.style.display = "block";
 }
 
+function copyTxt() {
+  let text = document.getElementById("img_generating_txt").textContent;
+
+  const textArea = document.createElement("textarea");
+  document.body.appendChild(textArea);
+  textArea.value = text;
+  textArea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textArea);
+  alert(`복사되었습니다.`);
+}
+
 function changeHeart(num) {
   let heart = document.getElementById(num).src;
 
@@ -63,8 +75,9 @@ function imgDownload() {
   var arFileName = arSplitUrl[nArLength - 1];
   var arSplitFileName = arFileName.split(".");
   var sFileName = decodeURIComponent(arSplitFileName[0]);
-  alert(sFileName);
-  alert(arSplitFileName[1]);
+  // sFileName = sFileName.replace(/image_/g, "");
+  // alert(sFileName);
+  // alert(arSplitFileName[1]);
   // a.href = getshot.src;
   a.href = `/${sFileName}.${arSplitFileName[1]}`;
   alert(a.href);
