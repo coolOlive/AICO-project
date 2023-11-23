@@ -1,6 +1,8 @@
 // window.onload = () => {
-//   document.querySelector("#imageContainer").onclick
-// }
+//   document.querySelector("#imageContainer").onclick = () => {
+//     alert("hello");
+//   };
+// };
 
 // window.onload = () => {
 //   document.querySelector(".menu-trigger").onclick = () => {
