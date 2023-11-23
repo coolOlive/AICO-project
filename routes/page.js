@@ -281,7 +281,7 @@ router.post("/generate", async (req, res) => {
 });
 
 router.get('/api/images', (req, res) => {
-  connection.query('SELECT img_path FROM image ORDER BY img_num ASC', (error, results) => {
+  connection.query('SELECT img_path FROM image ORDER BY img_num DESC LIMIT 4', (error, results) => {
     if (error) {
       console.error('Error fetching images: ' + error.stack);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -292,5 +292,16 @@ router.get('/api/images', (req, res) => {
   });
 });
 
+router.get('/history/images', (req, res) => {
+  connection.query('SELECT img_path FROM image ORDER BY img_num DESC', (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
 
 module.exports = router;
