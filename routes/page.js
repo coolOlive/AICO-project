@@ -250,7 +250,7 @@ const generateImage = async (combinedPrompt) => {
         if (err) throw err;
 
         console.log('Image inserted:', result);
-        connection.end();
+        //connection.end();
       });
     });
 
