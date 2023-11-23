@@ -15,7 +15,7 @@
       
     });
 
-    async function fetchAllImages() {
+    async function fetchFourImages() {
       const response = await fetch('/api/images');
       const images = await response.json();
       return images;
@@ -23,7 +23,7 @@
 
     // 이미지 목록을 받아와서 화면에 표시하는 함수
     async function displayAllImages() {
-      const images = await fetchAllImages();
+      const images = await fetchFourImages();
       const container = document.getElementById('imageContainer');
 
       images.forEach(image => {
