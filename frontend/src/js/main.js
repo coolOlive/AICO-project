@@ -17,13 +17,17 @@ function showPopup(imgsrc) {
   var gTotalTxt = sFileName.split("_");
   var gTxt = gTotalTxt[1].split("[");
 
-  var gTagFirst = gTxt[1].split(`{"value":`).join("");
-  var tags = gTagFirst.replace(/}/g, "");
-  tags = tags.replace(/]/g, "");
-  tags = tags.replace(/"/g, "");
-  var printTags = tags.split(`,`);
+  if (gTxt.length > 1) {
+    var gTagFirst = gTxt[1].split(`{"value":`).join("");
+    var tags = gTagFirst.replace(/}/g, "");
+    tags = tags.replace(/]/g, "");
+    tags = tags.replace(/"/g, "");
+    var printTags = tags.split(`,`);
 
-  imgTxt.innerHTML = `${gTxt[0]}<br>#${printTags.join(` #`)}`;
+    imgTxt.innerHTML = `${gTxt[0]}<br>#${printTags.join(` #`)}`;
+  } else {
+    imgTxt.innerHTML = `${gTxt[0]}`;
+  }
   clickImg.src = imgsrc;
 
   popup.style.display = "block";
