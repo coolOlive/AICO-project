@@ -1,4 +1,8 @@
 // window.onload = () => {
+//   document.querySelector("#imageContainer").onclick
+// }
+
+// window.onload = () => {
 //   document.querySelector(".menu-trigger").onclick = () => {
 //     alert("hello");
 //     var burger = $(".menu-trigger");
