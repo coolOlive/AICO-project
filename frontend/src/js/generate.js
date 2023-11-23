@@ -90,7 +90,7 @@ const generateImage = async (event) => {
 
   if (combinedPrompt) {
     try {
-      //generatedImage.src = "loadingImage.png";
+      generatedImage.src = "loadingImage.gif";
 
       const response = await fetch("http://localhost:8003/generate", {
         method: "POST",
@@ -106,7 +106,7 @@ const generateImage = async (event) => {
     } catch (error) {
       console.log(error);
       showNotification(generatedImage.src);
-      generatedImage.src = "testImage.png";
+      generatedImage.src = "loadingImage.gif";
     }
   } else {
     showNotification("요구사항을 입력하세요.");
