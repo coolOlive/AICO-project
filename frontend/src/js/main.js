@@ -7,6 +7,8 @@ function showPopup(imgsrc) {
   let popup = document.getElementById("popup_bg");
   let clickImg = document.getElementById("clicked_img");
   let imgTxt = document.getElementById("img_generating_txt");
+  let downBtn = document.getElementById("down_btn");
+  // alert("hihi");
 
   var arSplitUrl = imgsrc.split("/");
   var nArLength = arSplitUrl.length;
@@ -29,6 +31,11 @@ function showPopup(imgsrc) {
     imgTxt.innerHTML = `${gTxt[0]}`;
   }
   clickImg.src = imgsrc;
+
+  // imgsrc = imgsrc.replace(`https://aico-content.s3.amazonaws.com`, `image`);
+  // alert(imgsrc);
+
+  downBtn.href = imgsrc;
 
   popup.style.display = "block";
 }
@@ -65,49 +72,30 @@ async function toDataURL(url) {
   return URL.createObjectURL(blob);
 }
 
-function imgDownload() {
-  let clickedSrc = document.getElementById("clicked_img").src;
-  var img = new Image();
-  img.crossOrigin = "Anonymous";
-  img.id = "getshot";
-  img.src = clickedSrc;
-  document.body.appendChild(img);
+// function imgDownload() {
+//   let clickedSrc = document.getElementById("clicked_img").src;
+//   var img = new Image();
+//   img.crossOrigin = "Anonymous";
+//   img.id = "getshot";
+//   img.src = clickedSrc;
+//   document.body.appendChild(img);
 
-  var a = document.createElement("a");
-  var arSplitUrl = getshot.src.split("/");
-  var nArLength = arSplitUrl.length;
-  var arFileName = arSplitUrl[nArLength - 1];
-  var arSplitFileName = arFileName.split(".");
-  var sFileName = decodeURIComponent(arSplitFileName[0]);
-  // sFileName = sFileName.replace(/image_/g, "");
-  // alert(sFileName);
-  // alert(arSplitFileName[1]);
-  // a.href = getshot.src;
-  a.href = `/${sFileName}.${arSplitFileName[1]}`;
-  alert(a.href);
-  a.download = `${sFileName}.${arSplitFileName[1]}`;
-  a.click();
-  document.body.removeChild(img);
-
-  // var img = new Image();
-  // img.crossOrigin = "Anonymous";
-  // img.id = "getshot";
-  // img.src = clickedSrc;
-  // document.body.appendChild(img);
-
-  // var a = document.createElement("a");
-  // var arSplitUrl = getshot.src.split("/");
-  // var nArLength = arSplitUrl.length;
-  // var arFileName = arSplitUrl[nArLength - 1];
-  // alert(arFileName);
-  // var arSplitFileName = arFileName.split(".");
-  // var sFileName = arSplitFileName[0];
-  // a.href = `/${sFileName}.${arSplitFileName[1]}`;
-  // a.download = `${sFileName}.${arSplitFileName[1]}`;
-  // alert(a.href);
-  // a.click();
-  // document.body.removeChild(img);
-}
+//   var a = document.createElement("a");
+//   var arSplitUrl = getshot.src.split("/");
+//   var nArLength = arSplitUrl.length;
+//   var arFileName = arSplitUrl[nArLength - 1];
+//   var arSplitFileName = arFileName.split(".");
+//   var sFileName = decodeURIComponent(arSplitFileName[0]);
+//   // sFileName = sFileName.replace(/image_/g, "");
+//   // alert(sFileName);
+//   // alert(arSplitFileName[1]);
+//   // a.href = getshot.src;
+//   a.href = `/${sFileName}.${arSplitFileName[1]}`;
+//   alert(a.href);
+//   a.download = `${sFileName}.${arSplitFileName[1]}`;
+//   a.click();
+//   document.body.removeChild(img);
+// }
 
 // var arSplitUrl   = sOriginImgUrl.split("/");    //   "/" 로 전체 url 을 나눈다
 //
@@ -136,3 +124,22 @@ function imgDownload() {
 // var sFileName = arSplitFileName[0];         // 파일이름
 //
 // var sFileExtension = arSplitFileName[1]
+
+// var img = new Image();
+// img.crossOrigin = "Anonymous";
+// img.id = "getshot";
+// img.src = clickedSrc;
+// document.body.appendChild(img);
+
+// var a = document.createElement("a");
+// var arSplitUrl = getshot.src.split("/");
+// var nArLength = arSplitUrl.length;
+// var arFileName = arSplitUrl[nArLength - 1];
+// alert(arFileName);
+// var arSplitFileName = arFileName.split(".");
+// var sFileName = arSplitFileName[0];
+// a.href = `/${sFileName}.${arSplitFileName[1]}`;
+// a.download = `${sFileName}.${arSplitFileName[1]}`;
+// alert(a.href);
+// a.click();
+// document.body.removeChild(img);

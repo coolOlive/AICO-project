@@ -124,6 +124,13 @@ body {
   height: 300%;
 }
 
+#clicked_img {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 90%;
+  border-radius: 5px;
+}
+
 .close {
   position: absolute;
   top: 100px;
