@@ -19,17 +19,20 @@
   align-items: center;
   padding-left: 18.75%;
   padding-right: 18.75%;
+  /* padding-top: 8px; */
 }
 
 .logo {
   height: 32px;
-  margin-top: 19px;
+  /* margin-top: 30px; */
   cursor: pointer;
+  margin-top: 10px;
   /* background-color: aqua; */
 }
 
 .profile {
-  width: 35px;
+  /* background-color: aqua; */
+  width: 100px;
   margin-top: 19px;
 }
 
@@ -38,6 +41,7 @@
   order: 2;
   flex-direction: column;
   width: 100%;
+  margin-top: 5px;
 }
 
 .nav {
@@ -62,6 +66,22 @@
 .gbn li a {
   text-decoration-line: none;
   color: #F3EFE0;
+}
+
+.login_user {
+  /* background-color: red; */
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: block;
+  text-decoration-line: none;
+  padding: 10px;
+  border: 1px solid #F3EFE0;
+  border-radius: 5px;
+  color: #F3EFE0;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* pc용 css */
@@ -93,6 +113,7 @@
 }
 
 .header {
+  margin-top: 0px;
   position: absolute;
   top: 0px;
   z-index: 1;
