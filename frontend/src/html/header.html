@@ -10,6 +10,24 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+  <script>
+    fetch('/loggedIn/user')
+      .then(response => response.json())
+      .then(data => {
+        const user = data.user;
+
+        const profileButton = document.getElementById('profileButton');
+
+        if (user) {
+          // 로그인O
+          profileButton.innerHTML = `<a href="mypage">${user.email}</a>`;
+        } else {
+          // 로그인X
+          profileButton.innerHTML = '<a href="login"><img src="login_signup_btn.svg" alt="프로필"></a>';
+        }
+      })
+      .catch(error => console.error('Error fetching user information:', error));
+  </script>
 </head>
 
 <body>
@@ -19,13 +37,13 @@
       <div class="logo">
         <a href="/"><img src="logo2.svg" alt="로고2"></a>
       </div>
-      <div class="profile">
+      <div class="profile" id="profileButton">
         <!-- {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
           <button class="twit-follow follow_btn">팔로우</button>
         {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
           <button class="twit-unfollow follow_btn">팔로우끊기</button>
         {% endif %}login_signup_btn profile_circle-->
-        <a href="login"><img src="login_signup_btn.svg" alt="프로필"></a>
+        <!--<a href="login"><img src="login_signup_btn.svg" alt="프로필"></a>-->
       </div>
     </div>
   </section>

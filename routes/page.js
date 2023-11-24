@@ -28,6 +28,10 @@ router.use((req, res, next) => {
 // router.get('/profile', isLoggedIn, (req, res) => { //페이지 - 프로필 profile
 //   res.render('profile', { title: '내 정보' , user: req.user});
 // });
+router.get('/loggedIn/user', (req, res) => {
+  const user = req.user;
+  res.json({ user });
+})
 
 router.get('/signup',  isNotLoggedIn, (req, res) => { //회원가입 페이지
     res.render('signup', { title: '회원가입' });
