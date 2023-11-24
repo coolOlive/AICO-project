@@ -209,7 +209,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const generateImage = async (combinedPrompt) => {
+const generateImage = async (combinedPrompt, req) => {
+  console.log('Checking req:', req);
   const response = await openai.createImage({
       prompt: combinedPrompt,
       n: 1,
@@ -239,9 +240,10 @@ const generateImage = async (combinedPrompt) => {
     await s3.upload(params).promise();
 
     const s3ObjectUrl = `https://aico-content.s3.amazonaws.com/${objectKey}`;
+    const img_user = req.user.id;
 
-    const query = 'INSERT INTO image (img_user, img_name, img_date, img_path) VALUES (1, ?, NOW(), ?)';
-    const values = [combinedPrompt, s3ObjectUrl];
+    const query = 'INSERT INTO image (img_user, img_name, img_date, img_path) VALUES (?, ?, NOW(), ?)';
+    const values = [img_user, combinedPrompt, s3ObjectUrl];
 
     connection.connect(err => {
       if (err) throw err;
@@ -261,11 +263,11 @@ const generateImage = async (combinedPrompt) => {
     return imageUrl;
 };
 
-router.post("/generate", async (req, res) => {
+router.post("/generate", isLoggedIn, async (req, res) => {
   try {
     const { prompt } = req.body;
     console.log("router prompt: ",prompt);
-    const image = await generateImage(prompt);
+    const image = await generateImage(prompt, req);
     //console.log("image: ",image);
     //const imageUrl = await uploadToImgur(image);
 
@@ -280,8 +282,22 @@ router.post("/generate", async (req, res) => {
   }
 });
 
-router.get('/api/images', (req, res) => {
-  connection.query('SELECT img_path FROM image ORDER BY img_num DESC LIMIT 4', (error, results) => {
+router.get('/main/images', (req, res) => {
+  connection.query('SELECT img_path FROM image ORDER BY img_num DESC', (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
+router.get('/history/four/images', (req, res) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT img_path FROM image WHERE img_user = ? ORDER BY img_num DESC LIMIT 4', [userId], (error, results) => {
     if (error) {
       console.error('Error fetching images: ' + error.stack);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -293,7 +309,9 @@ router.get('/api/images', (req, res) => {
 });
 
 router.get('/history/images', (req, res) => {
-  connection.query('SELECT img_path FROM image ORDER BY img_num DESC', (error, results) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT img_path FROM image WHERE img_user = ? ORDER BY img_num DESC', [userId], (error, results) => {
     if (error) {
       console.error('Error fetching images: ' + error.stack);
       res.status(500).json({ error: 'Internal Server Error' });

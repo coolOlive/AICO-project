@@ -5,9 +5,14 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
 
 const db = {};
-const sequelize = new Sequelize(
-  config.database, config.username, config.password, config,
-);
+const sequelize = new Sequelize({
+  database: 'aico_db',
+  username: 'root',
+  password: process.env.RDS_PASSWORD,
+  host: process.env.RDS_ENDPOINT,
+  port: 3306,
+  dialect: 'mysql',
+});
 
 db.sequelize = sequelize;
 

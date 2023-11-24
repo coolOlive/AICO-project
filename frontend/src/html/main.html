@@ -15,6 +15,36 @@
     $(document).ready(function(){
       $("#header").load("/html/header.html");
     });
+
+    async function fetchAllImages() {
+      const response = await fetch('/main/images');
+      const images = await response.json();
+      return images;
+    }
+
+    // 이미지 목록을 받아와서 화면에 표시하는 함수
+    async function displayAllImages() {
+      const images = await fetchAllImages();
+      const container = document.getElementById('imageContainer');
+
+      images.forEach(image => {
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-container');
+
+        const imgElement = document.createElement('img');
+        imgElement.src = image.img_path.replace(`#`,`%23`);
+        imgElement.alt = `Image ${image.img_num}`;
+
+        imgElement.onclick = function(){showPopup(imgElement.src)};
+
+        imageContainer.appendChild(imgElement);
+
+        container.appendChild(imageContainer);
+      });
+    }
+
+    // 페이지 로드 시 모든 이미지 표시 함수 호출
+    window.onload = displayAllImages;
   </script>
 </head>
 
@@ -36,10 +66,12 @@
   </form> -->
 
   <!-- 생성한 이미지 보이는 부분 -->
-  <div class="main_img_box">
+  <div class="main_img_box" id="imageContainer">
+    <!--
     {% for twit in twits %}
     <img src="{{twit.img}}" alt="" class="picture">
     {% endfor %}
+    -->
   </div>
 
   <!-- 팝업창 -->

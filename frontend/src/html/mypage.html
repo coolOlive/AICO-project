@@ -19,7 +19,7 @@
     });
 
     async function fetchFourImages() {
-      const response = await fetch('/api/images');
+      const response = await fetch('/history/four/images');
       const images = await response.json();
       return images;
     }
