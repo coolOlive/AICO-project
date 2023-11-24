@@ -23,6 +23,7 @@
       $(document).ready(function () {
         $("#header").load("/html/header.html");
       });
+      window.onload = displayAllImages();
     </script>
   </head>
   <body>
@@ -31,6 +32,14 @@
       <input id="my-id" type="hidden" value="{{user.id}}" />
     </div>
 
+    <!-- history불러오기 -->
+    <div class="callHistory" id="history_pop">
+      <div class="history_list" id="writeHistory">
+
+        <!-- ..... -->
+      </div>
+      <img class="close" src="close_btn.svg" onclick="closeHistoryPopup()">
+    </div>
     <form
       id="twit-form"
       action="/post"
@@ -56,6 +65,9 @@
             <!-- <img src="delete_btn.svg" alt="" /> -->
           </a>
         </div>
+        
+        <div onclick="showHistory()">myHistory</div>
+        
         <div class="img_input_btn_box">
           <label for="img" class="imp_input_btn">+ Upload image</label>
         </div>
@@ -210,7 +222,12 @@
             {% endif %}
           </div>
         </div>
-        <!-- 팝업창 -->
+        
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- 팝업창 -->
     <div id="popup" class="popup_bg">
       <!-- 창 닫는 버튼 -->
       <img class="close" src="close_btn.svg" onclick="closePopup()" />
@@ -328,11 +345,6 @@
         </div>
       </div>
     </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    
   </body>
 
   {% block script %}
