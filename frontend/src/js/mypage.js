@@ -52,3 +52,80 @@ function hambuger() {
     }
   });
 }
+
+// function imgDownload() {
+//   let clickedSrc = document.getElementById("clicked_img").src;
+
+//   var img = new Image();
+//   img.crossOrigin = "Anonymous";
+//   img.id = "getshot";
+//   img.src = clickedSrc;
+//   document.body.appendChild(img);
+
+//   var a = document.createElement("a");
+//   a.href = clickedSrc;
+//   a.download = `aico_download`;
+//   a.click();
+//   document.body.removeChild(img);
+
+//   // alert(clickedSrc);
+
+//   // var img = new Image();
+//   // img.crossOrigin = "Anonymous";
+//   // img.id = "getshot";
+//   // img.src = clickedSrc;
+//   // document.body.appendChild(img);
+//   // alert(getshot.src);
+
+//   // var arSplitUrl = getshot.src.split("/");
+//   // var nArLength = arSplitUrl.length;
+//   // var arFileName = arSplitUrl[nArLength - 1];
+//   // arFileName = `/${arFileName}`;
+//   // var sFileName = decodeURIComponent(arFileName);
+//   // sFileName = sFileName.replace(" ", "_");
+//   // alert(sFileName);
+
+//   // var a = document.createElement("a");
+//   // a.href = sFileName;
+//   // a.download = "aico_download";
+//   // a.click();
+//   // document.body.removeChild(img);
+
+//   // var img = new Image();
+//   // img.crossOrigin = "Anonymous";
+//   // img.id = "getshot";
+//   // img.src = clickedSrc;
+//   // document.body.appendChild(img);
+
+//   // var a = document.createElement("a");
+//   // var arSplitUrl = getshot.src.split("/");
+//   // var nArLength = arSplitUrl.length;
+//   // var arFileName = arSplitUrl[nArLength - 1];
+//   // var arSplitFileName = arFileName.split(".");
+//   // var sFileName = decodeURIComponent(arSplitFileName[0]);
+//   // sFileName = sFileName.replace(" ", "_");
+//   // // sFileName = sFileName.replace(/image_/g, "");
+//   // // alert(sFileName);
+//   // // alert(arSplitFileName[1]);
+//   // // a.href = getshot.src;
+//   // a.href = `image_${sFileName}.${arSplitFileName[1]}`;
+//   // alert(a.href);
+//   // a.download = `image_${sFileName}.${arSplitFileName[1]}`;
+//   // a.click();
+//   // document.body.removeChild(img);
+// }
+
+// function imgDownload(imageURL, fileName) {
+//   alert("ss");
+//   var img = new Image();
+//   img.crossOrigin = "Anonymous";
+//   img.id = "getshot";
+//   img.src = imageURL;
+//   document.body.appendChild(img);
+
+//   var a = document.createElement("a");
+//   a.href = getshot.src;
+//   a.download = fileName;
+//   a.click();
+//   document.body.removeChild(img);
+// }

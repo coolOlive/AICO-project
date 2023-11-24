@@ -103,6 +103,7 @@
           <img src="p1.png" alt="" class="picture">
           -->
         </div>
+        
       </div>
 
       <!-- likes 부분 -->
@@ -152,8 +153,39 @@
 
     </div>
   </div>
+  
   <!-- 팝업창 -->
   <div id="popup_bg" class="popup_bg">
+    <img class="close" src="close_btn.svg" onclick="closePopup()">
+    <div id="popup" class="img_click_box">
+      <div class="img_and_next_btn">
+        <img src="" alt="" id="clicked_img">
+      </div>
+      <div class="like_down_box">
+        <img class="img_click_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
+        <a href="" id="down_btn" download><img src="download_img.svg" alt="download"></a>
+        <!-- <img class="img_click_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')"> -->
+      </div>
+      <div class="generate_txt_box">
+        <div class="generate_txt_style">
+          <p id="img_generating_txt">
+            내용입니다.내용입니다.내용입니다. <br>
+            #몽환적인 #몽환적인
+          </p>
+        </div>
+      </div>
+      <div class="copy_btn_box">
+        <button class="copy_btn" onclick="copyTxt()">Copy prompt</button>
+      </div>
+  
+    </div>
+  </div>
+
+
+
+
+  <!-- 팝업창 -->
+  <!-- <div id="popup_bg" class="popup_bg">
     <img class="close" src="close_btn.svg" onclick="closePopup()">
     <div id="popup" class="img_click_box">
       <div class="img_and_next_btn">
@@ -176,6 +208,6 @@
       </div>
   
     </div>
-  </div>
+  </div> -->
   
 </body>
