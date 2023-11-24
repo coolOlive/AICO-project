@@ -282,8 +282,22 @@ router.post("/generate", isLoggedIn, async (req, res) => {
   }
 });
 
-router.get('/api/images', (req, res) => {
-  connection.query('SELECT img_path FROM image ORDER BY img_num DESC LIMIT 4', (error, results) => {
+router.get('/main/images', (req, res) => {
+  connection.query('SELECT img_path FROM image ORDER BY img_num DESC', (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
+router.get('/history/four/images', (req, res) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT img_path FROM image WHERE img_user = ? ORDER BY img_num DESC LIMIT 4', [userId], (error, results) => {
     if (error) {
       console.error('Error fetching images: ' + error.stack);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -295,7 +309,9 @@ router.get('/api/images', (req, res) => {
 });
 
 router.get('/history/images', (req, res) => {
-  connection.query('SELECT img_path FROM image ORDER BY img_num DESC', (error, results) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT img_path FROM image WHERE img_user = ? ORDER BY img_num DESC', [userId], (error, results) => {
     if (error) {
       console.error('Error fetching images: ' + error.stack);
       res.status(500).json({ error: 'Internal Server Error' });
