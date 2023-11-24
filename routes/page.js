@@ -209,7 +209,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const generateImage = async (combinedPrompt) => {
+const generateImage = async (combinedPrompt, req) => {
+  console.log('Checking req:', req);
   const response = await openai.createImage({
       prompt: combinedPrompt,
       n: 1,
@@ -239,9 +240,10 @@ const generateImage = async (combinedPrompt) => {
     await s3.upload(params).promise();
 
     const s3ObjectUrl = `https://aico-content.s3.amazonaws.com/${objectKey}`;
+    const img_user = req.user.id;
 
-    const query = 'INSERT INTO image (img_user, img_name, img_date, img_path) VALUES (1, ?, NOW(), ?)';
-    const values = [combinedPrompt, s3ObjectUrl];
+    const query = 'INSERT INTO image (img_user, img_name, img_date, img_path) VALUES (?, ?, NOW(), ?)';
+    const values = [img_user, combinedPrompt, s3ObjectUrl];
 
     connection.connect(err => {
       if (err) throw err;
@@ -261,11 +263,11 @@ const generateImage = async (combinedPrompt) => {
     return imageUrl;
 };
 
-router.post("/generate", async (req, res) => {
+router.post("/generate", isLoggedIn, async (req, res) => {
   try {
     const { prompt } = req.body;
     console.log("router prompt: ",prompt);
-    const image = await generateImage(prompt);
+    const image = await generateImage(prompt, req);
     //console.log("image: ",image);
     //const imageUrl = await uploadToImgur(image);
 
