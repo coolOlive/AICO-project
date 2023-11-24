@@ -27,7 +27,7 @@ window.onload = function () {
 };
 
 function historyInput(imgSrc) {
-  alert(imgSrc);
+  // alert(imgSrc);
   closeHistoryPopup();
   let show = document.querySelector("#choose_file");
   let deleteBtn = document.querySelector("#file_delete_btn");
