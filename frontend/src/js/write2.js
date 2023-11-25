@@ -52,6 +52,7 @@ function deleteHistory() {
 
 function historyInput(imgSrc, imgNum) {
   alert(`img_num: ${imgNum}`);
+  alert(`img_Src: ${imgSrc}`);
   closeHistoryPopup();
 
   // history url을 text로 전송하는 부분
@@ -176,7 +177,7 @@ async function displayAllImages() {
     imgElement.onclick = function () {
       historyInput(image.img_path, image.img_num);
     };
-
+    // alert(imgElement.src);
     // fileLabel.appendChild(imgElement);
 
     // 이미지를 화면에 추가
