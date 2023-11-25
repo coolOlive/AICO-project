@@ -20,7 +20,7 @@
 
         if (user) {
           // 로그인O
-          profileButton.innerHTML = `<a href="mypage">${user.email}</a>`;
+          profileButton.innerHTML = `<a href="mypage" class="login_user">${user.email}</a>`;
         } else {
           // 로그인X
           profileButton.innerHTML = '<a href="login"><img src="login_signup_btn.svg" alt="프로필"></a>';

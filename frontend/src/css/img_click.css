@@ -10,13 +10,30 @@ body {
   line-height: 16px;
 }
 
+/* .close {
+  position: absolute;
+  top: 50px;
+  right: 20%;
+  cursor: pointer;
+
+}
+
 .img_click_box {
+  background-color: #6E6E6E;
+  margin: auto;
+  margin-top: 50px;
+  padding-bottom: 100px;
+  padding-top: 20px;
+  border-radius: 15px;
+  width: 50%;
+} */
+
+/* .img_click_box {
   margin: auto;
   width: 80%;
   display: flex;
   flex-direction: column;
-  /* background-color: lightskyblue; */
-}
+} */
 
 .before_btn {
   width: 25px;
