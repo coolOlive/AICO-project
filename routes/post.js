@@ -3,9 +3,10 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { Post, Hashtag } = require('../models');
+const { Image, Post, Hashtag } = require('../models');
 const { isLoggedIn } = require('./middlewares');
 const User = require('../models/user');
+const connection = require('../backend/db.js');
 
 const router = express.Router();
 
@@ -42,9 +43,18 @@ router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
 const upload2 = multer();
 router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     try {
+        //console.log('URL from request:', req.body.url);
+
+        const [image] = await Image.findAll({
+          attributes: ['img_num'],
+          where: { img_path: req.body.url },
+          order: [['img_num', 'DESC']],
+          limit: 1,
+        });
+
         const post = await Post.create({
             content: req.body.content,
-            img:req.body.url,
+            img: image.img_num,
             UserId: req.user.id,
         });
         console.log(post)

@@ -50,7 +50,8 @@ function deleteHistory() {
   });
 }
 
-function historyInput(imgSrc) {
+function historyInput(imgSrc, imgNum) {
+  alert(`img_num: ${imgNum}`);
   closeHistoryPopup();
 
   // history url을 text로 전송하는 부분
@@ -173,7 +174,7 @@ async function displayAllImages() {
     imgElement.alt = `Image ${image.img_num}`;
     imgElement.classList.add("history_img");
     imgElement.onclick = function () {
-      historyInput(imgElement.src);
+      historyInput(image.img_path, image.img_num);
     };
 
     // fileLabel.appendChild(imgElement);
