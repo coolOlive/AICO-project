@@ -315,7 +315,7 @@ router.get('/history/four/images', (req, res) => {
 router.get('/history/images', (req, res) => {
   const userId = req.user.id;
 
-  connection.query('SELECT img_path FROM image WHERE img_user = ? ORDER BY img_num DESC', [userId], (error, results) => {
+  connection.query('SELECT img_num, img_path FROM image WHERE img_user = ? ORDER BY img_num DESC', [userId], (error, results) => {
     if (error) {
       console.error('Error fetching images: ' + error.stack);
       res.status(500).json({ error: 'Internal Server Error' });
