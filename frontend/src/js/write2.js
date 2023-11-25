@@ -1,34 +1,62 @@
-window.onload = function () {
-  // 파일 표시 기능
+// window.onload = function () {
+//   // 파일 표시 기능
+//   let file = document.querySelector("#img");
+//   let show = document.querySelector("#choose_file");
+//   let deleteBtn = document.querySelector("#file_delete_btn");
+//   // let show = document.querySelector("#file_show");
+//   // let deleteBtn = document.querySelector("#file_delete_btn");
+//   file.addEventListener("change", function () {
+//     if (window.FileReader) {
+//       // modern browser
+//       var filename = $(this)[0].files[0].name;
+//     } else {
+//       // old IE
+//       var filename = $(this).val().split("/").pop().split("\\").pop(); // 파일명만 추출
+//     }
+
+//     // 화면 보이기, 추출한 파일명 삽입
+//     $(show).css("display", "block");
+//     $(deleteBtn).css("display", "block");
+//     $(this).siblings(show).val(filename);
+//   });
+// };
+
+function deleteHistory() {
+  let historyForm = document.querySelector("#history_btn");
+  historyForm.value = ``;
+
   let file = document.querySelector("#img");
   let show = document.querySelector("#choose_file");
-  // let show = document.querySelector("#img-url");
   let deleteBtn = document.querySelector("#file_delete_btn");
 
   file.addEventListener("change", function () {
     if (window.FileReader) {
       // modern browser
       var filename = $(this)[0].files[0].name;
-      readImage($(this)[0]);
     } else {
       // old IE
       var filename = $(this).val().split("/").pop().split("\\").pop(); // 파일명만 추출
-      readImage($(this)[0]);
     }
-    // const imageSrc = URL.createObjectURL(filename);
-    // preview.src = img;
 
     // 화면 보이기, 추출한 파일명 삽입
     $(show).css("display", "block");
     $(deleteBtn).css("display", "block");
-    // $(this).siblings(show).val(filename);
     show.value = filename;
+    // $(this).siblings(show).val(filename);
+
+    let previewImage = document.getElementById("img-preview");
+    $(previewImage).css("display", "block");
+    previewImage.src = filename;
   });
-};
+}
 
 function historyInput(imgSrc) {
-  // alert(imgSrc);
   closeHistoryPopup();
+
+  // history url을 text로 전송하는 부분
+  let historyForm = document.querySelector("#history_btn");
+  historyForm.value = imgSrc;
+
   let show = document.querySelector("#choose_file");
   let deleteBtn = document.querySelector("#file_delete_btn");
 
@@ -111,6 +139,10 @@ function showWrite() {
 
 function showHistory() {
   let history = document.querySelector(".callHistory");
+
+  // const fileLabel = document.createElement("label");
+  // fileLabel.for = `img`;
+
   if ($(history).css("display") == "none") {
     $(history).css("display", "flex");
   } else {
@@ -129,6 +161,8 @@ async function fetchFourImages() {
 async function displayAllImages() {
   const images = await fetchFourImages();
   const container = document.getElementById("writeHistory");
+  // const fileLabel = document.createElement("label");
+  // fileLabel.for = `img`;
 
   images.forEach((image, idx) => {
     // 이미지를 표시할 img 태그 생성
@@ -142,6 +176,8 @@ async function displayAllImages() {
       historyInput(imgElement.src);
     };
 
+    // fileLabel.appendChild(imgElement);
+
     // 이미지를 화면에 추가
     container.appendChild(imgElement);
   });
@@ -151,3 +187,11 @@ function closeHistoryPopup() {
   let popup = document.getElementById("history_pop");
   popup.style.display = "none";
 }
+
+// async function all_reset() {
+//   let historyForm = document.querySelector("#history_btn");
+//   let writeTextArea = document.querySelector("#twit");
+//   historyForm.value = ``;
+//   writeTextArea.value = ``;
+//   showWrite();
+// }
