@@ -75,7 +75,7 @@ router.get('/', async (req, res, next) => { //페이지
 });
 
   
-router.get('/generate', (req, res) => { //생성페이지
+router.get('/generate', isLoggedIn, (req, res) => { //생성페이지
     res.render('generate');
 });
 

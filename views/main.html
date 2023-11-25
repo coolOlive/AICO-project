@@ -1,61 +1,83 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AICO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/mainpost.css">
+  <script src="../js/main.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+  <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script>
+    $(document).ready(function(){
+      $("#header").load("/html/header.html");
+    });
+  </script>
+</head>
 
-{% block content %}
-    <div class="timeline">
-      {% if user %}
-        <div>
-          <form id="twit-form" action="/post" method="post" enctype="multipart/form-data">
-            <div class="input-group">
-              <textarea id="twit" name="content" maxlength="140"></textarea>
-            </div>
-            <div class="img-preview">
-              <img id="img-preview" src="" style="display: none;" width="250" alt="미리보기">
-              <input id="img-url" type="hidden" name="url">
-            </div>
-            <div>
-              <label id="img-label" for="img">사진 업로드</label>
-              <input id="img" type="file" accept="image/*">
-              <button id="twit-btn" type="submit" class="btn">짹짹</button>
-            </div>
-          </form>
-        </div>
-      {% endif %}
-      <div class="twits">
-        <form id="hashtag-form" action="/hashtag">
-          <input type="text" name="hashtag" placeholder="태그 검색">
-          <button class="btn">검색</button>
-        </form>
-        {% for twit in twits %}
-          <div class="twit">
-            <input type="hidden" value="{{twit.User.id}}" class="twit-user-id">
-            <input type="hidden" value="{{twit.id}}" class="twit-id">
-            <div class="twit-author">{{twit.User.nick}}</div>
-            {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
-              <button class="twit-follow">팔로우하기</button>
-            {% elif followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
-              <button class="twit-unfollow">팔로우끊기</button>
-            {% endif %}
-            <div class="twit-content">{{twit.content}}</div>
-            {% if twit.img %}
-              <div class="twit-img"><img src="{{twit.img}}" alt="섬네일"></div>
-            {% endif %}
-            {% if not twit.Liker.includes(User.id) and twit.User.id !== user.id %}
-              <button class="like">좋아요</button>
-            {% elif twit.Liker.includes(User.id) and twit.User.id !== user.id %}
-              <button class="unlike">좋아요 취소</button>
-            {% endif %}
-            {% if user.id === twit.user.id %}
-              <button class="delete">게시글 삭제</button>
-            {% endif %}
+<body>
+  <div id="header"></div>
+  <div class="title">AICO</div>
+  <div class="sub_title">AI create objet</div>
+  
+  <!-- 생성하는 페이지로 이동버튼 -->
+  <a href="generate" onclick="return true;">
+    <button type="button" class="goto_create">start create</button>
+  </a>
 
+  <!-- 검색하는 부분 _ 일단 구글 검색되게 함_이후에 데베 정보 찾는거로 바꾸기 -->
+  <!-- <form class="search_box" action="https://www.google.com/search" method="GET">
+    <img class="search_icon" src="search_icon.svg" alt="">
+    <input name="q" class="search_txt" type="text" placeholder="Search for an image">
+    <button class="search_btn" type="submit">Search</button>
+  </form> -->
 
-          </div>
-        {% endfor %}
+  <!-- 생성한 이미지 보이는 부분 -->
+  <div class="main_img_box">
+    {% for twit in twits %}
+    <img src="{{twit.img}}" alt="" class="picture">
+    {% endfor %}
+  </div>
+
+  <!-- 팝업창 -->
+  <!-- <div id="popup_bg" class="popup_bg">
+    <img class="close" src="close_btn.svg" onclick="closePopup()">
+    <div id="popup" class="img_click_box">
+      <div class="img_and_next_btn">
+        <button class="left_btn lr_btn" onclick="alert('L클릭!')">
+          <img src="left_btn.svg" alt="">
+        </button>
+        <img src="pic3.jpg" alt="" class="clicked_img">
+        <button class="right_btn lr_btn" onclick="alert('R클릭!')">
+          <img src="right_btn.svg" alt="">
+        </button>
       </div>
+      <div class="like_down_box">
+        <img class="img_click_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
+        <img class="img_click_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')">
+      </div>
+      <div class="generate_txt_box">
+        <img class="writer_icon" src="profile_circle.svg">
+        <div class="generate_txt_style">
+          <p>
+            내용입니다.내용입니다.내용입니다. <br>
+            #몽환적인 #몽환적인
+          </p>
+        </div>
+      </div>
+      <div class="copy_btn_box">
+        <button class="copy_btn" onclick="alert('복사')">Copy prompt</button>
+      </div>
+  
     </div>
-{% endblock %}
+  </div> -->
+  
+</body>
 
-{% block script %}
+<!-- {% block script %}
   <script>
     if (document.getElementById('img')) {
       document.getElementById('img').addEventListener('change', function(e) {
@@ -74,10 +96,10 @@
       });
     }
     document.querySelectorAll('.twit-follow').forEach(function(tag) {
-      tag.addEventListener('click', function() { //클릭시 변경
-        const myId = document.querySelector('#my-id'); //#id 접근 layout 24줄 {{user.id}}값의 id
+      tag.addEventListener('click', function() {
+        const myId = document.querySelector('#my-id');
         if (myId) {
-          const userId = tag.parentNode.querySelector('.twit-user-id').value; //.class 접근
+          const userId = tag.parentNode.querySelector('.twit-user-id').value;
           if (userId !== myId.value) {
             if (confirm('팔로잉하시겠습니까?')) {
               axios.post(`/user/${userId}/follow`)
@@ -92,75 +114,5 @@
         }
       });
     });
-    document.querySelectorAll('.twit-unfollow').forEach(function(tag) {
-      tag.addEventListener('click', function() {
-        const myId = document.querySelector('#my-id');
-        if (myId) {
-          const userId = tag.parentNode.querySelector('.twit-user-id').value;
-          if (userId !== myId.value) {
-            if (confirm('팔로잉 끊으시겠습니까?')) {
-              axios.post(`/user/${userId}/unfollow`)
-                .then(() => {
-                  location.reload();
-                })
-                .catch((err) => {
-                  console.error(err);
-                });
-            }
-          }
-        }
-      });
-    });
-
-    document.querySelectorAll('.like').forEach(function(tag) {
-      tag.addEventListener('click', function() {
-        const myId = document.querySelector('#my-id');
-        const twitId = tag.parentNode.querySelector('.twit-id').value;
-        if (myId) {
-              axios.post(`/post/${twitId}/like`) //트윗 아이디 가져와서 좋아요 요청 보냄
-                .then(() => {
-                  location.reload();
-                })
-                .catch((err) => {
-                  console.error(err);
-                });
-        }
-      });
-    });
-    document.querySelectorAll('.unlike').forEach(function(tag) {
-      tag.addEventListener('click', function() {
-        const myId = document.querySelector('#my-id');
-        const twitId = tag.parentNode.querySelector('.twit-id').value;
-        if (myId) {
-              axios.delete(`/post/${twitId}/like`) //트윗 아이디 가져와서 좋아요 요청 보냄
-                .then(() => {
-                  location.reload();
-                })
-                .catch((err) => {
-                  console.error(err);
-                });
-        }
-      });
-    });
-    document.querySelectorAll('.delete').forEach(function(tag) {
-      tag.addEventListener('click', function() {
-        const myId = document.querySelector('#my-id');
-        const twitId = tag.parentNode.querySelector('.twit-id').value;
-        if (myId) {
-          const userId = tag.parentNode.querySelector('.twit-user-id').value;
-          if (userId === myId.value) {
-            if (confirm('게시글을 삭제하시겠습니까?')) {
-              axios.delete(`/post/${twitId}`) //트윗 아이디 가져와서 좋아요 요청 보냄
-                .then(() => {
-                  location.reload();
-                })
-                .catch((err) => {
-                  console.error(err);
-                });
-            }
-          }
-        }
-      });
-    });
   </script>
-{% endblock %}
+{% endblock %} -->
