@@ -306,6 +306,10 @@ body {
   height: 300%;
 }
 
+#history_btn {
+  visibility:hidden;
+}
+
 .close {
   position: absolute;
   top: 100px;

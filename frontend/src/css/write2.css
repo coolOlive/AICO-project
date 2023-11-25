@@ -103,12 +103,25 @@
 .img_input_btn_box {
  /* background-color: #22A39F; */
  display: flex;
+ flex-direction: row;
  justify-content: end;
+ /* padding-bottom: 10px; */
 }
+
+.img_input_btn_box div {
+  /* border: 1px solid #F3EFE0; */
+  margin-right: 10px;
+  cursor: pointer;
+}
+/* .inputType {
+  margin: 5px;
+  border: 1px solid #F3EFE0;
+  width: 150px;
+  height: 35px;
+} */
 
 .imp_input_btn {
   color: #F3EFE0;
-  /* background-color: salmon; */
   cursor: pointer;
   height: 32px;
   line-height: 32px;

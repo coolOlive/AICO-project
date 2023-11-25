@@ -39,6 +39,14 @@
       class="write_form"
       enctype="multipart/form-data"
     >
+    <!-- history불러오기 -->
+        <div class="callHistory" id="history_pop">
+          <div class="history_list" id="writeHistory">
+
+            <!-- ..... -->
+          </div>
+          <img class="close" src="close_btn.svg" onclick="closeHistoryPopup()">
+        </div>
       
       <!-- 이미지 파일을 입력할 수 있는 부분 -->
       <div class="generate_img_input_box">
@@ -59,20 +67,16 @@
           </a>
         </div>
         
-        <div onclick="showHistory()">
-          <input type="text" id="history_btn" accept="image/*">myHistory</label>
-        </div>
-        <!-- history불러오기 -->
-        <div class="callHistory" id="history_pop">
-          <div class="history_list" id="writeHistory">
-
-            <!-- ..... -->
-          </div>
-          <img class="close" src="close_btn.svg" onclick="closeHistoryPopup()">
-        </div>
         <div class="img_input_btn_box">
-          <label for="img" class="imp_input_btn" onclick="deleteHistory()">+ Upload image</label>
+          <div onclick="showHistory()">
+            <input type="text" class="imp_input_btn" id="history_btn" accept="image/*">+ History</label>
+          </div>
+          
+          <div>
+            <label for="img" class="imp_input_btn" onclick="deleteHistory()">+ Upload image</label>
+          </div>
         </div>
+        
         <div class="img-preview">
           <img
             class="preview"
