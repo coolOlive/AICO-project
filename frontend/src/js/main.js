@@ -38,6 +38,9 @@ function showPopup(imgsrc) {
   downBtn.href = imgsrc;
 
   popup.style.display = "block";
+
+  // 화면 스크롤을 맨 위로 이동
+  $("html, body").animate({ scrollTop: 0 }, 400);
 }
 
 function copyTxt() {
