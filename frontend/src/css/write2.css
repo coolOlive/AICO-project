@@ -93,11 +93,13 @@
   top: -20px;
   text-decoration: none;
   cursor: pointer;
+  z-index: -10;
   /* display: none; */
 }
 
 .file_delete_btn img {
   width: 13px;
+  /* z-index: -10; */
 }
 
 .img_input_btn_box {
