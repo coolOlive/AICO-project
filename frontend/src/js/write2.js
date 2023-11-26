@@ -51,8 +51,8 @@ function deleteHistory() {
 }
 
 function historyInput(imgSrc, imgNum) {
-  alert(`img_num: ${imgNum}`);
-  alert(`img_Src: ${imgSrc}`);
+  // alert(`img_num: ${imgNum}`);
+  // alert(`img_Src: ${imgSrc}`);
   closeHistoryPopup();
 
   // history url을 text로 전송하는 부분
