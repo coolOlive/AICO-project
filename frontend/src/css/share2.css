@@ -260,8 +260,12 @@ body {
 
 .card_text_box {
   /* background-color: chocolate; */
+  height: 100px;
   display: flex;
   justify-content : center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: wrap;
 }
 
 .card_text {
