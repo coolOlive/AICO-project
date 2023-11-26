@@ -84,7 +84,7 @@
         imgElement.src = image.img_path.replace(`#`,`%23`);
         imgElement.alt = `Image ${image.img_num}`;
         imgElement.onclick = function(){showPopup(imgElement.src)};
-        postsContainer.appendChild(imgElement);
+        likeContainer.appendChild(imgElement);
       });
     
       postsImages.forEach((image,idx) => {
