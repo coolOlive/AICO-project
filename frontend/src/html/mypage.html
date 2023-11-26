@@ -25,6 +25,23 @@
       return images;
     }
 
+    
+    //내가 좋아요한 게시글 이미지 4개 불러오기
+    async function fetchLikeFourImages() {
+      try {
+        const response = await fetch('/like/four/images');
+        if (!response.ok) {
+        throw new Error(`Error fetching images: ${response.statusText}`);
+        }
+        const images = await response.json();
+        console.log(images);
+        return images;
+      } catch (error) {
+        console.error('Error fetching posts images:', error);
+        throw error;
+      }
+    }
+    
     //내가 쓴 게시글 이미지 4개 불러오기
     async function fetchPostsFourImages() {
       try {
@@ -33,20 +50,22 @@
         throw new Error(`Error fetching images: ${response.statusText}`);
         }
         const images = await response.json();
-        console.log(images); // Add this line to log the images
+        console.log(images);
         return images;
       } catch (error) {
         console.error('Error fetching posts images:', error);
-        throw error; // Rethrow the error to stop execution
+        throw error;
       }
     }
 
     // 이미지 목록을 받아와서 화면에 표시하는 함수
     async function displayAllImages() {
       const historyImages = await fetchHistoryFourImages();
+      const likeImages = await fetchLikeFourImages();
       const postsImages = await fetchPostsFourImages();
       
       const historyContainer = document.getElementById('historyImageContainer');
+      const likeContainer = document.getElementById('likeImageContainer');
       const postsContainer = document.getElementById('postsImageContainer');
 
       historyImages.forEach((image,idx) => {
@@ -59,7 +78,15 @@
         // 이미지를 화면에 추가
         historyContainer.appendChild(imgElement);
       });
-
+      
+      likeImages.forEach((image,idx) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.img_path.replace(`#`,`%23`);
+        imgElement.alt = `Image ${image.img_num}`;
+        imgElement.onclick = function(){showPopup(imgElement.src)};
+        postsContainer.appendChild(imgElement);
+      });
+    
       postsImages.forEach((image,idx) => {
         const imgElement = document.createElement('img');
         imgElement.src = image.img_path.replace(`#`,`%23`);
@@ -137,11 +164,13 @@
           <a href="likes">+ 더보기</a>
         </div>
         
-        <div class="four_img likes">
+        <div class="four_img likes" id="likeImageContainer">
+          <!--
           <img src="p8.png" alt="" class="picture">
           <img src="p7.png" alt="" class="picture">
           <img src="p1.png" alt="" class="picture">
           <img src="p6.png" alt="" class="picture">
+          -->
         </div>
       </div>
 
