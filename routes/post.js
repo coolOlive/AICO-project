@@ -64,7 +64,7 @@ router.post("/", isLoggedIn, upload2.none(), async (req, res, next) => {
     // console.log(tmp);
 
     const [image] = await Image.findAll({
-      attributes: ["img_num"],
+      attributes: ["img_num", "img_path"],
       where: { img_path: req.body.url },
       order: [["img_num", "DESC"]],
       limit: 1,
@@ -80,7 +80,7 @@ router.post("/", isLoggedIn, upload2.none(), async (req, res, next) => {
     // console.log(tmp);
     const post = await Post.create({
       content: req.body.content,
-      img: image.img_num,
+      img: image.img_path,
       UserId: req.user.id,
     });
     console.log(post);

@@ -326,4 +326,32 @@ router.get('/history/images', (req, res) => {
   });
 });
 
+router.get('/posts/four/images', (req, res) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT image.img_path FROM posts JOIN image ON posts.img = image.img_path WHERE posts.UserId = ? ORDER BY posts.id DESC LIMIT 4', [userId], (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
+router.get('/posts/images', (req, res) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT image.img_path FROM posts JOIN image ON posts.img = image.img_path WHERE posts.UserId = ? ORDER BY posts.id DESC', [userId], (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
 module.exports = router;

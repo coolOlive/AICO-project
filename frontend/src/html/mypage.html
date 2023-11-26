@@ -18,32 +18,56 @@
       
     });
 
-    async function fetchFourImages() {
+    //history 이미지 4개 불러오기
+    async function fetchHistoryFourImages() {
       const response = await fetch('/history/four/images');
       const images = await response.json();
       return images;
     }
 
+    //내가 쓴 게시글 이미지 4개 불러오기
+    async function fetchPostsFourImages() {
+      try {
+        const response = await fetch('/posts/four/images');
+        if (!response.ok) {
+        throw new Error(`Error fetching images: ${response.statusText}`);
+        }
+        const images = await response.json();
+        console.log(images); // Add this line to log the images
+        return images;
+      } catch (error) {
+        console.error('Error fetching posts images:', error);
+        throw error; // Rethrow the error to stop execution
+      }
+    }
+
     // 이미지 목록을 받아와서 화면에 표시하는 함수
     async function displayAllImages() {
-      const images = await fetchFourImages();
-      const container = document.getElementById('imageContainer');
+      const historyImages = await fetchHistoryFourImages();
+      const postsImages = await fetchPostsFourImages();
+      
+      const historyContainer = document.getElementById('historyImageContainer');
+      const postsContainer = document.getElementById('postsImageContainer');
 
-      images.forEach((image,idx) => {
+      historyImages.forEach((image,idx) => {
         // 이미지를 표시할 img 태그 생성
         const imgElement = document.createElement('img');
         // 이미지의 URL을 설정
         imgElement.src = image.img_path.replace(`#`,`%23`);
-
         imgElement.alt = `Image ${image.img_num}`;
-
         imgElement.onclick = function(){showPopup(imgElement.src)};
-
         // 이미지를 화면에 추가
-        container.appendChild(imgElement);
+        historyContainer.appendChild(imgElement);
+      });
+
+      postsImages.forEach((image,idx) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.img_path.replace(`#`,`%23`);
+        imgElement.alt = `Image ${image.img_num}`;
+        imgElement.onclick = function(){showPopup(imgElement.src)};
+        postsContainer.appendChild(imgElement);
       });
     }
-
     // 페이지 로드 시 모든 이미지 표시 함수 호출
     window.onload = displayAllImages;
   </script>
@@ -95,7 +119,7 @@
           <a href="history">+ 더보기</a>
         </div>
         
-        <div class="four_img history" id="imageContainer">
+        <div class="four_img history" id="historyImageContainer">
           <!--
           <img src="p1.png" alt="" class="picture">
           <img src="p2.png" alt="" class="picture">
@@ -128,11 +152,13 @@
           <a href="mypost">+ 더보기</a>
         </div>
         
-        <div class="four_img post">
+        <div class="four_img post" id="postsImageContainer">
+          <!--
           <img src="p6.png" alt="" class="picture">
           <img src="p5.png" alt="" class="picture">
           <img src="p4.png" alt="" class="picture">
           <img src="p3.png" alt="" class="picture">
+          -->
         </div>
       </div>
 
