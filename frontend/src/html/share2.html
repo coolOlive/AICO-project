@@ -181,7 +181,7 @@
               id="preview"
               class="card-img-top"
               alt="."
-              onclick="showPopup('{{twit.img}}')"
+              onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}')"
             />
           </div>
           {% endif %}
@@ -206,7 +206,7 @@
                   class="card_icon comment_icon"
                   src="comment_icon.svg"
                   alt=""
-                  onclick="showPopup('{{twit.img}}')"
+                  onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}')"
                 />
                 <!-- <a href="{{twit.img}}" onclick="javascript:imgDownload(this.src, 'logo.png')"></a> -->
               </div>
@@ -264,7 +264,7 @@
           <div class="contents">
             <div class="writer_icon_name">
               <img class="writer_icon" src="profile_circle.svg" />
-              <div class="writer_name">닉네임</div>
+              <div class="writer_name" id="post_popup_userid">닉네임</div>
               {% if not followingIdList.includes(twit.User.id) and twit.User.id
               !== user.id %}
               <button class="twit-follow follow_btn">팔로우</button>
@@ -275,15 +275,15 @@
             </div>
             <div class="writer_contents_style">
               <!-- 게시글 부분 -->
-              <div class="contents_text">{{twit.content}}</div>
+              <div class="contents_text" id="popup_content">{{twit.content}}</div>
               <hr />
               <!-- 스타일 태그 보이는 부분 -->
               <div class="contents_style">
-                <div class="img_style">{{twit.content}}</div>
+                <div class="img_style" id="popup_style">{{twit.content}}</div>
                 <br />
-                <div class="img_style">#고양이</div>
+                <!-- <div class="img_style">#고양이</div>
                 <div class="img_style">#고전적인</div>
-                <div class="img_style">#갈색</div>
+                <div class="img_style">#갈색</div> -->
               </div>
             </div>
           </div>

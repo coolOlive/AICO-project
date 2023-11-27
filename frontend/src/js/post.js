@@ -3,10 +3,15 @@ function closePopup() {
   popup.style.display = "none";
 }
 
-function showPopup(imgsrc) {
+function showPopup(imgsrc, user, content) {
   let popup = document.getElementById("popup");
-  let clicked_img = document.getElementById("post_img");
+  let clickedImg = document.getElementById("post_img");
+  let popupUser = document.getElementById("post_popup_userid");
+  alert(user);
+  alert(content);
 
-  clicked_img.src = imgsrc;
+  popupUser.innerHTML = user;
+
+  clickedImg.src = imgsrc;
   popup.style.display = "block";
 }
