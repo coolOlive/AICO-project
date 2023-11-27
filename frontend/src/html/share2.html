@@ -181,7 +181,7 @@
               id="preview"
               class="card-img-top"
               alt="."
-              onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}')"
+              onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}','{{twit.img}}')"
             />
           </div>
           {% endif %}
@@ -206,7 +206,7 @@
                   class="card_icon comment_icon"
                   src="comment_icon.svg"
                   alt=""
-                  onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}')"
+                  onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}','{{twit.img}}')"
                 />
                 <!-- <a href="{{twit.img}}" onclick="javascript:imgDownload(this.src, 'logo.png')"></a> -->
               </div>
@@ -279,8 +279,9 @@
               <hr />
               <!-- 스타일 태그 보이는 부분 -->
               <div class="contents_style">
-                <div class="img_style" id="popup_style">{{twit.content}}</div>
-                <br />
+                <div class="img_style" id="generate_style"></div>
+                <!-- <br /> -->
+                <!-- <div class="img_style" id="generate_style">bbb</div> -->
                 <!-- <div class="img_style">#고양이</div>
                 <div class="img_style">#고전적인</div>
                 <div class="img_style">#갈색</div> -->
