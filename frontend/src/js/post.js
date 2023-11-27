@@ -9,10 +9,10 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   let popupUser = document.getElementById("post_popup_userid");
   let cardTxt = document.getElementById("popupTxt");
   let style = document.getElementById("generate_style");
-
+  // alert(content);
   style.innerHTML = ``;
-  // generateStyle = generateStyle.replace(/\\r\\n|\\n|\\r/gm, "<br>");
-  // alert(generateStyle);
+  // content = content.replace(/\\r\\n|\\n|\\r/gm, "<br>");
+  // alert(content);
 
   var arSplitUrl = generateStyle.split("/");
   var nArLength = arSplitUrl.length;
@@ -63,4 +63,6 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   cardTxt.innerHTML = content;
   clickedImg.src = imgsrc;
   popup.style.display = "block";
+
+  $("html, body").animate({ scrollTop: 0 }, 400);
 }
