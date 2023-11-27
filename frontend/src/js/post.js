@@ -9,8 +9,9 @@ function showPopup(imgsrc, user, content, generateStyle) {
   let popupUser = document.getElementById("post_popup_userid");
   let cardTxt = document.getElementById("popupTxt");
   let style = document.getElementById("generate_style");
-  // alert(user);
-  // alert(content);
+
+  style.innerHTML = ``;
+  // generateStyle = generateStyle.replace(/\\r\\n|\\n|\\r/gm, "<br>");
   // alert(generateStyle);
 
   var arSplitUrl = generateStyle.split("/");
