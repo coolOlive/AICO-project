@@ -128,8 +128,22 @@ body {
 #clicked_img {
   margin-top: 20px;
   margin-bottom: 10px;
-  width: 90%;
+  width: 180%;
   border-radius: 5px;
+}
+
+#img_generating_txt {
+  font-family: 'NanumGothic';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: start;
+  padding-left: 15px;
+  padding-right: 15px;
+  align-items: center;
+
+  color: #F3EFE0;
 }
 
 .close {

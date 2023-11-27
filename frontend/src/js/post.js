@@ -3,16 +3,31 @@ function closePopup() {
   popup.style.display = "none";
 }
 
+// function textDecoding() {
+//   let postTxt = document.getElementById("twit").value;
+//   let txt = document.getElementById("twit");
+
+//   alert(postTxt);
+//   postTxt = postTxt.replaceAll(/\r\n/gm, "<br>");
+//   txt.innerHTML = postTxt;
+//   alert(postTxt);
+//   return true;
+// }
+
+// function aa(c) {
+//   alert(c.replace("\r\n", "<br>"));
+// }
+
 function showPopup(imgsrc, user, content, generateStyle) {
   let popup = document.getElementById("popup");
   let clickedImg = document.getElementById("post_img");
   let popupUser = document.getElementById("post_popup_userid");
   let cardTxt = document.getElementById("popupTxt");
   let style = document.getElementById("generate_style");
-
+  // alert(content);
   style.innerHTML = ``;
-  // generateStyle = generateStyle.replace(/\\r\\n|\\n|\\r/gm, "<br>");
-  // alert(generateStyle);
+  // content = content.replace(/\\r\\n|\\n|\\r/gm, "<br>");
+  // alert(content);
 
   var arSplitUrl = generateStyle.split("/");
   var nArLength = arSplitUrl.length;
@@ -37,4 +52,6 @@ function showPopup(imgsrc, user, content, generateStyle) {
   cardTxt.innerHTML = content;
   clickedImg.src = imgsrc;
   popup.style.display = "block";
+
+  $("html, body").animate({ scrollTop: 0 }, 400);
 }
