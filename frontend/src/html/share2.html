@@ -181,10 +181,9 @@
               id="preview"
               class="card-img-top"
               alt="."
-              onclick="showPopup()"
+              onclick="showPopup('{{twit.img}}')"
             />
           </div>
-          <!-- <div class="twit-img"><img src="{{twit.img}}" ></div> -->
           {% endif %}
           <!-- <img class="preview" id="preview" src="{{twit.img}}"> -->
           <!-- 아이콘 및 게시글 미리보이는 부분 -->
@@ -207,7 +206,7 @@
                   class="card_icon comment_icon"
                   src="comment_icon.svg"
                   alt=""
-                  onclick="showPopup()"
+                  onclick="showPopup('{{twit.img}}')"
                 />
                 <!-- <a href="{{twit.img}}" onclick="javascript:imgDownload(this.src, 'logo.png')"></a> -->
               </div>
