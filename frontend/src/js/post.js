@@ -3,7 +3,7 @@ function closePopup() {
   popup.style.display = "none";
 }
 
-function showPopup(imgsrc, user, content, generateStyle) {
+function showPopup(imgsrc, user, content, generateStyle, postId) {
   let popup = document.getElementById("popup");
   let clickedImg = document.getElementById("post_img");
   let popupUser = document.getElementById("post_popup_userid");
@@ -31,6 +31,32 @@ function showPopup(imgsrc, user, content, generateStyle) {
     var printTags = tags.split(`,`);
 
     style.innerHTML = `#${printTags.join(` #`)}`;
+  }
+
+  let hiddenPostIdInput = document.querySelector(
+    ".write_img_post_box input[name='postId']"
+  );
+  if (hiddenPostIdInput) {
+    hiddenPostIdInput.value = postId;
+  }
+
+  let commentsList = document.querySelector(".post_box");
+  commentsList.innerHTML = ""; 
+
+  let comments = postsComments[postId];
+  if (comments) {
+    comments.forEach((comment) => {
+      let li = document.createElement("li");
+      li.className = "post";
+      li.innerHTML = `
+        <div class="post_writer_icon_name">
+          <img class="post_icon" src="profile_circle.svg" />
+          <div class="post_name">${comment.User.nick}</div>
+        </div>
+        <p class="img_post_txt">${comment.content}</p>
+      `;
+      commentsList.appendChild(li);
+    });
   }
 
   popupUser.innerHTML = user;

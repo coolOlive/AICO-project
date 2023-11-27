@@ -3,7 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-const { Image, Post, Hashtag } = require("../models");
+const { Image, Post, Hashtag,Comment } = require("../models");
 const { isLoggedIn } = require("./middlewares");
 const User = require("../models/user");
 const connection = require("../backend/db.js");
@@ -132,6 +132,23 @@ router.delete("/:id", async (req, res, next) => {
   } catch (error) {
     console.error(error);
     next(error);
+  }
+});
+
+router.post("/comments", isLoggedIn, async (req, res, next) => {
+  console.log("comment log : ", req.body);
+  try {
+    const { postId, content } = req.body;
+    const comment = await Comment.create({
+      PostId: postId,
+      UserId: req.user.id,
+      content,
+    });
+    console.log(comment);
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    next(err);
   }
 });
 

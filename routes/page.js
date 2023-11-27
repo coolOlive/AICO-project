@@ -1,6 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { Post, User, Hashtag } = require('../models');
+const { Post, User, Hashtag, Comment } = require('../models');
 const { Configuration, OpenAIApi } = require("openai");
 const fs = require("fs");
 const AWS = require("aws-sdk");
@@ -94,6 +94,15 @@ router.get("/share", isLoggedIn, async (req, res, next) => {
           model: User,
           attributes: ["id", "nick"],
           as: "Liker", //as로 구분함
+        },
+        {
+          model: Comment, // 댓글 데이터 추가
+          include: [
+            {
+              model: User,
+              attributes: ["nick"], // 댓글 작성자 닉네임 포함
+            },
+          ],
         },
       ],
       order: [["createdAt", "DESC"]],

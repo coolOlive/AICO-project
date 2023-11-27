@@ -39,15 +39,14 @@
       class="write_form"
       enctype="multipart/form-data"
     >
-    <!-- history불러오기 -->
-        <div class="callHistory" id="history_pop">
-          <div class="history_list" id="writeHistory">
-
-            <!-- ..... -->
-          </div>
-          <img class="close" src="close_btn.svg" onclick="closeHistoryPopup()">
+      <!-- history불러오기 -->
+      <div class="callHistory" id="history_pop">
+        <div class="history_list" id="writeHistory">
+          <!-- ..... -->
         </div>
-      
+        <img class="close" src="close_btn.svg" onclick="closeHistoryPopup()" />
+      </div>
+
       <!-- 이미지 파일을 입력할 수 있는 부분 -->
       <div class="generate_img_input_box">
         <input
@@ -62,21 +61,27 @@
             class="file_delete_btn"
             id="file_delete_btn"
           >
-          <img src="close_btn.svg" alt="" />
+            <img src="close_btn.svg" alt="" />
             <!-- <img src="delete_btn.svg" alt="" /> -->
           </a>
         </div>
-        
+
         <div class="img_input_btn_box">
           <div onclick="showHistory()">
-            <input type="text" name="url" class="imp_input_btn" id="history_btn" accept="image/*">+ Upload image</label>
+            <input
+              type="text"
+              name="url"
+              class="imp_input_btn"
+              id="history_btn"
+              accept="image/*"
+            />+ Upload image
           </div>
-          
+
           <!-- <div>
             <label for="img" name="url" class="imp_input_btn" onclick="deleteHistory()">+ Upload image</label>
           </div> -->
         </div>
-        
+
         <div class="img-preview">
           <img
             class="preview"
@@ -181,7 +186,7 @@
               id="preview"
               class="card-img-top"
               alt="."
-              onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}','{{twit.img}}')"
+              onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}','{{twit.img}}', '{{twit.id}}')"
             />
           </div>
           {% endif %}
@@ -206,7 +211,7 @@
                   class="card_icon comment_icon"
                   src="comment_icon.svg"
                   alt=""
-                  onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}','{{twit.img}}')"
+                  onclick="showPopup('{{twit.img}}','{{twit.User.nick}}','{{twit.content}}','{{twit.img}}', '{{twit.id}}')"
                 />
                 <!-- <a href="{{twit.img}}" onclick="javascript:imgDownload(this.src, 'logo.png')"></a> -->
               </div>
@@ -227,7 +232,7 @@
             {% endif %}
           </div>
         </div>
-        
+
         {% endfor %}
       </div>
     </div>
@@ -290,60 +295,33 @@
           </div>
 
           <!-- 댓글 공간 -->
-          <ul class="post_box">
-            <li class="post">
-              <div class="post_writer_icon_name">
-                <img class="post_icon" src="profile_circle.svg" />
-                <div class="post_name">댓글 닉네임</div>
-              </div>
-              <p class="img_post_txt">너무 귀여워요. 좋아요.</p>
-            </li>
 
+          <ul class="post_box">
+            {% for comment in twit.Comments %}
             <li class="post">
               <div class="post_writer_icon_name">
                 <img class="post_icon" src="profile_circle.svg" />
-                <div class="post_name">댓글 닉네임</div>
+                <div class="post_name">{{comment.User.nick}}</div>
               </div>
-              <p class="img_post_txt">공감합니다.</p>
+              <p class="img_post_txt">{{comment.content}}</p>
             </li>
-            <li class="post">
-              <div class="post_writer_icon_name">
-                <img class="post_icon" src="profile_circle.svg" />
-                <div class="post_name">댓글 닉네임</div>
-              </div>
-              <p class="img_post_txt">정장을 입었네요.</p>
-            </li>
-            <li class="post">
-              <div class="post_writer_icon_name">
-                <img class="post_icon" src="profile_circle.svg" />
-                <div class="post_name">댓글 닉네임</div>
-              </div>
-              <p class="img_post_txt">너무 귀여워요. 좋아요.</p>
-            </li>
-            <li class="post">
-              <div class="post_writer_icon_name">
-                <img class="post_icon" src="profile_circle.svg" />
-                <div class="post_name">댓글 닉네임</div>
-              </div>
-              <p class="img_post_txt">공감합니다.</p>
-            </li>
-            <li class="post">
-              <div class="post_writer_icon_name">
-                <img class="post_icon" src="profile_circle.svg" />
-                <div class="post_name">댓글 닉네임</div>
-              </div>
-              <p class="img_post_txt">정장을 입었네요.</p>
-            </li>
+            {% endfor %}
           </ul>
 
           <!-- 댓글 입력란 -->
-          <form action="" method="post" class="write_img_post_box">
+          <form
+            action="/post/comments"
+            method="post"
+            class="write_img_post_box"
+          >
             <textarea
               id="write_txt"
+              name="content"
               rows="1"
               class="write_txt"
               placeholder="댓글을 입력하세요"
             ></textarea>
+            <input type="hidden" name="postId" value="{{twit.id}}" />
             <button class="post_img_btn" type="submit">
               <img src="send_icon.svg" alt="" />
             </button>
@@ -355,18 +333,20 @@
 
   {% block script %}
   <script>
-      document.addEventListener("DOMContentLoaded", function () {
-      var twits = {{ twitsJSON | safe }};
-      console.log("chrome log : ", twits);
-      twits.forEach(function (twit) {
-        var heart = document.getElementById(twit.id + "_heart");
-        if (twit.isLiked) {
-          heart.src = "http://localhost:8003/like_btn.svg";
-        } else {
-          heart.src = "http://localhost:8003/white_heart.svg";
-        }
+    var postsComments = {};
+        document.addEventListener("DOMContentLoaded", function () {
+        var twits = {{ twitsJSON | safe }};
+        console.log("chrome log : ", twits);
+        twits.forEach(function (twit) {
+        postsComments[twit.id] = twit.Comments;
+          var heart = document.getElementById(twit.id + "_heart");
+          if (twit.isLiked) {
+            heart.src = "http://localhost:8003/like_btn.svg";
+          } else {
+            heart.src = "http://localhost:8003/white_heart.svg";
+          }
+        });
       });
-    });
   </script>
   <script>
     if (document.getElementById("img")) {
