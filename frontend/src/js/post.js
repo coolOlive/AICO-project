@@ -52,4 +52,6 @@ function showPopup(imgsrc, user, content, generateStyle) {
   cardTxt.innerHTML = content;
   clickedImg.src = imgsrc;
   popup.style.display = "block";
+
+  $("html, body").animate({ scrollTop: 0 }, 400);
 }
