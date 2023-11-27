@@ -78,7 +78,7 @@
         // 이미지를 화면에 추가
         historyContainer.appendChild(imgElement);
       });
-      
+
       likeImages.forEach((image,idx) => {
         const imgElement = document.createElement('img');
         imgElement.src = image.img_path.replace(`#`,`%23`);
@@ -86,7 +86,7 @@
         imgElement.onclick = function(){showPopup(imgElement.src)};
         likeContainer.appendChild(imgElement);
       });
-    
+
       postsImages.forEach((image,idx) => {
         const imgElement = document.createElement('img');
         imgElement.src = image.img_path.replace(`#`,`%23`);
@@ -94,6 +94,33 @@
         imgElement.onclick = function(){showPopup(imgElement.src)};
         postsContainer.appendChild(imgElement);
       });
+      
+      // history 없을 경우 보이는 화면
+      if (historyImages.length === 0) {
+        const imgElement = document.createElement('img');
+        imgElement.src = `nodata2.svg`;
+        imgElement.classList.add(`picture`);
+        imgElement.style.cursor = `default`;
+        historyContainer.appendChild(imgElement);
+      }
+
+      // 좋아요 이미지 없을 경우 보이는 화면
+      if (likeImages.length === 0) {
+        const imgElement = document.createElement('img');
+        imgElement.src = `nodata2.svg`;
+        imgElement.classList.add(`picture`);
+        imgElement.style.cursor = `default`;
+        likeContainer.appendChild(imgElement);
+      }
+
+      // 게시글 없을 경우 보이는 화면
+      if (postsImages.length === 0) {
+        const imgElement = document.createElement('img');
+        imgElement.src = `nodata2.svg`;
+        imgElement.classList.add(`picture`);
+        imgElement.style.cursor = `default`;
+        postsContainer.appendChild(imgElement);
+      }
     }
     // 페이지 로드 시 모든 이미지 표시 함수 호출
     window.onload = displayAllImages;
@@ -147,6 +174,7 @@
         </div>
         
         <div class="four_img history" id="historyImageContainer">
+          <!-- <img src="" alt="" class="picture"> -->
           <!--
           <img src="p1.png" alt="" class="picture">
           <img src="p2.png" alt="" class="picture">
@@ -165,6 +193,7 @@
         </div>
         
         <div class="four_img likes" id="likeImageContainer">
+          <!-- <img src="nodata2.svg" alt="" class="picture" id="like_nodata" style="cursor: default" > -->
           <!--
           <img src="p8.png" alt="" class="picture">
           <img src="p7.png" alt="" class="picture">

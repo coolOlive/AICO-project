@@ -189,11 +189,3 @@ function closeHistoryPopup() {
   let popup = document.getElementById("history_pop");
   popup.style.display = "none";
 }
-
-// async function all_reset() {
-//   let historyForm = document.querySelector("#history_btn");
-//   let writeTextArea = document.querySelector("#twit");
-//   historyForm.value = ``;
-//   writeTextArea.value = ``;
-//   showWrite();
-// }

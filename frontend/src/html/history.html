@@ -44,6 +44,15 @@
 
         container.appendChild(imageContainer);
       });
+      
+      // 이미지 없을 경우 보이는 화면
+      if (images.length === 0) {
+        const imgElement = document.createElement('img');
+        imgElement.src = `nodata2.svg`;
+        imgElement.classList.add(`picture`);
+        imgElement.style.cursor = `default`;
+        container.appendChild(imgElement);
+      }
     }
 
     // 페이지 로드 시 모든 이미지 표시 함수 호출
