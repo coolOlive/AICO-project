@@ -198,7 +198,7 @@
               <div class="card_icons">
                 <!-- 좋아요 버튼 부분 -->
                 <img
-                  class="like card_icon white_heart"
+                  class="like card_icon white_heart {{twit.id}}_heart_share"
                   id="{{twit.id}}_heart"
                   alt=""
                 />
@@ -250,11 +250,10 @@
             <!-- 팝업창 하트, 다운로드 버튼 -->
             <div class="card_icons">
               <img
-                class="card_icon white_heart"
+                class="like card_icon white_heart popup_heart"
                 src="white_heart.svg"
                 id="{{twit.id}}_heart"
                 alt=""
-                onclick="changeHeart('{{twit.id}}_heart');"
               />
               <img
                 class="card_icon download_img"

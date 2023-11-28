@@ -1,6 +1,7 @@
 function closePopup() {
   let popup = document.getElementById("popup");
-  popup.style.display = "none";
+  // popup.style.display = "none";
+  location.reload(true);
 }
 
 function showPopup(imgsrc, user, content, generateStyle, postId) {
@@ -9,10 +10,24 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   let popupUser = document.getElementById("post_popup_userid");
   let cardTxt = document.getElementById("popupTxt");
   let style = document.getElementById("generate_style");
-  // alert(content);
+  let popupHeart = document.querySelector(".popup_heart");
+
+  popupHeart.id = `${postId}_heart`;
+  // popupHeart.src = "http://localhost:8003/like_btn.svg";
+  axios
+    .post(`/post/${popupHeart.id}/checklike`)
+    .then((res) => {
+      if (res.data === "Liked") {
+        popupHeart.src = "http://localhost:8003/like_btn.svg";
+      } else if (res.data === "Unliked") {
+        popupHeart.src = "http://localhost:8003/white_heart.svg";
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
   style.innerHTML = ``;
-  // content = content.replace(/\\r\\n|\\n|\\r/gm, "<br>");
-  // alert(content);
 
   var arSplitUrl = generateStyle.split("/");
   var nArLength = arSplitUrl.length;
@@ -57,7 +72,7 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
         <div class="post_writer_icon_name">
           <img class="post_icon" src="profile_circle.svg" />
           <div class="post_name">${comment.User.nick}</div>
-          <img class="delete_comments" src="close_btn.svg" onclick="" />
+          <img class="delete_comments" src="close_btn.svg" onclick="deleteComment()" />
         </div>
         <p class="img_post_txt">${comment.content}</p>`;
       } else {
