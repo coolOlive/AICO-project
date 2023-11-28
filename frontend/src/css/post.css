@@ -99,16 +99,7 @@ hr {
   border-radius: 100%;
 }
 
-.writer_name, .post_name {
-  margin-left: 10px;
-  font-family: 'NanumGothic';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-}
+
 
 .follow_btn {
   margin: auto;
@@ -162,9 +153,33 @@ hr {
 }
 
 .post_writer_icon_name {
+  /* background-color: #22A39F; */
   margin-bottom: 5px;
   display: flex;
   flex-direction: row;
+  /* justify-content: space-between; */
+}
+
+.delete_comments {
+  width: 16px;
+  cursor: pointer;
+}
+
+.post_name {
+  width: 90%;
+}
+
+.writer_name, .post_name{
+  /* background-color: greenyellow; */
+  margin-left: 15px;
+  justify-content: flex-start;
+  font-family: 'NanumGothic';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
 }
 
 .img_post_txt {

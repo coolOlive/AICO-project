@@ -1,6 +1,7 @@
 function closePopup() {
-  let popup = document.getElementById("popup");
-  popup.style.display = "none";
+  // let popup = document.getElementById("popup");
+  // popup.style.display = "none";
+  location.reload(true);
 }
 
 function showPopup(imgsrc, user, content, generateStyle, postId) {
@@ -9,10 +10,25 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   let popupUser = document.getElementById("post_popup_userid");
   let cardTxt = document.getElementById("popupTxt");
   let style = document.getElementById("generate_style");
-  // alert(content);
+  let popupHeart = document.querySelector(".popup_heart");
+  // let follow = document.querySelector(".popup_heart");
+
+  popupHeart.id = `${postId}_heart`;
+
+  axios
+    .post(`/post/${popupHeart.id}/checklike`)
+    .then((res) => {
+      if (res.data === "Liked") {
+        popupHeart.src = "http://localhost:8003/like_btn.svg";
+      } else if (res.data === "Unliked") {
+        popupHeart.src = "http://localhost:8003/white_heart.svg";
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
   style.innerHTML = ``;
-  // content = content.replace(/\\r\\n|\\n|\\r/gm, "<br>");
-  // alert(content);
 
   var arSplitUrl = generateStyle.split("/");
   var nArLength = arSplitUrl.length;
@@ -33,6 +49,9 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
     style.innerHTML = `#${printTags.join(` #`)}`;
   }
 
+  let myid = document.querySelector(`.login_user`).innerHTML;
+  // alert(myid);
+
   let hiddenPostIdInput = document.querySelector(
     ".write_img_post_box input[name='postId']"
   );
@@ -41,20 +60,31 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   }
 
   let commentsList = document.querySelector(".post_box");
-  commentsList.innerHTML = ""; 
+  commentsList.innerHTML = "";
 
   let comments = postsComments[postId];
   if (comments) {
     comments.forEach((comment) => {
       let li = document.createElement("li");
       li.className = "post";
-      li.innerHTML = `
+
+      if (comment.User.nick === myid) {
+        li.innerHTML = `
+        <div class="post_writer_icon_name">
+          <img class="post_icon" src="profile_circle.svg" />
+          <div class="post_name">${comment.User.nick}</div>
+          <img class="delete_comments" src="close_btn.svg" onclick="deleteComment()" />
+        </div>
+        <p class="img_post_txt">${comment.content}</p>`;
+      } else {
+        li.innerHTML = `
         <div class="post_writer_icon_name">
           <img class="post_icon" src="profile_circle.svg" />
           <div class="post_name">${comment.User.nick}</div>
         </div>
-        <p class="img_post_txt">${comment.content}</p>
-      `;
+        <p class="img_post_txt">${comment.content}</p>`;
+      }
+
       commentsList.appendChild(li);
     });
   }

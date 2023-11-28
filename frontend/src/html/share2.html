@@ -198,9 +198,10 @@
               <div class="card_icons">
                 <!-- 좋아요 버튼 부분 -->
                 <img
-                  class="like card_icon white_heart"
+                  class="like card_icon white_heart {{twit.id}}_heart_share"
                   id="{{twit.id}}_heart"
                   alt=""
+                  src=""
                 />
                 <img
                   class="card_icon download_img"
@@ -250,11 +251,10 @@
             <!-- 팝업창 하트, 다운로드 버튼 -->
             <div class="card_icons">
               <img
-                class="card_icon white_heart"
+                class="like card_icon white_heart popup_heart"
                 src="white_heart.svg"
                 id="{{twit.id}}_heart"
                 alt=""
-                onclick="changeHeart('{{twit.id}}_heart');"
               />
               <img
                 class="card_icon download_img"
@@ -271,6 +271,7 @@
             <div class="writer_icon_name">
               <img class="writer_icon" src="profile_circle.svg" />
               <div class="writer_name" id="post_popup_userid">닉네임</div>
+              
               {% if not followingIdList.includes(twit.User.id) and twit.User.id
               !== user.id %}
               <button class="twit-follow follow_btn">팔로우</button>
@@ -303,8 +304,10 @@
               <div class="post_writer_icon_name">
                 <img class="post_icon" src="profile_circle.svg" />
                 <div class="post_name">{{comment.User.nick}}</div>
+                <img class="delete_comments" src="close_btn.svg" onclick="" />
               </div>
               <p class="img_post_txt">{{comment.content}}</p>
+              
             </li>
             {% endfor %}
           </ul>

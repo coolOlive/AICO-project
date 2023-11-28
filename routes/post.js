@@ -3,7 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-const { Image, Post, Hashtag,Comment } = require("../models");
+const { Image, Post, Hashtag, Comment } = require("../models");
 const { isLoggedIn } = require("./middlewares");
 const User = require("../models/user");
 const connection = require("../backend/db.js");
@@ -119,6 +119,25 @@ router.post("/:id/like", async (req, res, next) => {
     console.log("좋아요를 누름");
     await post.addLiker(req.user.dataValues.id);
     res.send("Liked");
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.post("/:id/checklike", async (req, res, next) => {
+  try {
+    const post = await Post.findOne({ where: { id: req.params.id } });
+    const liker = await post.getLiker({
+      where: { id: req.user.dataValues.id },
+    });
+
+    if (liker.length > 0) {
+      console.log("이미 좋아요를 누름");
+      return res.send("Liked");
+    }
+    console.log("좋아요를 누름");
+    res.send("Unliked");
   } catch (error) {
     console.error(error);
     next(error);
