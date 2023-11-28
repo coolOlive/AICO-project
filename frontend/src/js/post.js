@@ -1,5 +1,5 @@
 function closePopup() {
-  let popup = document.getElementById("popup");
+  // let popup = document.getElementById("popup");
   // popup.style.display = "none";
   location.reload(true);
 }
@@ -11,9 +11,10 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   let cardTxt = document.getElementById("popupTxt");
   let style = document.getElementById("generate_style");
   let popupHeart = document.querySelector(".popup_heart");
+  // let follow = document.querySelector(".popup_heart");
 
   popupHeart.id = `${postId}_heart`;
-  // popupHeart.src = "http://localhost:8003/like_btn.svg";
+
   axios
     .post(`/post/${popupHeart.id}/checklike`)
     .then((res) => {

@@ -43,6 +43,25 @@ window.onclick = (e) => {
   }
 };
 
+// function checkMainHeart(twitId) {
+//   let heart = document.getElementsByClassName(`${twitId}_share`);
+
+//   axios
+//     .post(`/post/${twitId}/checklike`)
+//     .then((res) => {
+//       alert(res.data);
+//       alert(heart.alt);
+//       if (res.data === "Liked") {
+//         heart.src = "http://localhost:8003/like_btn.svg";
+//       } else if (res.data === "Unliked") {
+//         heart.src = "http://localhost:8003/white_heart.svg";
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// }
+
 function changeHeart(tag) {
   const twitId = tag.id;
 
@@ -58,6 +77,8 @@ function changeHeart(tag) {
     .catch((err) => {
       console.error(err);
     });
+
+  // checkMainHeart(twitId);
 }
 
 document.querySelectorAll(".like").forEach(function (tag) {
