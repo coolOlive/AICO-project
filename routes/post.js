@@ -171,13 +171,12 @@ router.post("/comments", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.delete("/:id/delete/comment", async (req, res, next) => {
-  console.log("댓글삭제 테스트 : ", Comment);
+router.delete("/delete/comment/:id", async (req, res, next) => {
   try {
-    // const { id } = req.body;
-    await Comment.destroy({ where: { id: req.params.id } });
+    await Comment.destroy({
+      where: { id: req.params.id, userId: req.user.id },
+    });
     res.send("OK");
-    // await Comment.destroy({where:{id: postId, userId: req.user.id}})
   } catch (error) {
     console.error(error);
     next(error);
