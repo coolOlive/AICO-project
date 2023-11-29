@@ -203,12 +203,12 @@
                   alt=""
                   src=""
                 />
-                <img
+                <!-- <img
                   class="card_icon download_img"
                   src="download_img.svg"
                   alt=""
                   onclick="imgDownload('{{twit.img}}','{{twit.img}}')"
-                />
+                /> -->
                 <img
                   class="card_icon comment_icon"
                   src="comment_icon.svg"
@@ -256,12 +256,12 @@
                 id="{{twit.id}}_heart"
                 alt=""
               />
-              <img
+              <!-- <img
                 class="card_icon download_img"
                 src="download_img.svg"
                 alt=""
                 onclick="imgDownload('{{twit.img}}','{{twit.img}}')"
-              />
+              /> -->
             </div>
           </div>
         </div>
@@ -272,13 +272,13 @@
               <img class="writer_icon" src="profile_circle.svg" />
               <div class="writer_name" id="post_popup_userid">닉네임</div>
               
-              {% if not followingIdList.includes(twit.User.id) and twit.User.id
+              <!-- {% if not followingIdList.includes(twit.User.id) and twit.User.id
               !== user.id %}
               <button class="twit-follow follow_btn">팔로우</button>
               {% elif followingIdList.includes(twit.User.id) and twit.User.id
               !== user.id %}
               <button class="twit-unfollow follow_btn">팔로우끊기</button>
-              {% endif %}
+              {% endif %} -->
             </div>
             <div class="writer_contents_style">
               <!-- 게시글 부분 -->
@@ -438,20 +438,20 @@
         }
       });
     });
-    document.querySelectorAll(".delete_comments").forEach(function (tag) {
-      tag.addEventListener("click", function () {
-        if(confirm("댓글을 삭제하겠습니까?")){
-          const twitId = document.querySelector(".twit-id").value;
-          axios.post(`/post/delete/comment/${twitId}`)
-          .then((res)=>{
-            location.reload();
-          })
-          .catch((err)=>{
-            console.error(err);
-          })
-        }
-      });
-    });
+    // document.querySelectorAll(".delete_comments").forEach(function (tag) {
+    //   tag.addEventListener("click", function () {
+    //     if(confirm("댓글을 삭제하겠습니까?")){
+    //       const twitId = document.querySelector(".twit-id").value;
+    //       axios.delete(`/post/delete/comment/${twitId}`)
+    //       .then((res)=>{
+    //         location.reload();
+    //       })
+    //       .catch((err)=>{
+    //         console.error(err);
+    //       })
+    //     }
+    //   });
+    // });
   </script>
   <script src="../js/share2.js"></script>
   {% endblock %}
