@@ -7,7 +7,7 @@ function showPopup(imgsrc) {
   let popup = document.getElementById("popup_bg");
   let clickImg = document.getElementById("clicked_img");
   let imgTxt = document.getElementById("img_generating_txt");
-  let downBtn = document.getElementById("down_btn");
+  // let downBtn = document.getElementById("down_btn");
   // alert("hihi");
 
   var arSplitUrl = imgsrc.split("/");
@@ -36,22 +36,21 @@ function showPopup(imgsrc) {
   // alert(imgsrc);
 
   //downBtn.href = imgsrc;
-  downBtn.addEventListener("click", function() {
-    // 새로운 a 태그 생성
-    var link = document.createElement('a');
-  
-    // a 태그의 속성 설정
-    link.href = imgsrc;
-    link.download = 'downloaded_image.png';
-  
-    // a 태그를 document에 추가하고 클릭 이벤트를 발생시켜 다운로드를 시작
-    document.body.appendChild(link);
-    link.click();
-  
-    // 추가한 a 태그 제거
-    document.body.removeChild(link);
-  });
-  
+  // downBtn.addEventListener("click", function() {
+  //   // 새로운 a 태그 생성
+  //   var link = document.createElement('a');
+
+  //   // a 태그의 속성 설정
+  //   link.href = imgsrc;
+  //   link.download = 'downloaded_image.png';
+
+  //   // a 태그를 document에 추가하고 클릭 이벤트를 발생시켜 다운로드를 시작
+  //   document.body.appendChild(link);
+  //   link.click();
+
+  //   // 추가한 a 태그 제거
+  //   document.body.removeChild(link);
+  // });
 
   popup.style.display = "block";
 

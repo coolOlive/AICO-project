@@ -98,15 +98,14 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
 }
 
 function deleteComment(userId, commentId) {
-  alert(userId);
-  alert(commentId);
-
-  // axios
-  //   .delete(`/${commentId}/delete/comment`)
-  //   .then(() => {
-  //     location.reload();
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
+  if (confirm("댓글을 삭제하겠습니까?")) {
+    axios
+      .delete(`/post/delete/comment/${commentId}`)
+      .then((res) => {
+        location.reload();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
