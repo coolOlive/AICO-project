@@ -58,15 +58,32 @@
       }
     }
 
+    async function fetchCommentsFourImages() {
+      try {
+        const response = await fetch('/comments/four/images');
+        if (!response.ok) {
+        throw new Error(`Error fetching images: ${response.statusText}`);
+        }
+        const images = await response.json();
+        console.log(images);
+        return images;
+      } catch (error) {
+        console.error('Error fetching posts images:', error);
+        throw error;
+      }
+    }
+
     // 이미지 목록을 받아와서 화면에 표시하는 함수
     async function displayAllImages() {
       const historyImages = await fetchHistoryFourImages();
       const likeImages = await fetchLikeFourImages();
       const postsImages = await fetchPostsFourImages();
+      const commentsImages = await fetchCommentsFourImages();
       
       const historyContainer = document.getElementById('historyImageContainer');
       const likeContainer = document.getElementById('likeImageContainer');
       const postsContainer = document.getElementById('postsImageContainer');
+      const commentsContainer = document.getElementById('commentsImageContainer');
 
       historyImages.forEach((image,idx) => {
         // 이미지를 표시할 img 태그 생성
@@ -94,6 +111,14 @@
         imgElement.onclick = function(){showPopup(imgElement.src)};
         postsContainer.appendChild(imgElement);
       });
+
+      commentsImages.forEach((image,idx) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.img_path.replace(`#`,`%23`);
+        imgElement.alt = `Image ${image.img_num}`;
+        imgElement.onclick = function(){showPopup(imgElement.src)};
+        commentsContainer.appendChild(imgElement);
+      });
       
       // history 없을 경우 보이는 화면
       if (historyImages.length === 0) {
@@ -120,6 +145,15 @@
         imgElement.classList.add(`picture`);
         imgElement.style.cursor = `default`;
         postsContainer.appendChild(imgElement);
+      }
+
+      // 댓글 없을 경우 보이는 화면
+      if (commentsImages.length === 0) {
+        const imgElement = document.createElement('img');
+        imgElement.src = `nodata2.svg`;
+        imgElement.classList.add(`picture`);
+        imgElement.style.cursor = `default`;
+        commentsContainer.appendChild(imgElement);
       }
     }
     // 페이지 로드 시 모든 이미지 표시 함수 호출
@@ -227,11 +261,13 @@
           <a href="comment">+ 더보기</a>
         </div>
         
-        <div class="four_img comment">
+        <div class="four_img comment" id="commentsImageContainer">
+          <!--
           <img src="p8.png" alt="" class="picture">
           <img src="p1.png" alt="" class="picture">
           <img src="p3.png" alt="" class="picture">
           <img src="p4.png" alt="" class="picture">
+          -->
         </div>
       </div>
 
