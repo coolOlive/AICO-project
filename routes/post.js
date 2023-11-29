@@ -164,10 +164,23 @@ router.post("/comments", isLoggedIn, async (req, res, next) => {
       content,
     });
     console.log(comment);
-    res.redirect("/");
+    res.redirect("/share");
   } catch (err) {
     console.error(err);
     next(err);
+  }
+});
+
+router.delete("/:id/delete/comment", async (req, res, next) => {
+  console.log("댓글삭제 테스트 : ", Comment);
+  try {
+    // const { id } = req.body;
+    await Comment.destroy({ where: { id: req.params.id } });
+    res.send("OK");
+    // await Comment.destroy({where:{id: postId, userId: req.user.id}})
+  } catch (error) {
+    console.error(error);
+    next(error);
   }
 });
 

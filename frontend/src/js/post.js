@@ -73,7 +73,7 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
         <div class="post_writer_icon_name">
           <img class="post_icon" src="profile_circle.svg" />
           <div class="post_name">${comment.User.nick}</div>
-          <img class="delete_comments" src="close_btn.svg" onclick="deleteComment()" />
+          <img class="delete_comments" src="close_btn.svg" onclick="deleteComment(${comment.UserId},${comment.id})" />
         </div>
         <p class="img_post_txt">${comment.content}</p>`;
       } else {
@@ -95,4 +95,18 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   popup.style.display = "block";
 
   $("html, body").animate({ scrollTop: 0 }, 400);
+}
+
+function deleteComment(userId, commentId) {
+  alert(userId);
+  alert(commentId);
+
+  // axios
+  //   .delete(`/${commentId}/delete/comment`)
+  //   .then(() => {
+  //     location.reload();
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //   });
 }
