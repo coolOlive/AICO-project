@@ -391,4 +391,32 @@ router.get('/like/images', (req, res) => {
   });
 });
 
+router.get('/comments/four/images', (req, res) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT image.img_path FROM posts JOIN comments ON posts.id = comments.PostId JOIN image ON posts.img = image.img_path WHERE comments.UserId = ? ORDER BY comments.id DESC LIMIT 4', [userId], (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
+router.get('/comments/images', (req, res) => {
+  const userId = req.user.id;
+
+  connection.query('SELECT image.img_path FROM posts JOIN comments ON posts.id = comments.PostId JOIN image ON posts.img = image.img_path WHERE comments.UserId = 4 ORDER BY comments.id DESC', [userId], (error, results) => {
+    if (error) {
+      console.error('Error fetching images: ' + error.stack);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
 module.exports = router;

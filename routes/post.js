@@ -171,4 +171,14 @@ router.post("/comments", isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.delete("/delete/comment/:id", async (req, res, next) => {
+  try {
+    await Comment.destroy({ where: { id: req.params.id, userId: req.user.id } });
+    res.send("OK");
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 module.exports = router;

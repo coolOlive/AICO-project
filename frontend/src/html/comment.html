@@ -18,6 +18,45 @@
       $("#header").load("/html/header.html");
       
     });
+
+    async function fetchAllImages() {
+      const response = await fetch('/comments/images');
+      const images = await response.json();
+      return images;
+    }
+
+    // 이미지 목록을 받아와서 화면에 표시하는 함수
+    async function displayAllImages() {
+      const images = await fetchAllImages();
+      const container = document.getElementById('imageContainer');
+
+      images.forEach(image => {
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-container');
+
+        const imgElement = document.createElement('img');
+        imgElement.src = image.img_path.replace(`#`,`%23`);
+        imgElement.alt = `Image ${image.img_num}`;
+
+        imgElement.onclick = function(){showPopup(imgElement.src)};
+
+        imageContainer.appendChild(imgElement);
+
+        container.appendChild(imageContainer);
+      });
+
+      // 이미지 없을 경우 보이는 화면
+      if (images.length === 0) {
+        const imgElement = document.createElement('img');
+        imgElement.src = `nodata2.svg`;
+        imgElement.classList.add(`picture`);
+        imgElement.style.cursor = `default`;
+        container.appendChild(imgElement);
+      }
+    }
+
+    // 페이지 로드 시 모든 이미지 표시 함수 호출
+    window.onload = displayAllImages;
   </script>
 </head>
 
@@ -66,11 +105,13 @@
           <h3>내가 쓴 댓글</h3>
         </div>
         
-        <div class="four_img history">
+        <div class="four_img history" id="imageContainer">
+          <!--
           <img src="p8.png" alt="" class="picture">
           <img src="p1.png" alt="" class="picture">
           <img src="p3.png" alt="" class="picture">
           <img src="p4.png" alt="" class="picture">
+          -->
         </div>
       </div>
 
