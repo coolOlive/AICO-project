@@ -1,6 +1,4 @@
 function closePopup() {
-  // let popup = document.getElementById("popup");
-  // popup.style.display = "none";
   location.reload(true);
 }
 
@@ -11,7 +9,6 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   let cardTxt = document.getElementById("popupTxt");
   let style = document.getElementById("generate_style");
   let popupHeart = document.querySelector(".popup_heart");
-  // let follow = document.querySelector(".popup_heart");
 
   popupHeart.id = `${postId}_heart`;
 
@@ -50,7 +47,6 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   }
 
   let myid = document.querySelector(`.login_user`).innerHTML;
-  // alert(myid);
 
   let hiddenPostIdInput = document.querySelector(
     ".write_img_post_box input[name='postId']"

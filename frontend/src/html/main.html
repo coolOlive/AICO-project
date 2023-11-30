@@ -6,11 +6,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="../css/mypage.css"> -->
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/mainpost.css">
   <script src="../js/main.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
   <script>
     $(document).ready(function(){
@@ -29,17 +27,12 @@
       const container = document.getElementById('imageContainer');
 
       images.forEach(image => {
-        // const imageContainer = document.createElement('div');
-        // imageContainer.classList.add('image-container');
-
         const imgElement = document.createElement('img');
         imgElement.src = image.img_path.replace(`#`,`%23`);
         imgElement.alt = `Image ${image.img_num}`;
         imgElement.classList.add('picture');
 
         imgElement.onclick = function(){showPopup(imgElement.src)};
-
-        // imageContainer.appendChild(imgElement);
 
         container.appendChild(imgElement);
       });
@@ -99,49 +92,5 @@
     
       </div>
     </div>
-    
-   
   </div>
-
-  
 </body>
-
-<!-- {% block script %}
-  <script>
-    if (document.getElementById('img')) {
-      document.getElementById('img').addEventListener('change', function(e) {
-        const formData = new FormData();
-        console.log(this, this.files);
-        formData.append('img', this.files[0]);
-        axios.post('/post/img', formData)
-          .then((res) => {
-            document.getElementById('img-url').value = res.data.url;
-            document.getElementById('img-preview').src = res.data.url;
-            document.getElementById('img-preview').style.display = 'inline';
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      });
-    }
-    document.querySelectorAll('.twit-follow').forEach(function(tag) {
-      tag.addEventListener('click', function() {
-        const myId = document.querySelector('#my-id');
-        if (myId) {
-          const userId = tag.parentNode.querySelector('.twit-user-id').value;
-          if (userId !== myId.value) {
-            if (confirm('팔로잉하시겠습니까?')) {
-              axios.post(`/user/${userId}/follow`)
-                .then(() => {
-                  location.reload();
-                })
-                .catch((err) => {
-                  console.error(err);
-                });
-            }
-          }
-        }
-      });
-    });
-  </script>
-{% endblock %} -->
