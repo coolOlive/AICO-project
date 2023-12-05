@@ -3,10 +3,34 @@ function closePopup() {
   popup.style.display = "none";
 }
 
-function showPopup(imgsrc) {
+function showPopup(imgsrc, imgNum) {
   let popup = document.getElementById("popup_bg");
   let clickImg = document.getElementById("clicked_img");
   let imgTxt = document.getElementById("img_generating_txt");
+  // alert(imgNum);
+  // let popupHeart = document.getElementsByClassName("popup_heart");
+  // popupHeart.id = `${imgNum}_heart`;
+  // alert(popupHeart.id);
+  // axios
+  //   .post(`/post/popupimg/${popupHeart.id}/checklike`)
+  //   .then((res) => {
+  //     if (res.data === "Liked") {
+  //       popupHeart.src = "http://localhost:8003/like_btn.svg";
+  //     } else if (res.data === "Unliked") {
+  //       popupHeart.src = "http://localhost:8003/white_heart.svg";
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //   });
+
+  // popupHeart.onclick = function () {
+  //   changeHeart(popupHeart.id);
+  // };
+
+  // popupHeart.addEventListener("click", function () {
+  //   popupHeart.onclick = changeHeart(`${popupHeart.id}`);
+  // });
 
   var arSplitUrl = imgsrc.split("/");
   var nArLength = arSplitUrl.length;
@@ -48,14 +72,31 @@ function copyTxt() {
   alert(`복사되었습니다.`);
 }
 
-function changeHeart(num) {
-  let heart = document.getElementById(num).src;
+function changeHeart(imgId) {
+  let heart = document.getElementById(imgId);
 
   if (heart == "http://localhost:8003/white_heart.svg") {
-    document.getElementById(num).src = "http://localhost:8003/like_btn.svg";
+    document.getElementById(imgId).src = "http://localhost:8003/like_btn.svg";
   } else {
-    document.getElementById(num).src = "http://localhost:8003/white_heart.svg";
+    document.getElementById(imgId).src =
+      "http://localhost:8003/white_heart.svg";
   }
+
+  // const twitId = imgId;
+  // alert(twitId);
+
+  // axios
+  //   .post(`/post/${twitId}/like`)
+  //   .then((res) => {
+  //     if (res.data === "Liked") {
+  //       heart.src = "http://localhost:8003/like_btn.svg";
+  //     } else if (res.data === "Unliked") {
+  //       heart.src = "http://localhost:8003/white_heart.svg";
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //   });
 }
 
 async function toDataURL(url) {

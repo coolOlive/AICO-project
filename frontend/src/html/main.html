@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../css/mainpost.css">
   <script src="../js/main.js"></script>
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
     $(document).ready(function(){
       $("#header").load("/html/header.html");
@@ -25,17 +26,20 @@
     async function displayAllImages() {
       const images = await fetchAllImages();
       const container = document.getElementById('imageContainer');
+      // console.log(images)
 
       images.forEach(image => {
-        const imgElement = document.createElement('img');
-        imgElement.src = image.img_path.replace(`#`,`%23`);
-        imgElement.alt = `Image ${image.img_num}`;
-        imgElement.classList.add('picture');
+      const imgElement = document.createElement('img');
+      imgElement.src = image.img_path.replace(`#`,`%23`);
+      imgElement.alt = `Image ${image.img_num}`;
+      imgElement.classList.add('picture');
 
-        imgElement.onclick = function(){showPopup(imgElement.src)};
+      imgElement.onclick = function(){showPopup(imgElement.src, image.img_num)};
 
-        container.appendChild(imgElement);
-      });
+      // imgElement.onclick = function(){showPopup(imgElement.src, image.img_num, image.img_user)};
+
+      container.appendChild(imgElement);
+    });
     }
 
     // 페이지 로드 시 모든 이미지 표시 함수 호출
@@ -74,7 +78,7 @@
           <img src="" alt="" id="clicked_img">
         </div>
         <div class="like_down_box">
-          <img class="img_click_icon white_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt="" onclick="changeHeart('{{twit.id}}_heart');">
+          <!-- <img class="img_click_icon white_heart popup_heart" src="white_heart.svg" id="{{twit.id}}_heart" alt=""> -->
           <!-- <a id="down_btn"><img src="download_img.svg" alt="download"></a> -->
           <!-- <img class="img_click_icon download_img" src="download_img.svg" alt="" onclick="imgDownload('{{twit.img}}','{{twit.img}}')"> -->
         </div>

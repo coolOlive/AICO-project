@@ -11,7 +11,6 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
   let popupHeart = document.querySelector(".popup_heart");
 
   popupHeart.id = `${postId}_heart`;
-
   axios
     .post(`/post/${popupHeart.id}/checklike`)
     .then((res) => {
