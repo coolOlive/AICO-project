@@ -23,7 +23,6 @@ hr {
 }
 
 .post_pop {
-  /* background-color: sandybrown; */
   margin: auto;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -85,7 +84,6 @@ hr {
 .contents_box {
   width: 50%;
   height: 100%;
-  /* background-color: lightpink; */
 }
 
 .writer_icon_name {
@@ -138,12 +136,14 @@ hr {
 
 .post_box {
   /* background-color: lightseagreen; */
-  height: 500px;
+  /* height: 500px; */
+  height: 350px;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   overflow: auto;
   overflow-x: hidden;
+  /* background-color: lightpink; */
 }
 
 .post {
@@ -200,12 +200,19 @@ hr {
 }
 
 .write_txt {
-  font-family: 'NanumGothic';
+  /* font-family: 'NanumGothic';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
-  color: rgba(243, 239, 224, 0.6);
+  color: rgba(243, 239, 224, 0.6); */
+
+  
+  font-family: 'Nanum Gothic', sans-serif;
+  color: #F3EFE0;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 21px;
 
   width: 80%;
   height: 36px;
