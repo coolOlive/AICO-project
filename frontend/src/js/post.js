@@ -2,7 +2,7 @@ function closePopup() {
   location.reload(true);
 }
 
-function showPopup(imgsrc, user, content, generateStyle, postId) {
+function showPopup(imgsrc, user, content, postId) {
   let popup = document.getElementById("popup");
   let clickedImg = document.getElementById("post_img");
   let popupUser = document.getElementById("post_popup_userid");
@@ -26,7 +26,7 @@ function showPopup(imgsrc, user, content, generateStyle, postId) {
 
   style.innerHTML = ``;
 
-  var arSplitUrl = generateStyle.split("/");
+  var arSplitUrl = imgsrc.split("/");
   var nArLength = arSplitUrl.length;
   var arFileName = arSplitUrl[nArLength - 1];
   var arSplitFileName = arFileName.split(".");
